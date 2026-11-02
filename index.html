@@ -30,6 +30,100 @@
   <h1>Where is idle cash actually earning?</h1>
   <p>A simple scoreboard of brokerage sweeps, money market funds, T-bills, and FDIC national savings — each row linked to an official source with an as-of date. No invented numbers.</p>
 </section>
+<section class="card" style="margin-bottom:1rem;background:#f6f3ee;color:#1c1c1c">
+<!--
+  CashPark Weekly — MailerLite embed (form id 202991480307975789, group CashPark Weekly)
+  Email-only signup via MailerLite public JSONP form action (same endpoint as dashboard HTML embed).
+  Account double opt-in default: off (single opt-in). No campaigns; free plan.
+  Verified 2026-11-02 America/New_York: subscribe endpoint returned success and landed in group, then test contact deleted.
+-->
+<div class="cashpark-ml-embed" id="cashpark-weekly-signup">
+  <style>
+    .cashpark-ml-embed { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; max-width: 28rem; }
+    .cashpark-ml-embed h3 { margin: 0 0 0.35rem; font-size: 1.15rem; }
+    .cashpark-ml-embed .lede { margin: 0 0 0.85rem; color: #444; font-size: 0.95rem; line-height: 1.4; }
+    .cashpark-ml-embed form { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: stretch; }
+    .cashpark-ml-embed input[type=email] {
+      flex: 1 1 12rem; min-width: 0; padding: 0.65rem 0.75rem; border: 1px solid #c9c9c9;
+      border-radius: 8px; font-size: 1rem;
+    }
+    .cashpark-ml-embed button {
+      padding: 0.65rem 1rem; border: 0; border-radius: 8px; background: #0b3d2e; color: #fff;
+      font-weight: 600; cursor: pointer; font-size: 0.95rem;
+    }
+    .cashpark-ml-embed button:disabled { opacity: 0.6; cursor: wait; }
+    .cashpark-ml-embed .privacy { margin: 0.65rem 0 0; font-size: 0.8rem; color: #666; line-height: 1.35; }
+    .cashpark-ml-embed .msg { margin: 0.65rem 0 0; font-size: 0.9rem; }
+    .cashpark-ml-embed .msg.ok { color: #0b3d2e; }
+    .cashpark-ml-embed .msg.err { color: #9b1c1c; }
+  </style>
+
+  <h3>CashPark Weekly</h3>
+  <p class="lede">Idle-cash rate notes — verified sources only. One email field.</p>
+
+  <form id="cashpark-ml-form" action="https://assets.mailerlite.com/jsonp/2706336/forms/202991480307975789/subscribe" method="get" target="_blank" novalidate>
+    <input type="hidden" name="ml-submit" value="1" />
+    <input type="hidden" name="anticsrf" value="true" />
+    <input type="email" name="fields[email]" required placeholder="you@example.com" aria-label="Email address" autocomplete="email" />
+    <button type="submit">Subscribe</button>
+  </form>
+
+  <p class="privacy">
+    Privacy: we use your email only for CashPark Weekly updates about idle-cash rates and related site notes.
+    No sale of your address. Unsubscribe anytime from any email. Not investment advice.
+  </p>
+  <p class="msg" id="cashpark-ml-msg" hidden></p>
+
+  <script>
+  (function () {
+    var form = document.getElementById('cashpark-ml-form');
+    var msg = document.getElementById('cashpark-ml-msg');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var emailInput = form.querySelector('input[name="fields[email]"]');
+      var email = (emailInput && emailInput.value || '').trim();
+      var btn = form.querySelector('button[type=submit]');
+      msg.hidden = true;
+      msg.className = 'msg';
+      if (!email || email.indexOf('@') < 1) {
+        msg.textContent = 'Please enter a valid email.';
+        msg.className = 'msg err';
+        msg.hidden = false;
+        return;
+      }
+      if (btn) btn.disabled = true;
+      var cb = 'ml_cb_' + Math.random().toString(36).slice(2);
+      var url = form.action
+        + '?fields%5Bemail%5D=' + encodeURIComponent(email)
+        + '&ml-submit=1&anticsrf=true&ajax=1&callback=' + cb;
+      function done(ok, text) {
+        if (btn) btn.disabled = false;
+        msg.textContent = text;
+        msg.className = 'msg ' + (ok ? 'ok' : 'err');
+        msg.hidden = false;
+        try { delete window[cb]; } catch (err) {}
+        if (script && script.parentNode) script.parentNode.removeChild(script);
+      }
+      window[cb] = function (res) {
+        if (res && res.success) {
+          done(true, 'Thanks — check your inbox if confirmation is required. You’re on CashPark Weekly.');
+          form.reset();
+        } else {
+          var err = (res && res.errors && res.errors.fields && res.errors.fields.email && res.errors.fields.email[0])
+            || (res && res.message) || 'Could not subscribe. Try again.';
+          done(false, err);
+        }
+      };
+      var script = document.createElement('script');
+      script.src = url;
+      script.onerror = function () { done(false, 'Network error. Try again.'); };
+      document.body.appendChild(script);
+    });
+  })();
+  </script>
+</div>
+</section>
 <div class="note" id="missing"></div>
 <section class="card" style="margin-bottom:1rem">
   <h2>Top verified yields right now</h2>
