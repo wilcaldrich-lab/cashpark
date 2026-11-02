@@ -29,9 +29,9 @@
 <p>CashPark only publishes a rate after reading it on an official government or issuer page (or a free government API) in the same session the site is built/updated.</p></section>
 <section class="card"><ul class="clean">
 <li><strong>Brokerage sweeps:</strong> brokerage disclosure pages.</li>
-<li><strong>Money market funds:</strong> 7-day yields on Schwab Asset Management / Fidelity fund pages.</li>
-<li><strong>T-bills:</strong> U.S. Treasury Daily Treasury Bill Rates XML + TreasuryDirect auction JSON.</li>
-<li><strong>HYSA:</strong> FDIC national average for now; product APYs require each bank’s rate page.</li>
+<li><strong>Money market funds:</strong> 7-day yields on Schwab Asset Management, Fidelity, and Vanguard fund pages.</li>
+<li><strong>T-bills:</strong> U.S. Treasury Daily Treasury Bill Rates XML + TreasuryDirect auction JSON. The weekday workflow commits updates to <code>main</code>, which is what GitHub Pages publishes.</li>
+<li><strong>HYSA and no-penalty CDs:</strong> each bank’s own rate page or the bank’s own rate feed. FDIC national average stays as a benchmark. Conditional and promotional rates are labeled; unverifiable rows are omitted.</li>
 <li><strong>As-of + source URL</strong> required on every row. Unverified rows are omitted.</li>
 </ul>
 <p class="small muted">Yields are not APYs. Money market funds are not FDIC-insured. Education, not advice.</p></section>

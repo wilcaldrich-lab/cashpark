@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -27,5 +29,5 @@ jobs:
             echo "No rate changes"
           else
             git commit -m "chore: refresh T-bill daily yields from Treasury XML"
-            git push
+            git push origin HEAD:main
           fi

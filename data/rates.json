@@ -1,6 +1,6 @@
 {
-  "generated_at_et": "2026-11-01 21:45 EST",
-  "note": "Only rates verified on official issuer/government pages this build session. Unverified product HYSAs and no-penalty CDs omitted.",
+  "generated_at_et": "2026-11-02 09:19 EST",
+  "note": "Only rates verified on official issuer or government pages on 2026-11-02. Promotional 'up to' offers and pages that did not print a number were omitted. No affiliate links.",
   "brokerage_sweeps": [
     {
       "name": "Charles Schwab \u2014 Bank Sweep / Schwab One Interest (everyday uninvested cash)",
@@ -75,6 +75,17 @@
       "source_name": "Schwab Money Fund Yields",
       "source_url": "https://www.schwabassetmanagement.com/products/money-fund-yields",
       "fdic": false
+    },
+    {
+      "ticker": "VMFXX",
+      "name": "Vanguard Federal Money Market Fund",
+      "rate_pct": 3.88,
+      "metric": "7-day SEC yield",
+      "as_of": "2026-10-30",
+      "notes": "Profile field secYield. The same page also shows a 3.95% compound yield as of the same date; that is not the SEC yield.",
+      "source_name": "Vanguard fund profile \u2014 VMFXX",
+      "source_url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vmfxx",
+      "fdic": false
     }
   ],
   "hysa": [
@@ -87,9 +98,165 @@
       "source_name": "FDIC National Rates and Rate Caps \u2014 October 2026",
       "source_url": "https://www.fdic.gov/national-rates-and-rate-caps",
       "fdic": true
+    },
+    {
+      "name": "Ally Bank Online Savings",
+      "rate_pct": 3.2,
+      "metric": "APY",
+      "as_of": "2026-10-30",
+      "notes": "Variable APY on all balance tiers. Limit of 10 withdrawals per statement cycle. No minimum opening deposit.",
+      "source_name": "Ally Bank rates",
+      "source_url": "https://www.ally.com/bank/view-rates/",
+      "fdic": true
+    },
+    {
+      "name": "SoFi Bank Savings \u2014 with eligible direct deposit or $5,000 qualifying deposits",
+      "rate_pct": 3.3,
+      "metric": "APY",
+      "as_of": "2026-10-20",
+      "notes": "Table 4 of the SoFi Bank rate sheet. Without eligible direct deposit, $5,000 qualifying deposits every 31 days, or SoFi Plus, the savings APY is 0.80%. SoFi Plus tier (up to 4.70% on the first $20,000) is a paid membership and is not this row.",
+      "source_name": "SoFi Bank rate sheet",
+      "source_url": "https://www.sofi.com/legal/banking-rate-sheet",
+      "fdic": true
+    },
+    {
+      "name": "Marcus by Goldman Sachs Online Savings",
+      "rate_pct": 3.5,
+      "metric": "APY",
+      "as_of": "2026-11-02",
+      "notes": "Standard APY. A separate 3-month referral boost of 1.00% is not included. No minimum deposit.",
+      "source_name": "Marcus high-yield online savings",
+      "source_url": "https://www.marcus.com/us/en/savings/high-yield-savings",
+      "fdic": true
+    },
+    {
+      "name": "Synchrony Bank High Yield Savings",
+      "rate_pct": 3.75,
+      "metric": "APY",
+      "as_of": "2026-10",
+      "notes": "ProductId 100, 3.75% APY on every balance tier in Synchrony's retail products API, which the public rate page loads. That page is titled October 2026 and its disclosure date was blank, so the as-of is the month on the page, not a calendar day.",
+      "source_name": "Synchrony Bank retail products API",
+      "source_url": "https://api.syf.com/v1/retailBank/products?serviceLevel=0000000",
+      "fdic": true
+    },
+    {
+      "name": "Forbright Bank Growth Savings",
+      "rate_pct": 3.85,
+      "metric": "APY",
+      "as_of": "2026-11-02",
+      "notes": "Variable rate. Issuer says available only online. No fees stated on the homepage offer.",
+      "source_name": "Forbright Bank",
+      "source_url": "https://www.forbrightbank.com/",
+      "fdic": true
+    },
+    {
+      "name": "Popular Direct Select Savings",
+      "rate_pct": 3.9,
+      "metric": "APY",
+      "as_of": "2026-10-26",
+      "notes": "Popular Bank product. $100 minimum deposit to open. Rate may change at any time.",
+      "source_name": "Popular Direct savings",
+      "source_url": "https://www.populardirect.com/products/savings/",
+      "fdic": true
+    },
+    {
+      "name": "Sallie Mae High-Yield Savings",
+      "rate_pct": 4.0,
+      "metric": "APY",
+      "as_of": "2026-11-02",
+      "notes": "Personal accounts. Variable. Footnote on the issuer page ties this APY to the high-yield savings account.",
+      "source_name": "Sallie Mae High-Yield Savings",
+      "source_url": "https://www.salliemae.com/savings/high-yield-savings-account/",
+      "fdic": true
+    },
+    {
+      "name": "Bread Savings High-Yield Savings",
+      "rate_pct": 4.05,
+      "metric": "APY",
+      "as_of": "2026-11-02",
+      "notes": "Issuer disclosure says Bread Savings APYs are accurate as of the date shown on the page. The date element is filled as the viewing date; this page was retrieved on 2026-11-02.",
+      "source_name": "Bread Savings",
+      "source_url": "https://www.breadfinancial.com/en/bread-savings.html",
+      "fdic": true
+    },
+    {
+      "name": "Happen Bank LevelUp Savings \u2014 standard rate",
+      "rate_pct": 3.0,
+      "metric": "APY",
+      "as_of": "2026-10-31",
+      "notes": "Happen Bank, N.A. (formerly LendingClub). Rate if the $250 deposit requirement for the LevelUp rate is not met. lendingclub.com savings URL redirects here.",
+      "source_name": "Happen Bank LevelUp Savings",
+      "source_url": "https://www.happen.com/personal-banking/savings/high-yield-savings",
+      "fdic": true
+    },
+    {
+      "name": "Happen Bank LevelUp Savings \u2014 LevelUp rate",
+      "rate_pct": 4.2,
+      "metric": "APY",
+      "as_of": "2026-10-31",
+      "notes": "Requires at least $250 in cumulative deposits during the evaluation period (previous statement cycle). Otherwise the standard 3.00% APY applies.",
+      "source_name": "Happen Bank LevelUp Savings",
+      "source_url": "https://www.happen.com/personal-banking/savings/high-yield-savings",
+      "fdic": true
     }
   ],
-  "no_penalty_cds": [],
+  "no_penalty_cds": [
+    {
+      "name": "Ally Bank No Penalty CD \u2014 11 month",
+      "rate_pct": 2.9,
+      "metric": "APY",
+      "term": "11 months",
+      "as_of": "2026-10-30",
+      "notes": "Full balance may be withdrawn any time after the first six days following funding, with interest and no penalty. No minimum deposit. APY fixed for the term.",
+      "source_name": "Ally Bank rates",
+      "source_url": "https://www.ally.com/bank/view-rates/",
+      "fdic": true
+    },
+    {
+      "name": "Marcus by Goldman Sachs No-Penalty CD \u2014 7 month",
+      "rate_pct": 3.75,
+      "metric": "APY",
+      "term": "7 months",
+      "as_of": "2026-11-02",
+      "notes": "$500 minimum. Full-balance withdrawal only, starting seven days after funding. No early-withdrawal penalty after that.",
+      "source_name": "Marcus CD rates",
+      "source_url": "https://www.marcus.com/us/en/savings/high-yield-cds/cd-rates",
+      "fdic": true
+    },
+    {
+      "name": "Marcus by Goldman Sachs No-Penalty CD \u2014 11 month",
+      "rate_pct": 4.0,
+      "metric": "APY",
+      "term": "11 months",
+      "as_of": "2026-11-02",
+      "notes": "$500 minimum. Full-balance withdrawal only, starting seven days after funding.",
+      "source_name": "Marcus CD rates",
+      "source_url": "https://www.marcus.com/us/en/savings/high-yield-cds/cd-rates",
+      "fdic": true
+    },
+    {
+      "name": "Marcus by Goldman Sachs No-Penalty CD \u2014 13 month",
+      "rate_pct": 3.8,
+      "metric": "APY",
+      "term": "13 months",
+      "as_of": "2026-11-02",
+      "notes": "$500 minimum. Full-balance withdrawal only, starting seven days after funding.",
+      "source_name": "Marcus CD rates",
+      "source_url": "https://www.marcus.com/us/en/savings/high-yield-cds/cd-rates",
+      "fdic": true
+    },
+    {
+      "name": "Synchrony Bank No Penalty CD \u2014 11 month",
+      "rate_pct": 0.25,
+      "metric": "APY",
+      "term": "11 months",
+      "as_of": "2026-10",
+      "notes": "API description '11 MONTH NO PENALTY CD' (productId 611) is 0.25% APY on every balance tier, including $100,000+. That is far below Synchrony's other CD terms on the same feed. The public rates page describes the no-penalty withdrawal rule but did not print this number or a calendar as-of date; the page title is October 2026.",
+      "source_name": "Synchrony Bank retail products API",
+      "source_url": "https://api.syf.com/v1/retailBank/products?serviceLevel=0000000",
+      "fdic": true
+    }
+  ],
   "tbills_daily": [
     {
       "term": "4-Week",
@@ -213,10 +380,14 @@
     }
   ],
   "missing": [
-    "VMFXX \u2014 Vanguard official profile did not return a numeric yield to this session\u2019s fetch; omitted.",
-    "Product-level HYSA APYs \u2014 not verified on bank issuer pages this session.",
-    "No-penalty CD product rates \u2014 not verified on issuer pages this session.",
-    "Default sweeps for Fidelity/E*TRADE/Vanguard/etc. beyond Schwab \u2014 need each firm\u2019s disclosure page verified."
+    "Capital One 360 Performance Savings \u2014 the issuer page rendered the APY as NaN, so no number was published in the HTML.",
+    "American Express High Yield Savings \u2014 the issuer page left the APY as an unfilled template.",
+    "Barclays Online Savings and Tiered Savings \u2014 the issuer pages did not publish a numeric APY.",
+    "CIT Bank Platinum Savings and No-Penalty CD \u2014 the issuer pages were an empty application shell.",
+    "Discover Online Savings \u2014 the Discover savings URL redirected to Capital One and did not show a Discover APY.",
+    "UFB Portfolio Savings \u2014 the issuer page only stated an 'up to 4.01% for up to 6 months' offer; the ongoing APY was not separated from the boost.",
+    "Bask Bank savings \u2014 the homepage only showed promotional bundle APYs, not a standard savings APY.",
+    "Default sweeps for Fidelity/E*TRADE/Vanguard/etc. beyond Schwab \u2014 need each firm's disclosure page verified."
   ],
   "tbills_refreshed_at_et": "2026-11-01 22:28 EST"
 }
