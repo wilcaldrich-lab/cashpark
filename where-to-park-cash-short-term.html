@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<base href="/cashpark/"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Where to park cash short term · CashPark</title>
+<meta name="description" content="Short-term T-bills, no-penalty CDs, HYSAs, and money market funds using only verified CashPark rates and issuer sources."/>
+<link rel="canonical" href="https://wilcaldrich-lab.github.io/cashpark/where-to-park-cash-short-term.html"/>
+<meta property="og:title" content="Where to park cash short term · CashPark"/>
+<meta property="og:description" content="Short-term T-bills, no-penalty CDs, HYSAs, and money market funds using only verified CashPark rates and issuer sources."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://wilcaldrich-lab.github.io/cashpark/where-to-park-cash-short-term.html"/>
+<link rel="stylesheet" href="css/site.css"/>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html">Cash<span>Park</span></a>
+  <nav class="links">
+    <a href="index.html">Scoreboard</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="brokerage-sweeps.html">Sweeps</a>
+    <a href="money-market-funds.html">MMFs</a>
+    <a href="hysa.html">HYSA</a>
+    <a href="t-bills.html">T-Bills</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="newsletter.html">Newsletter</a>
+    <a href="disclosures.html">Disclosures</a>
+  </nav>
+</div></header>
+<main class="wrap">
+<section class="hero"><div class="pill">guide</div><h1>Where to park cash short term</h1>
+<p>Short-term options already in the verified file: Treasury bills of 26 weeks or less, no-penalty CDs, savings accounts, and money market funds. Rates below are copied from that file at view time. No affiliate links.</p></section>
+<section class="card"><h2>T-bills, 26 weeks and under</h2>
+<p class="small muted">Daily figure is the bank discount when a coupon-equivalent yield is not stored. Auction figure is the investment rate.</p>
+<div style="overflow:auto"><table>
+<thead><tr><th>Term</th><th>Rate</th><th>Kind</th><th>As of / maturity</th><th>Source</th></tr></thead>
+<tbody id="bills"></tbody></table></div></section>
+<section class="card"><h2>No-penalty CDs</h2>
+<div style="overflow:auto"><table>
+<thead><tr><th>Name</th><th>Rate</th><th>As of</th><th>Notes</th><th>Source</th></tr></thead>
+<tbody id="cds"></tbody></table></div></section>
+<section class="card"><h2>Savings accounts and the FDIC benchmark</h2>
+<div style="overflow:auto"><table>
+<thead><tr><th>Name</th><th>Rate</th><th>As of</th><th>Notes</th><th>Source</th></tr></thead>
+<tbody id="hysa"></tbody></table></div></section>
+<section class="card"><h2>Money market funds</h2>
+<div style="overflow:auto"><table>
+<thead><tr><th>Fund</th><th>Rate</th><th>As of</th><th>Notes</th><th>Source</th></tr></thead>
+<tbody id="mmf"></tbody></table></div>
+<p class="small muted">Not FDIC-insured.</p></section>
+</main>
+<footer class="wrap">
+  <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark publishes only rows in the verified rates file. No affiliate links.</p>
+</footer>
+<script src="js/site.js"></script>
+
+<script>
+loadRates().then(data=>{
+  const short = /^(4-Week|8-Week|13-Week|17-Week|26-Week)$/;
+  const bills = [];
+  for (const r of data.tbills_daily) {
+    if (!short.test(r.term)) continue;
+    const n = tbillNumber(r);
+    bills.push([esc(r.term+' daily'), rateCell(n.n, n.metric), 'Daily', esc(r.as_of), link(r.source_url, r.source_name)]);
+  }
+  for (const r of (data.tbills_auctions||[])) {
+    if (!short.test(r.term)) continue;
+    bills.push([esc(r.term+' auction'), rateCell(r.investment_rate_pct, 'investment rate'), 'Auction', esc(r.maturity||'—'), link(r.source_url, r.source_name)]);
+  }
+  fillTable('bills', bills);
+  const cds = (data.no_penalty_cds||[]).slice().sort((a,b)=>b.rate_pct-a.rate_pct);
+  fillTable('cds', cds.map(r=>[esc(r.name), rateCell(r.rate_pct, r.metric), esc(r.as_of), esc(r.notes||''), link(r.source_url, r.source_name)]));
+  fillTable('hysa', data.hysa.map(r=>[esc(r.name), rateCell(r.rate_pct, r.metric), esc(r.as_of), esc(r.notes||''), link(r.source_url, r.source_name)]));
+  fillTable('mmf', data.money_market_funds.map(r=>[
+    '<strong>'+esc(r.ticker)+'</strong><div class="small muted">'+esc(r.name)+'</div>',
+    rateCell(r.rate_pct, r.metric), esc(r.as_of), esc(r.notes||''), link(r.source_url, r.source_name)
+  ]));
+}).catch(e=>{document.getElementById('bills').textContent=String(e)});
+</script>
+</body>
+</html>

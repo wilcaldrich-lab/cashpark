@@ -6,8 +6,24 @@ async function loadRates(){
 function money(n){return n.toLocaleString(undefined,{style:'currency',currency:'USD',maximumFractionDigits:0})}
 function money2(n){return n.toLocaleString(undefined,{style:'currency',currency:'USD',maximumFractionDigits:2})}
 function pct(n){return (Number(n)).toFixed(2)+'%'}
-function link(url,label){return `<a href="${url}" rel="noopener noreferrer" target="_blank">${label||'source'}</a>`}
+function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function link(url,label){return `<a href="${url}" rel="noopener noreferrer" target="_blank">${esc(label)||'source'}</a>`}
 function rowHTML(cells){return `<tr>${cells.map(c=>`<td>${c}</td>`).join('')}</tr>`}
+function rateCell(n, metric){
+  if(n==null || n==='') return '—';
+  return '<span class="rate">'+pct(n)+'</span><span class="badge">'+esc(metric||'')+'</span>';
+}
+function tbillNumber(r){
+  if(r.coupon_equivalent_yield_pct!=null) return {n:r.coupon_equivalent_yield_pct, metric:'coupon equiv. yield'};
+  if(r.rate_pct!=null) return {n:r.rate_pct, metric:r.metric||''};
+  if(r.discount_pct!=null) return {n:r.discount_pct, metric:'bank discount'};
+  return {n:null, metric:''};
+}
+function fillTable(id, rows){
+  const el=document.getElementById(id);
+  if(!el) return;
+  el.innerHTML = rows.length ? rows.map(rowHTML).join('') : '<tr><td colspan="5" class="empty">No verified rows in the rates file.</td></tr>';
+}
 function setActiveNav(){
   const path = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.links a').forEach(a=>{

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<base href="/cashpark/"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>E*TRADE cash sweep rate · CashPark</title>
+<meta name="description" content="E*TRADE’s cash sweep rate is not in CashPark’s verified file. This page shows only brokerage sweep rates that are, with issuer sources."/>
+<link rel="canonical" href="https://wilcaldrich-lab.github.io/cashpark/etrade-cash-sweep-rate.html"/>
+<meta property="og:title" content="E*TRADE cash sweep rate · CashPark"/>
+<meta property="og:description" content="E*TRADE’s cash sweep rate is not in CashPark’s verified file. This page shows only brokerage sweep rates that are, with issuer sources."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://wilcaldrich-lab.github.io/cashpark/etrade-cash-sweep-rate.html"/>
+<link rel="stylesheet" href="css/site.css"/>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html">Cash<span>Park</span></a>
+  <nav class="links">
+    <a href="index.html">Scoreboard</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="brokerage-sweeps.html">Sweeps</a>
+    <a href="money-market-funds.html">MMFs</a>
+    <a href="hysa.html">HYSA</a>
+    <a href="t-bills.html">T-Bills</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="newsletter.html">Newsletter</a>
+    <a href="disclosures.html">Disclosures</a>
+  </nav>
+</div></header>
+<main class="wrap">
+<section class="hero"><div class="pill">guide</div><h1>E*TRADE cash sweep rate</h1>
+<p id="lead">Loading verified rows…</p></section>
+<section class="card"><h2>Verified brokerage sweeps on file</h2>
+<div style="overflow:auto"><table>
+<thead><tr><th>Name</th><th>Rate</th><th>As of</th><th>Notes</th><th>Source</th></tr></thead>
+<tbody id="rows"></tbody></table></div>
+<p class="small muted" id="gaps"></p></section>
+</main>
+<footer class="wrap">
+  <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark publishes only rows in the verified rates file. No affiliate links.</p>
+</footer>
+<script src="js/site.js"></script>
+
+<script>
+loadRates().then(data=>{
+  document.getElementById('lead').textContent = 'E*TRADE’s cash sweep rate is not in the verified rates file, so this page does not estimate one. The table is every brokerage sweep row that is verified.';
+  fillTable('rows', data.brokerage_sweeps.map(r=>[
+    esc(r.name), rateCell(r.rate_pct, r.metric), esc(r.as_of), esc(r.notes||''), link(r.source_url, r.source_name)
+  ]));
+  const gaps = (data.missing||[]).filter(m=>/sweep|E\*TRADE|Fidelity|Vanguard/i.test(m));
+  document.getElementById('gaps').textContent = gaps.join(' ');
+}).catch(e=>{document.getElementById('lead').textContent=String(e)});
+</script>
+</body>
+</html>

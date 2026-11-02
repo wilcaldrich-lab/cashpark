@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<base href="/cashpark/"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Robinhood Gold interest rate · CashPark</title>
+<meta name="description" content="Robinhood Gold interest is not in CashPark’s verified rates. This page lists verified savings and cash yields from other issuers instead."/>
+<link rel="canonical" href="https://wilcaldrich-lab.github.io/cashpark/robinhood-gold-interest.html"/>
+<meta property="og:title" content="Robinhood Gold interest rate · CashPark"/>
+<meta property="og:description" content="Robinhood Gold interest is not in CashPark’s verified rates. This page lists verified savings and cash yields from other issuers instead."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://wilcaldrich-lab.github.io/cashpark/robinhood-gold-interest.html"/>
+<link rel="stylesheet" href="css/site.css"/>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html">Cash<span>Park</span></a>
+  <nav class="links">
+    <a href="index.html">Scoreboard</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="brokerage-sweeps.html">Sweeps</a>
+    <a href="money-market-funds.html">MMFs</a>
+    <a href="hysa.html">HYSA</a>
+    <a href="t-bills.html">T-Bills</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="newsletter.html">Newsletter</a>
+    <a href="disclosures.html">Disclosures</a>
+  </nav>
+</div></header>
+<main class="wrap">
+<section class="hero"><div class="pill">guide</div><h1>Robinhood Gold interest</h1>
+<p id="lead">Loading verified rows…</p></section>
+<section class="card"><h2>Verified cash yields on file</h2>
+<p class="small muted">These are other institutions. None of them is a Robinhood Gold rate.</p>
+<div style="overflow:auto"><table>
+<thead><tr><th>Category</th><th>Name</th><th>Rate</th><th>As of</th><th>Source</th></tr></thead>
+<tbody id="rows"></tbody></table></div></section>
+</main>
+<footer class="wrap">
+  <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark publishes only rows in the verified rates file. No affiliate links.</p>
+</footer>
+<script src="js/site.js"></script>
+
+<script>
+loadRates().then(data=>{
+  document.getElementById('lead').textContent = 'Robinhood Gold interest is not in the verified rates file. CashPark does not estimate it. The table is verified brokerage sweeps, money market funds, and savings accounts already on file.';
+  const rows = [];
+  for (const r of data.brokerage_sweeps) rows.push(['Brokerage sweep', esc(r.name), rateCell(r.rate_pct, r.metric), esc(r.as_of), link(r.source_url, r.source_name)]);
+  for (const r of data.money_market_funds) rows.push(['Money market fund', esc(r.ticker+' — '+r.name), rateCell(r.rate_pct, r.metric), esc(r.as_of), link(r.source_url, r.source_name)]);
+  for (const r of data.hysa) rows.push([/national/i.test(r.metric||'')?'Savings benchmark':'HYSA', esc(r.name), rateCell(r.rate_pct, r.metric), esc(r.as_of), link(r.source_url, r.source_name)]);
+  fillTable('rows', rows);
+}).catch(e=>{document.getElementById('lead').textContent=String(e)});
+</script>
+</body>
+</html>

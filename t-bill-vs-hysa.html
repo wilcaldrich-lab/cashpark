@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<base href="/cashpark/"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>T-bill vs HYSA · CashPark</title>
+<meta name="description" content="Treasury bill discount and auction investment rates next to verified HYSA APYs. Different metrics, each tied to its source."/>
+<link rel="canonical" href="https://wilcaldrich-lab.github.io/cashpark/t-bill-vs-hysa.html"/>
+<meta property="og:title" content="T-bill vs HYSA · CashPark"/>
+<meta property="og:description" content="Treasury bill discount and auction investment rates next to verified HYSA APYs. Different metrics, each tied to its source."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://wilcaldrich-lab.github.io/cashpark/t-bill-vs-hysa.html"/>
+<link rel="stylesheet" href="css/site.css"/>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html">Cash<span>Park</span></a>
+  <nav class="links">
+    <a href="index.html">Scoreboard</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="brokerage-sweeps.html">Sweeps</a>
+    <a href="money-market-funds.html">MMFs</a>
+    <a href="hysa.html">HYSA</a>
+    <a href="t-bills.html">T-Bills</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="newsletter.html">Newsletter</a>
+    <a href="disclosures.html">Disclosures</a>
+  </nav>
+</div></header>
+<main class="wrap">
+<section class="hero"><div class="pill">guide</div><h1>T-bill vs HYSA</h1>
+<p>Daily Treasury rows in the current file store a bank discount, not a coupon-equivalent yield and not an APY. Auction rows store an investment rate. HYSA rows are APYs. Compare them only with that difference in view. T-bills are not bank deposits.</p></section>
+<section class="card"><h2>Daily Treasury bill rates</h2>
+<div style="overflow:auto"><table>
+<thead><tr><th>Term</th><th>Rate</th><th>As of</th><th>Source</th></tr></thead>
+<tbody id="daily"></tbody></table></div></section>
+<section class="card"><h2>Recent auction investment rates</h2>
+<div style="overflow:auto"><table>
+<thead><tr><th>Term</th><th>Investment rate</th><th>Maturity</th><th>Source</th></tr></thead>
+<tbody id="auctions"></tbody></table></div></section>
+<section class="card"><h2>Verified HYSAs and the savings benchmark</h2>
+<div style="overflow:auto"><table>
+<thead><tr><th>Name</th><th>Rate</th><th>As of</th><th>Source</th></tr></thead>
+<tbody id="hysa"></tbody></table></div></section>
+</main>
+<footer class="wrap">
+  <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark publishes only rows in the verified rates file. No affiliate links.</p>
+</footer>
+<script src="js/site.js"></script>
+
+<script>
+loadRates().then(data=>{
+  fillTable('daily', data.tbills_daily.map(r=>{
+    const n = tbillNumber(r);
+    return [esc(r.term), rateCell(n.n, n.metric), esc(r.as_of), link(r.source_url, r.source_name)];
+  }));
+  fillTable('auctions', (data.tbills_auctions||[]).map(r=>[
+    esc(r.term), rateCell(r.investment_rate_pct, 'investment rate'), esc(r.maturity||'—'), link(r.source_url, r.source_name)
+  ]));
+  fillTable('hysa', data.hysa.map(r=>[
+    esc(r.name), rateCell(r.rate_pct, r.metric), esc(r.as_of), link(r.source_url, r.source_name)
+  ]));
+}).catch(e=>{document.getElementById('daily').textContent=String(e)});
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<base href="/cashpark/"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>HYSA vs money market fund · CashPark</title>
+<meta name="description" content="Compare verified HYSA APYs with money market 7-day yields. Funds are not FDIC-insured. Sources and as-of dates included."/>
+<link rel="canonical" href="https://wilcaldrich-lab.github.io/cashpark/hysa-vs-money-market.html"/>
+<meta property="og:title" content="HYSA vs money market fund · CashPark"/>
+<meta property="og:description" content="Compare verified HYSA APYs with money market 7-day yields. Funds are not FDIC-insured. Sources and as-of dates included."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://wilcaldrich-lab.github.io/cashpark/hysa-vs-money-market.html"/>
+<link rel="stylesheet" href="css/site.css"/>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html">Cash<span>Park</span></a>
+  <nav class="links">
+    <a href="index.html">Scoreboard</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="brokerage-sweeps.html">Sweeps</a>
+    <a href="money-market-funds.html">MMFs</a>
+    <a href="hysa.html">HYSA</a>
+    <a href="t-bills.html">T-Bills</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="newsletter.html">Newsletter</a>
+    <a href="disclosures.html">Disclosures</a>
+  </nav>
+</div></header>
+<main class="wrap">
+<section class="hero"><div class="pill">guide</div><h1>HYSA vs money market fund</h1>
+<p>These are different products and different rate math. A savings APY is not a money market 7-day yield. Money market funds in this file are not FDIC-insured. The FDIC savings average is a benchmark, not a product offer.</p></section>
+<section class="card"><h2>Verified HYSAs and the savings benchmark</h2>
+<div style="overflow:auto"><table>
+<thead><tr><th>Name</th><th>Rate</th><th>As of</th><th>FDIC</th><th>Source</th></tr></thead>
+<tbody id="hysa"></tbody></table></div></section>
+<section class="card"><h2>Verified money market funds</h2>
+<div style="overflow:auto"><table>
+<thead><tr><th>Fund</th><th>Rate</th><th>As of</th><th>FDIC</th><th>Source</th></tr></thead>
+<tbody id="mmf"></tbody></table></div></section>
+</main>
+<footer class="wrap">
+  <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark publishes only rows in the verified rates file. No affiliate links.</p>
+</footer>
+<script src="js/site.js"></script>
+
+<script>
+loadRates().then(data=>{
+  const fdic = r => r.fdic ? 'Yes' : 'No';
+  fillTable('hysa', data.hysa.map(r=>[
+    esc(r.name), rateCell(r.rate_pct, r.metric), esc(r.as_of), esc(fdic(r)), link(r.source_url, r.source_name)
+  ]));
+  fillTable('mmf', data.money_market_funds.map(r=>[
+    '<strong>'+esc(r.ticker)+'</strong><div class="small muted">'+esc(r.name)+'</div>',
+    rateCell(r.rate_pct, r.metric), esc(r.as_of), esc(fdic(r)), link(r.source_url, r.source_name)
+  ]));
+}).catch(e=>{document.getElementById('hysa').textContent=String(e)});
+</script>
+</body>
+</html>

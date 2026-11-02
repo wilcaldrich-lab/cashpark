@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<base href="/cashpark/"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Best no-penalty CD rates · CashPark</title>
+<meta name="description" content="No-penalty CD APYs verified on Ally, Marcus, and Synchrony pages, with as-of dates and source links. No affiliate links."/>
+<link rel="canonical" href="https://wilcaldrich-lab.github.io/cashpark/best-no-penalty-cd.html"/>
+<meta property="og:title" content="Best no-penalty CD rates · CashPark"/>
+<meta property="og:description" content="No-penalty CD APYs verified on Ally, Marcus, and Synchrony pages, with as-of dates and source links. No affiliate links."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://wilcaldrich-lab.github.io/cashpark/best-no-penalty-cd.html"/>
+<link rel="stylesheet" href="css/site.css"/>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html">Cash<span>Park</span></a>
+  <nav class="links">
+    <a href="index.html">Scoreboard</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="brokerage-sweeps.html">Sweeps</a>
+    <a href="money-market-funds.html">MMFs</a>
+    <a href="hysa.html">HYSA</a>
+    <a href="t-bills.html">T-Bills</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="newsletter.html">Newsletter</a>
+    <a href="disclosures.html">Disclosures</a>
+  </nav>
+</div></header>
+<main class="wrap">
+<section class="hero"><div class="pill">guide</div><h1>Best no-penalty CD rates</h1>
+<p id="lead">Loading verified rows…</p></section>
+<section class="card"><div style="overflow:auto"><table>
+<thead><tr><th>Name</th><th>Rate</th><th>As of</th><th>Notes</th><th>Source</th></tr></thead>
+<tbody id="rows"></tbody></table></div>
+<p class="small muted">Sorted by the APY in the rates file. Withdrawal rules differ; read the notes and the issuer page. “Best” here means the highest verified APY in that file, not a recommendation.</p></section>
+</main>
+<footer class="wrap">
+  <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark publishes only rows in the verified rates file. No affiliate links.</p>
+</footer>
+<script src="js/site.js"></script>
+
+<script>
+loadRates().then(data=>{
+  const rows = (data.no_penalty_cds||[]).slice().sort((a,b)=>b.rate_pct-a.rate_pct);
+  const top = rows[0];
+  document.getElementById('lead').textContent = top
+    ? 'Highest verified no-penalty CD APY on file: '+top.name+' at '+pct(top.rate_pct)+' as of '+top.as_of+'. Every row below is from the same verified file.'
+    : 'No verified no-penalty CDs are in the rates file.';
+  fillTable('rows', rows.map(r=>[
+    esc(r.name), rateCell(r.rate_pct, r.metric), esc(r.as_of), esc(r.notes||''), link(r.source_url, r.source_name)
+  ]));
+}).catch(e=>{document.getElementById('lead').textContent=String(e)});
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<base href="/cashpark/"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Fidelity core position · SPAXX · CashPark</title>
+<meta name="description" content="Verified SPAXX 7-day yield from Fidelity’s fund page. CashPark does not publish a separate unverified Fidelity default-sweep rate."/>
+<link rel="canonical" href="https://wilcaldrich-lab.github.io/cashpark/fidelity-core-position.html"/>
+<meta property="og:title" content="Fidelity core position · SPAXX · CashPark"/>
+<meta property="og:description" content="Verified SPAXX 7-day yield from Fidelity’s fund page. CashPark does not publish a separate unverified Fidelity default-sweep rate."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://wilcaldrich-lab.github.io/cashpark/fidelity-core-position.html"/>
+<link rel="stylesheet" href="css/site.css"/>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html">Cash<span>Park</span></a>
+  <nav class="links">
+    <a href="index.html">Scoreboard</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="brokerage-sweeps.html">Sweeps</a>
+    <a href="money-market-funds.html">MMFs</a>
+    <a href="hysa.html">HYSA</a>
+    <a href="t-bills.html">T-Bills</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="newsletter.html">Newsletter</a>
+    <a href="disclosures.html">Disclosures</a>
+  </nav>
+</div></header>
+<main class="wrap">
+<section class="hero"><div class="pill">guide</div><h1>Fidelity core position</h1>
+<p id="lead">Loading verified rows…</p></section>
+<section class="card"><h2>SPAXX</h2>
+<div style="overflow:auto"><table>
+<thead><tr><th>Fund</th><th>Rate</th><th>As of</th><th>Notes</th><th>Source</th></tr></thead>
+<tbody id="rows"></tbody></table></div>
+<p class="small muted">Money market funds are not FDIC-insured. A 7-day yield is not an APY.</p></section>
+</main>
+<footer class="wrap">
+  <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark publishes only rows in the verified rates file. No affiliate links.</p>
+</footer>
+<script src="js/site.js"></script>
+
+<script>
+loadRates().then(data=>{
+  const rows = data.money_market_funds.filter(r=>r.ticker==='SPAXX');
+  const f = rows[0];
+  document.getElementById('lead').textContent = f
+    ? 'The verified Fidelity fund on file is '+f.ticker+' — '+f.name+'. People searching for a Fidelity core position usually mean this fund. A separate default cash-sweep rate, if the core position is not SPAXX, is not in the file.'
+    : 'SPAXX is not in the verified file.';
+  fillTable('rows', rows.map(r=>[
+    '<strong>'+esc(r.ticker)+'</strong><div class="small muted">'+esc(r.name)+'</div>',
+    rateCell(r.rate_pct, r.metric), esc(r.as_of), esc(r.notes||''), link(r.source_url, r.source_name)
+  ]));
+}).catch(e=>{document.getElementById('lead').textContent=String(e)});
+</script>
+</body>
+</html>

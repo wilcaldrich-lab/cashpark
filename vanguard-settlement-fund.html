@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<base href="/cashpark/"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Vanguard settlement fund · VMFXX · CashPark</title>
+<meta name="description" content="VMFXX 7-day SEC yield from Vanguard’s fund profile. CashPark does not substitute the compound yield for the SEC yield."/>
+<link rel="canonical" href="https://wilcaldrich-lab.github.io/cashpark/vanguard-settlement-fund.html"/>
+<meta property="og:title" content="Vanguard settlement fund · VMFXX · CashPark"/>
+<meta property="og:description" content="VMFXX 7-day SEC yield from Vanguard’s fund profile. CashPark does not substitute the compound yield for the SEC yield."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://wilcaldrich-lab.github.io/cashpark/vanguard-settlement-fund.html"/>
+<link rel="stylesheet" href="css/site.css"/>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html">Cash<span>Park</span></a>
+  <nav class="links">
+    <a href="index.html">Scoreboard</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="brokerage-sweeps.html">Sweeps</a>
+    <a href="money-market-funds.html">MMFs</a>
+    <a href="hysa.html">HYSA</a>
+    <a href="t-bills.html">T-Bills</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="newsletter.html">Newsletter</a>
+    <a href="disclosures.html">Disclosures</a>
+  </nav>
+</div></header>
+<main class="wrap">
+<section class="hero"><div class="pill">guide</div><h1>Vanguard settlement fund</h1>
+<p id="lead">Loading verified rows…</p></section>
+<section class="card"><h2>VMFXX</h2>
+<div style="overflow:auto"><table>
+<thead><tr><th>Fund</th><th>Rate</th><th>As of</th><th>Notes</th><th>Source</th></tr></thead>
+<tbody id="rows"></tbody></table></div>
+<p class="small muted">Not FDIC-insured. The SEC yield is the figure in the rate column.</p></section>
+</main>
+<footer class="wrap">
+  <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark publishes only rows in the verified rates file. No affiliate links.</p>
+</footer>
+<script src="js/site.js"></script>
+
+<script>
+loadRates().then(data=>{
+  const rows = data.money_market_funds.filter(r=>r.ticker==='VMFXX');
+  const f = rows[0];
+  document.getElementById('lead').textContent = f
+    ? 'Searches for the Vanguard settlement fund refer to '+f.ticker+', '+f.name+'. The table shows the verified '+f.metric+' from the rates file. The note on that row is the only extra detail CashPark keeps from the same source.'
+    : 'VMFXX is not in the verified file.';
+  fillTable('rows', rows.map(r=>[
+    '<strong>'+esc(r.ticker)+'</strong><div class="small muted">'+esc(r.name)+'</div>',
+    rateCell(r.rate_pct, r.metric), esc(r.as_of), esc(r.notes||''), link(r.source_url, r.source_name)
+  ]));
+}).catch(e=>{document.getElementById('lead').textContent=String(e)});
+</script>
+</body>
+</html>

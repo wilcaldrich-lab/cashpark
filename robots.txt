@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wilcaldrich-lab.github.io/cashpark/sitemap.xml
