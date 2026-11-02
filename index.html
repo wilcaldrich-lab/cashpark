@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<base href="/cashpark/"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Idle cash scoreboard · CashPark</title>
+<meta name="description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<link rel="stylesheet" href="css/site.css"/>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html">Cash<span>Park</span></a>
+  <nav class="links">
+    <a href="index.html">Scoreboard</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="brokerage-sweeps.html">Sweeps</a>
+    <a href="money-market-funds.html">MMFs</a>
+    <a href="hysa.html">HYSA</a>
+    <a href="t-bills.html">T-Bills</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="newsletter.html">Newsletter</a>
+    <a href="disclosures.html">Disclosures</a>
+  </nav>
+</div></header>
+<main class="wrap">
+
+<section class="hero">
+  <div class="pill">v1 · verified sources only</div>
+  <h1>Where is idle cash actually earning?</h1>
+  <p>A simple scoreboard of brokerage sweeps, money market funds, T-bills, and FDIC national savings — each row linked to an official source with an as-of date. No invented numbers.</p>
+</section>
+<div class="note" id="missing"></div>
+<section class="card" style="margin-bottom:1rem">
+  <h2>Top verified yields right now</h2>
+  <p class="small muted" id="generated"></p>
+  <div style="overflow:auto"><table>
+    <thead><tr><th>Category</th><th>Name</th><th>Rate</th><th>As of</th><th>Source</th></tr></thead>
+    <tbody id="scoreboard"></tbody>
+  </table></div>
+</section>
+<div class="grid grid-2">
+  <a class="card" href="calculator.html"><h3>Idle-cash calculator</h3><p class="muted small">See dollars left on the table vs a better verified rate.</p></a>
+  <a class="card" href="t-bills.html"><h3>T-bill yields</h3><p class="muted small">Pulled from U.S. Treasury free feeds.</p></a>
+  <a class="card" href="schwab-cash-sweep-rate.html"><h3>Schwab cash sweep</h3><p class="muted small">SEO page for Schwab’s everyday cash vs SWVXX.</p></a>
+  <a class="card" href="fidelity-spaxx-yield.html"><h3>Fidelity SPAXX</h3><p class="muted small">Current 7-day yield with source link.</p></a>
+</div>
+
+</main>
+<footer class="wrap">
+  <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark v1 — verified rates only; gaps listed on the scoreboard.</p>
+</footer>
+<script src="js/site.js"></script>
+<script>
+loadRates().then(data=>{
+  document.getElementById('generated').textContent = 'Data built ' + data.generated_at_et + '. ' + data.note;
+  document.getElementById('missing').innerHTML = '<strong>Missing in v1:</strong> ' + data.missing.map(m=>'<div>• '+m+'</div>').join('');
+  const rows=[];
+  for(const r of data.brokerage_sweeps){rows.push({cat:'Brokerage sweep', name:r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url, src:r.source_name});}
+  for(const r of data.money_market_funds){rows.push({cat:'Money market fund', name:r.ticker+' — '+r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url, src:r.source_name});}
+  for(const r of data.tbills_daily){rows.push({cat:'T-bill (daily)', name:r.term, rate:r.coupon_equivalent_yield_pct, metric:'coupon equiv. yield', as_of:r.as_of, url:r.source_url, src:r.source_name});}
+  for(const r of data.hysa){rows.push({cat:'HYSA / savings benchmark', name:r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url, src:r.source_name});}
+  rows.sort((a,b)=>b.rate-a.rate);
+  document.getElementById('scoreboard').innerHTML = rows.map(r=>rowHTML([
+    r.cat, r.name, '<span class="rate">'+pct(r.rate)+'</span><span class="badge">'+r.metric+'</span>', r.as_of, link(r.url, r.src)
+  ])).join('');
+}).catch(e=>{document.getElementById('missing').textContent=String(e)});
+</script>
+</body></html>

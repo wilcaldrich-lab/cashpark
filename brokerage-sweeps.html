@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<base href="/cashpark/"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Brokerage sweeps · CashPark</title>
+<meta name="description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<link rel="stylesheet" href="css/site.css"/>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html">Cash<span>Park</span></a>
+  <nav class="links">
+    <a href="index.html">Scoreboard</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="brokerage-sweeps.html">Sweeps</a>
+    <a href="money-market-funds.html">MMFs</a>
+    <a href="hysa.html">HYSA</a>
+    <a href="t-bills.html">T-Bills</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="newsletter.html">Newsletter</a>
+    <a href="disclosures.html">Disclosures</a>
+  </nav>
+</div></header>
+<main class="wrap">
+
+<section class="hero"><div class="pill">category</div><h1>Brokerage sweeps</h1><p>Default uninvested cash rates verified on brokerage disclosure pages.</p></section>
+<section class="card"><div style="overflow:auto"><table>
+<thead><tr><th>Name</th><th>Rate</th><th>As of</th><th>Notes</th><th>Source</th></tr></thead>
+<tbody id="sweeps"></tbody></table></div></section>
+
+</main>
+<footer class="wrap">
+  <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark v1 — verified rates only; gaps listed on the scoreboard.</p>
+</footer>
+<script src="js/site.js"></script>
+<script>
+loadRates().then(d=>{
+  document.getElementById('sweeps').innerHTML = d.brokerage_sweeps.map(r=>rowHTML([
+    r.name, '<span class="rate">'+pct(r.rate_pct)+'</span><span class="badge">'+r.metric+'</span>', r.as_of, r.notes||'', link(r.source_url,r.source_name)
+  ])).join('') || '<tr><td colspan="5" class="empty">No verified sweep rows yet.</td></tr>';
+});
+</script>
+</body></html>

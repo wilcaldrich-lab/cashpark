@@ -1,0 +1,222 @@
+{
+  "generated_at_et": "2026-11-01 21:45 EST",
+  "note": "Only rates verified on official issuer/government pages this build session. Unverified product HYSAs and no-penalty CDs omitted.",
+  "brokerage_sweeps": [
+    {
+      "name": "Charles Schwab \u2014 Bank Sweep / Schwab One Interest (everyday uninvested cash)",
+      "rate_pct": 0.01,
+      "metric": "APY",
+      "as_of": "2026-11-01",
+      "notes": "Schwab cash investments page lists 0.01% APY for everyday uninvested cash.",
+      "source_name": "Schwab Cash Investments",
+      "source_url": "https://www.schwab.com/cash-investments",
+      "fdic": false
+    },
+    {
+      "name": "Schwab Intelligent Portfolios Sweep Program",
+      "rate_pct": 3.47,
+      "metric": "APY",
+      "as_of": "2026-10-01",
+      "notes": "Effective October 1, 2026. Tied to SWGXX prior month-end 7-day yield.",
+      "source_name": "Schwab Intelligent Portfolios Sweep current rates",
+      "source_url": "https://www.schwab.com/legal/sip-sweep-current-interest-rates",
+      "fdic": true
+    }
+  ],
+  "money_market_funds": [
+    {
+      "ticker": "SPAXX",
+      "name": "Fidelity Government Money Market Fund",
+      "rate_pct": 3.55,
+      "metric": "7-day yield",
+      "as_of": "2026-10-30",
+      "source_name": "Fidelity fund research \u2014 SPAXX",
+      "source_url": "https://fundresearch.fidelity.com/mutual-funds/summary/31617H102",
+      "fdic": false
+    },
+    {
+      "ticker": "SWVXX",
+      "name": "Schwab Prime Advantage Money Fund \u2014 Investor Shares",
+      "rate_pct": 3.77,
+      "metric": "7-day yield (with waivers)",
+      "as_of": "2026-10-30",
+      "source_name": "Schwab Asset Management \u2014 SWVXX",
+      "source_url": "https://www.schwabassetmanagement.com/products/swvxx",
+      "fdic": false
+    },
+    {
+      "ticker": "SNAXX",
+      "name": "Schwab Prime Advantage Money Fund \u2014 Ultra Shares",
+      "rate_pct": 3.92,
+      "metric": "7-day yield (with waivers)",
+      "as_of": "2026-10-30",
+      "notes": "$1,000,000 minimum",
+      "source_name": "Schwab Money Fund Yields",
+      "source_url": "https://www.schwabassetmanagement.com/products/money-fund-yields",
+      "fdic": false
+    },
+    {
+      "ticker": "SNVXX",
+      "name": "Schwab Government Money Fund \u2014 Investor Shares",
+      "rate_pct": 3.62,
+      "metric": "7-day yield (with waivers)",
+      "as_of": "2026-10-30",
+      "source_name": "Schwab Money Fund Yields",
+      "source_url": "https://www.schwabassetmanagement.com/products/money-fund-yields",
+      "fdic": false
+    },
+    {
+      "ticker": "SWGXX",
+      "name": "Schwab Government Money Fund \u2014 Sweep Shares",
+      "rate_pct": 3.52,
+      "metric": "7-day yield (with waivers)",
+      "as_of": "2026-10-30",
+      "notes": "Limited eligibility as a designated cash feature.",
+      "source_name": "Schwab Money Fund Yields",
+      "source_url": "https://www.schwabassetmanagement.com/products/money-fund-yields",
+      "fdic": false
+    }
+  ],
+  "hysa": [
+    {
+      "name": "FDIC national average \u2014 Savings",
+      "rate_pct": 0.38,
+      "metric": "National deposit rate (not a product offer)",
+      "as_of": "2026-10-19",
+      "notes": "Benchmark only. Individual HYSA product rates not seeded until verified on each bank\u2019s own rate page.",
+      "source_name": "FDIC National Rates and Rate Caps \u2014 October 2026",
+      "source_url": "https://www.fdic.gov/national-rates-and-rate-caps",
+      "fdic": true
+    }
+  ],
+  "no_penalty_cds": [],
+  "tbills_daily": [
+    {
+      "term": "4-Week",
+      "as_of": "2026-10-30",
+      "source_name": "U.S. Treasury Daily Treasury Bill Rates",
+      "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
+      "metric": "Coupon equivalent yield (bank discount also shown)",
+      "discount_pct": 3.91
+    },
+    {
+      "term": "8-Week",
+      "as_of": "2026-10-30",
+      "source_name": "U.S. Treasury Daily Treasury Bill Rates",
+      "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
+      "metric": "Coupon equivalent yield (bank discount also shown)",
+      "discount_pct": 4.0
+    },
+    {
+      "term": "13-Week",
+      "as_of": "2026-10-30",
+      "source_name": "U.S. Treasury Daily Treasury Bill Rates",
+      "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
+      "metric": "Coupon equivalent yield (bank discount also shown)",
+      "discount_pct": 3.99
+    },
+    {
+      "term": "17-Week",
+      "as_of": "2026-10-30",
+      "source_name": "U.S. Treasury Daily Treasury Bill Rates",
+      "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
+      "metric": "Coupon equivalent yield (bank discount also shown)",
+      "discount_pct": 4.07
+    },
+    {
+      "term": "26-Week",
+      "as_of": "2026-10-30",
+      "source_name": "U.S. Treasury Daily Treasury Bill Rates",
+      "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
+      "metric": "Coupon equivalent yield (bank discount also shown)",
+      "discount_pct": 4.11
+    },
+    {
+      "term": "52-Week",
+      "as_of": "2026-10-30",
+      "source_name": "U.S. Treasury Daily Treasury Bill Rates",
+      "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
+      "metric": "Coupon equivalent yield (bank discount also shown)",
+      "discount_pct": 4.17
+    }
+  ],
+  "tbills_auctions": [
+    {
+      "term": "13-Week",
+      "investment_rate_pct": 4.149,
+      "high_discount_rate_pct": 4.05,
+      "auction_date": null,
+      "maturity": "2027-01-28",
+      "cusip": "912797VU8",
+      "source_name": "TreasuryDirect auctioned securities API",
+      "source_url": "https://www.treasurydirect.gov/TA_WS/securities/auctioned?format=json&type=Bill"
+    },
+    {
+      "term": "17-Week",
+      "investment_rate_pct": 4.256,
+      "high_discount_rate_pct": 4.14,
+      "auction_date": null,
+      "maturity": "2027-03-02",
+      "cusip": "912797XB8",
+      "source_name": "TreasuryDirect auctioned securities API",
+      "source_url": "https://www.treasurydirect.gov/TA_WS/securities/auctioned?format=json&type=Bill"
+    },
+    {
+      "term": "26-Week",
+      "investment_rate_pct": 4.361,
+      "high_discount_rate_pct": 4.21,
+      "auction_date": null,
+      "maturity": "2027-04-29",
+      "cusip": "912797WW3",
+      "source_name": "TreasuryDirect auctioned securities API",
+      "source_url": "https://www.treasurydirect.gov/TA_WS/securities/auctioned?format=json&type=Bill"
+    },
+    {
+      "term": "4-Week",
+      "investment_rate_pct": 3.976,
+      "high_discount_rate_pct": 3.91,
+      "auction_date": null,
+      "maturity": "2026-12-01",
+      "cusip": "912797VZ7",
+      "source_name": "TreasuryDirect auctioned securities API",
+      "source_url": "https://www.treasurydirect.gov/TA_WS/securities/auctioned?format=json&type=Bill"
+    },
+    {
+      "term": "52-Week",
+      "investment_rate_pct": 4.496,
+      "high_discount_rate_pct": 4.29,
+      "auction_date": null,
+      "maturity": "2027-10-28",
+      "cusip": "912797WT0",
+      "source_name": "TreasuryDirect auctioned securities API",
+      "source_url": "https://www.treasurydirect.gov/TA_WS/securities/auctioned?format=json&type=Bill"
+    },
+    {
+      "term": "6-Week",
+      "investment_rate_pct": 4.023,
+      "high_discount_rate_pct": 3.95,
+      "auction_date": null,
+      "maturity": "2026-12-10",
+      "cusip": "912797VG9",
+      "source_name": "TreasuryDirect auctioned securities API",
+      "source_url": "https://www.treasurydirect.gov/TA_WS/securities/auctioned?format=json&type=Bill"
+    },
+    {
+      "term": "8-Week",
+      "investment_rate_pct": 4.101,
+      "high_discount_rate_pct": 4.02,
+      "auction_date": null,
+      "maturity": "2026-12-29",
+      "cusip": "912797WH6",
+      "source_name": "TreasuryDirect auctioned securities API",
+      "source_url": "https://www.treasurydirect.gov/TA_WS/securities/auctioned?format=json&type=Bill"
+    }
+  ],
+  "missing": [
+    "VMFXX \u2014 Vanguard official profile did not return a numeric yield to this session\u2019s fetch; omitted.",
+    "Product-level HYSA APYs \u2014 not verified on bank issuer pages this session.",
+    "No-penalty CD product rates \u2014 not verified on issuer pages this session.",
+    "Default sweeps for Fidelity/E*TRADE/Vanguard/etc. beyond Schwab \u2014 need each firm\u2019s disclosure page verified."
+  ],
+  "tbills_refreshed_at_et": "2026-11-01 22:28 EST"
+}

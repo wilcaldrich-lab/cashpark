@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<base href="/cashpark/"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Treasury bills · CashPark</title>
+<meta name="description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<link rel="stylesheet" href="css/site.css"/>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html">Cash<span>Park</span></a>
+  <nav class="links">
+    <a href="index.html">Scoreboard</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="brokerage-sweeps.html">Sweeps</a>
+    <a href="money-market-funds.html">MMFs</a>
+    <a href="hysa.html">HYSA</a>
+    <a href="t-bills.html">T-Bills</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="newsletter.html">Newsletter</a>
+    <a href="disclosures.html">Disclosures</a>
+  </nav>
+</div></header>
+<main class="wrap">
+
+<section class="hero"><div class="pill">treasury feeds</div><h1>T-bill yields</h1>
+<p>Daily coupon-equivalent yields from the U.S. Treasury XML feed (baked at build). Auction investment rates from TreasuryDirect JSON.</p>
+<p id="tbill-live-status" class="small muted"></p></section>
+<section class="card" style="margin-bottom:1rem"><h2>Daily Treasury bill rates</h2>
+<div style="overflow:auto"><table><thead><tr><th>Term</th><th>Coupon equiv.</th><th>Discount</th><th>Maturity</th><th>As of</th><th>Source</th></tr></thead><tbody id="daily"></tbody></table></div></section>
+<section class="card"><h2>Recent auction investment rates</h2>
+<div style="overflow:auto"><table><thead><tr><th>Term</th><th>Investment rate</th><th>High discount</th><th>Auction date</th><th>Maturity</th><th>Source</th></tr></thead><tbody id="auction"></tbody></table></div></section>
+
+</main>
+<footer class="wrap">
+  <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark v1 — verified rates only; gaps listed on the scoreboard.</p>
+</footer>
+<script src="js/site.js"></script>
+<script>
+loadRates().then(refreshTBillsLive).then(d=>{
+  document.getElementById('daily').innerHTML=d.tbills_daily.map(r=>rowHTML([
+    r.term, '<span class="rate">'+pct(r.coupon_equivalent_yield_pct)+'</span>', pct(r.discount_pct), r.maturity, r.as_of, link(r.source_url,r.source_name)
+  ])).join('');
+  document.getElementById('auction').innerHTML=d.tbills_auctions.map(r=>rowHTML([
+    r.term, '<span class="rate">'+pct(r.investment_rate_pct)+'</span>', r.high_discount_rate_pct!=null?pct(r.high_discount_rate_pct):'—', r.auction_date||'—', r.maturity||'—', link(r.source_url,r.source_name)
+  ])).join('');
+});
+</script>
+</body></html>

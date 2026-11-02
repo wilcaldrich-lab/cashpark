@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<base href="/cashpark/"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Idle cash calculator · CashPark</title>
+<meta name="description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<link rel="stylesheet" href="css/site.css"/>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html">Cash<span>Park</span></a>
+  <nav class="links">
+    <a href="index.html">Scoreboard</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="brokerage-sweeps.html">Sweeps</a>
+    <a href="money-market-funds.html">MMFs</a>
+    <a href="hysa.html">HYSA</a>
+    <a href="t-bills.html">T-Bills</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="newsletter.html">Newsletter</a>
+    <a href="disclosures.html">Disclosures</a>
+  </nav>
+</div></header>
+<main class="wrap">
+
+<section class="hero"><div class="pill">tool</div><h1>Idle cash calculator</h1>
+<p>Estimate annual interest at your current rate vs a better verified CashPark rate. Uses simple APY math (no compounding schedule).</p></section>
+<section class="card">
+  <div class="controls">
+    <label>Cash amount ($)<input id="amount" type="number" min="0" step="100" value="25000"/></label>
+    <label>Your current rate (%)<input id="current" type="number" min="0" step="0.01" value="0.01"/></label>
+    <label>Compare to verified rate<select id="compare"></select></label>
+  </div>
+  <div class="grid grid-2" style="margin-top:1rem">
+    <div><div class="muted small">Interest / year at current</div><div class="stat" id="curEarn">—</div></div>
+    <div><div class="muted small">Interest / year at comparison</div><div class="stat good" id="cmpEarn">—</div></div>
+    <div><div class="muted small">Extra / year if you switch</div><div class="stat warn" id="diff">—</div></div>
+    <div><div class="muted small">Comparison source</div><div class="small" id="cmpSrc">—</div></div>
+  </div>
+</section>
+
+</main>
+<footer class="wrap">
+  <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark v1 — verified rates only; gaps listed on the scoreboard.</p>
+</footer>
+<script src="js/site.js"></script>
+<script>
+let options=[];
+function recalc(){
+  const amt=Number(document.getElementById('amount').value||0);
+  const cur=Number(document.getElementById('current').value||0)/100;
+  const opt=options[Number(document.getElementById('compare').value)];
+  if(!opt) return;
+  const cmp=opt.rate/100;
+  const a=amt*cur, b=amt*cmp, d=b-a;
+  document.getElementById('curEarn').textContent=money2(a);
+  document.getElementById('cmpEarn').textContent=money2(b);
+  document.getElementById('diff').textContent=money2(d);
+  document.getElementById('cmpSrc').innerHTML=opt.label+' · '+pct(opt.rate)+' '+opt.metric+' · as of '+opt.as_of+' · '+link(opt.url,'source');
+}
+loadRates().then(data=>{
+  options=[];
+  for(const r of data.brokerage_sweeps) options.push({label:r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url});
+  for(const r of data.money_market_funds) options.push({label:r.ticker+' '+r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url});
+  for(const r of data.tbills_daily) options.push({label:'T-bill '+r.term, rate:r.coupon_equivalent_yield_pct, metric:'coupon equiv.', as_of:r.as_of, url:r.source_url});
+  options.sort((a,b)=>b.rate-a.rate);
+  const sel=document.getElementById('compare');
+  sel.innerHTML=options.map((o,i)=>'<option value="'+i+'">'+pct(o.rate)+' — '+o.label+'</option>').join('');
+  const idx=options.findIndex(o=>/SWVXX/.test(o.label));
+  if(idx>=0) sel.value=String(idx);
+  ['amount','current','compare'].forEach(id=>document.getElementById(id).addEventListener('input',recalc));
+  recalc();
+});
+</script>
+</body></html>
