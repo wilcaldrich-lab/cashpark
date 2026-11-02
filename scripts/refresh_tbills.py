@@ -30,7 +30,7 @@ TERMS = [
 def fetch(year: int) -> str:
     req = urllib.request.Request(
         XML_TMPL.format(year=year),
-        headers={"User-Agent": "CashParkBot/1.0 (+https://wilcaldrich-lab.github.io/cashpark/)"},
+        headers={"User-Agent": "CashParkBot/1.0 (+https://cashscoreboard.com/)"},
     )
     with urllib.request.urlopen(req, timeout=90) as r:
         return r.read().decode("utf-8", errors="replace")

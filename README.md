@@ -2,7 +2,7 @@
 
 Idle-cash scoreboard: verified brokerage sweeps, money market funds, T-bills, and FDIC benchmarks.
 
-**Live:** https://wilcaldrich-lab.github.io/cashpark/
+**Live:** https://cashscoreboard.com/
 
 Not investment advice. Rates change; confirm on issuer pages. See disclosures and methodology pages.
 
