@@ -32,7 +32,7 @@
 <main class="wrap">
 
 <section class="hero"><div class="pill">treasury feeds</div><h1>T-bill yields</h1>
-<p>Daily coupon-equivalent yields from the U.S. Treasury XML feed (baked at build). Auction investment rates from TreasuryDirect JSON.</p>
+<p>Daily rows use the Treasury XML rounded quotes: coupon-equivalent yield and bank discount, each only when that field is present. A missing figure is shown as —, not as another yield. Auction investment rates come from TreasuryDirect JSON.</p>
 <p id="tbill-live-status" class="small muted"></p></section>
 <section class="card" style="margin-bottom:1rem"><h2>Daily Treasury bill rates</h2>
 <div style="overflow:auto"><table><thead><tr><th>Term</th><th>Coupon equiv.</th><th>Discount</th><th>Maturity</th><th>As of</th><th>Source</th></tr></thead><tbody id="daily"></tbody></table></div></section>
@@ -46,11 +46,9 @@
 <script src="js/site.js"></script>
 <script>
 loadRates().then(refreshTBillsLive).then(d=>{
-  document.getElementById('daily').innerHTML=d.tbills_daily.map(r=>rowHTML([
-    r.term, '<span class="rate">'+pct(r.coupon_equivalent_yield_pct)+'</span>', pct(r.discount_pct), r.maturity, r.as_of, link(r.source_url,r.source_name)
-  ])).join('');
-  document.getElementById('auction').innerHTML=d.tbills_auctions.map(r=>rowHTML([
-    r.term, '<span class="rate">'+pct(r.investment_rate_pct)+'</span>', r.high_discount_rate_pct!=null?pct(r.high_discount_rate_pct):'—', r.auction_date||'—', r.maturity||'—', link(r.source_url,r.source_name)
+  document.getElementById('daily').innerHTML=d.tbills_daily.map(r=>rowHTML(tbillDailyCells(r))).join('');
+  document.getElementById('auction').innerHTML=(d.tbills_auctions||[]).map(r=>rowHTML([
+    r.term, rateCell(r.investment_rate_pct, ''), rateCell(r.high_discount_rate_pct, ''), r.auction_date||'—', r.maturity||'—', link(r.source_url,r.source_name)
   ])).join('');
 });
 </script>

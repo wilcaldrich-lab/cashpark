@@ -172,13 +172,13 @@ loadRates().then(data=>{
   const rows=[];
   for(const r of data.brokerage_sweeps){rows.push({cat:'Brokerage sweep', name:r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url, src:r.source_name});}
   for(const r of data.money_market_funds){rows.push({cat:'Money market fund', name:r.ticker+' — '+r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url, src:r.source_name});}
-  for(const r of data.tbills_daily){rows.push({cat:'T-bill (daily)', name:r.term, rate:r.coupon_equivalent_yield_pct, metric:'coupon equiv. yield', as_of:r.as_of, url:r.source_url, src:r.source_name});}
+  for(const r of data.tbills_daily){const row=tbillScoreboardRow(r); if(row) rows.push(row);}
   for(const r of data.hysa){
     const cat=/national/i.test(r.metric||'') ? 'HYSA / savings benchmark' : 'HYSA';
     rows.push({cat, name:r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url, src:r.source_name});
   }
   for(const r of (data.no_penalty_cds||[])){rows.push({cat:'No-penalty CD', name:r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url, src:r.source_name});}
-  rows.sort((a,b)=>b.rate-a.rate);
+  rows.sort((a,b)=>(finiteNumber(b.rate)??-Infinity)-(finiteNumber(a.rate)??-Infinity));
   document.getElementById('scoreboard').innerHTML = rows.map(r=>rowHTML([
     r.cat, r.name, '<span class="rate">'+pct(r.rate)+'</span><span class="badge">'+r.metric+'</span>', r.as_of, link(r.url, r.src)
   ])).join('');
