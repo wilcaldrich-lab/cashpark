@@ -72,7 +72,7 @@ loadRates().then(data=>{
   for(const r of data.money_market_funds) options.push({label:r.ticker+' '+r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url});
   for(const r of data.hysa) options.push({label:r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url});
   for(const r of (data.no_penalty_cds||[])) options.push({label:r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url});
-  for(const r of data.tbills_daily) options.push({label:'T-bill '+r.term, rate:r.coupon_equivalent_yield_pct, metric:'coupon equiv.', as_of:r.as_of, url:r.source_url});
+  for(const r of data.tbills_daily){const opt=tbillCalculatorOption(r); if(opt) options.push(opt);}
   options.sort((a,b)=>b.rate-a.rate);
   const sel=document.getElementById('compare');
   sel.innerHTML=options.map((o,i)=>'<option value="'+i+'">'+pct(o.rate)+' — '+o.label+'</option>').join('');

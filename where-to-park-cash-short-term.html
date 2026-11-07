@@ -33,7 +33,7 @@
 <section class="hero"><div class="pill">guide</div><h1>Where to park cash short term</h1>
 <p>Short-term options already in the verified file: Treasury bills of 26 weeks or less, no-penalty CDs, savings accounts, and money market funds. Rates below are copied from that file at view time. No affiliate links.</p></section>
 <section class="card"><h2>T-bills, 26 weeks and under</h2>
-<p class="small muted">Daily figure is the bank discount when a coupon-equivalent yield is not stored. Auction figure is the investment rate.</p>
+<p class="small muted">A daily row shows the coupon-equivalent yield when the file has one, otherwise the bank discount. The badge names which. An auction row is the investment rate.</p>
 <div style="overflow:auto"><table>
 <thead><tr><th>Term</th><th>Rate</th><th>Kind</th><th>As of / maturity</th><th>Source</th></tr></thead>
 <tbody id="bills"></tbody></table></div></section>
@@ -58,7 +58,7 @@
 
 <script>
 loadRates().then(data=>{
-  const short = /^(4-Week|8-Week|13-Week|17-Week|26-Week)$/;
+  const short = /^(4-Week|6-Week|8-Week|13-Week|17-Week|26-Week)$/;
   const bills = [];
   for (const r of data.tbills_daily) {
     if (!short.test(r.term)) continue;

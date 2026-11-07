@@ -17,14 +17,17 @@ SOURCE_URL = (
     "pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value={year}"
 )
 
-# Prefer coupon-equivalent fields; also capture bank discount when present.
+# Treasury daily bill XML uses ROUND_B1_CLOSE_* for the rounded bank discount
+# and ROUND_B1_YIELD_* for the rounded coupon-equivalent yield. CS_*_AVG fields
+# are a separate average series and are not the daily quote.
 TERMS = [
-    ("4-Week", ["4WK", "4_WEEK", "4WEEK"], "4"),
-    ("8-Week", ["8WK", "8_WEEK", "8WEEK"], "8"),
-    ("13-Week", ["13WK", "13_WEEK", "13WEEK"], "13"),
-    ("17-Week", ["17WK", "17_WEEK", "17WEEK"], "17"),
-    ("26-Week", ["26WK", "26_WEEK", "26WEEK"], "26"),
-    ("52-Week", ["52WK", "52_WEEK", "52WEEK"], "52"),
+    ("4-Week", "4WK"),
+    ("6-Week", "6WK"),
+    ("8-Week", "8WK"),
+    ("13-Week", "13WK"),
+    ("17-Week", "17WK"),
+    ("26-Week", "26WK"),
+    ("52-Week", "52WK"),
 ]
 
 def fetch(year: int) -> str:
@@ -58,21 +61,20 @@ def date_of(p: dict) -> str:
             return p[k][:10]
     return ""
 
-def find_val(props: dict, needles, want_coupon: bool):
-    for k, v in props.items():
-        ku = k.upper()
-        if want_coupon and ("COUPON" not in ku and "EQUIV" not in ku):
-            continue
-        if not want_coupon and ("DISCOUNT" not in ku and "CLOSE" not in ku):
-            # still allow CLOSE_* discount fields
-            if "COUPON" in ku:
-                continue
-        if any(n in ku for n in needles):
-            try:
-                return float(v)
-            except ValueError:
-                continue
-    return None
+def _num(props: dict, key: str):
+    raw = props.get(key)
+    if raw is None:
+        return None
+    text = str(raw).strip()
+    if text == "" or text.upper() in {"N/A", "NA", "NULL"}:
+        return None
+    try:
+        value = float(text)
+    except ValueError:
+        return None
+    if value != value:  # NaN
+        return None
+    return value
 
 def parse(xml_text: str, year: int):
     entries = entries_from_xml(xml_text)
@@ -82,33 +84,35 @@ def parse(xml_text: str, year: int):
     latest = entries[-1]
     as_of = date_of(latest)
     rows = []
-    for label, needles, _ in TERMS:
-        coupon = find_val(latest, needles, True)
-        discount = None
-        # discount: keys with WEEK + CLOSE, without COUPON
-        for k, v in latest.items():
-            ku = k.upper()
-            if any(n in ku for n in needles) and "COUPON" not in ku and "EQUIV" not in ku:
-                if "CLOSE" in ku or "DISCOUNT" in ku or "BANK" in ku:
-                    try:
-                        discount = float(v)
-                        break
-                    except ValueError:
-                        pass
+    for label, code in TERMS:
+        # Only the rounded daily quotes. Do not substitute CS_*_AVG.
+        discount = _num(latest, f"ROUND_B1_CLOSE_{code}_2")
+        coupon = _num(latest, f"ROUND_B1_YIELD_{code}_2")
         if coupon is None and discount is None:
             continue
+        maturity_raw = latest.get(f"MATURITY_DATE_{code}") or ""
+        maturity = maturity_raw[:10] if maturity_raw else None
+        if coupon is not None and discount is not None:
+            metric = "Coupon equivalent yield and bank discount"
+        elif coupon is not None:
+            metric = "Coupon equivalent yield"
+        else:
+            metric = "Bank discount rate"
         row = {
             "term": label,
             "as_of": as_of,
             "source_name": SOURCE_NAME,
             "source_url": SOURCE_URL.format(year=year),
-            "metric": "Coupon equivalent yield (bank discount also shown)",
+            "metric": metric,
         }
         if coupon is not None:
             row["coupon_equivalent_yield_pct"] = coupon
-            row["rate_pct"] = coupon  # convenience for any UI that looks for rate_pct
+            # rate_pct is the coupon-equivalent yield only, never the discount.
+            row["rate_pct"] = coupon
         if discount is not None:
             row["discount_pct"] = discount
+        if maturity:
+            row["maturity"] = maturity
         rows.append(row)
     if not rows:
         raise SystemExit("No T-bill fields in latest entry; keys=" + ",".join(sorted(latest)[:50]))

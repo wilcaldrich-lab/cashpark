@@ -5,19 +5,60 @@ async function loadRates(){
 }
 function money(n){return n.toLocaleString(undefined,{style:'currency',currency:'USD',maximumFractionDigits:0})}
 function money2(n){return n.toLocaleString(undefined,{style:'currency',currency:'USD',maximumFractionDigits:2})}
-function pct(n){return (Number(n)).toFixed(2)+'%'}
+function finiteNumber(n){
+  if(n==null || n==='') return null;
+  const x=Number(n);
+  return Number.isFinite(x) ? x : null;
+}
+function pct(n){
+  const x=finiteNumber(n);
+  return x==null ? '—' : x.toFixed(2)+'%';
+}
 function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 function link(url,label){return `<a href="${url}" rel="noopener noreferrer" target="_blank">${esc(label)||'source'}</a>`}
-function rowHTML(cells){return `<tr>${cells.map(c=>`<td>${c}</td>`).join('')}</tr>`}
+function rowHTML(cells){
+  return `<tr>${cells.map(c=>{
+    if(c==null || c==='') return '<td>—</td>';
+    return `<td>${c}</td>`;
+  }).join('')}</tr>`;
+}
 function rateCell(n, metric){
-  if(n==null || n==='') return '—';
-  return '<span class="rate">'+pct(n)+'</span><span class="badge">'+esc(metric||'')+'</span>';
+  const shown=pct(n);
+  if(shown==='—') return '—';
+  return '<span class="rate">'+shown+'</span>'+(metric ? '<span class="badge">'+esc(metric)+'</span>' : '');
+}
+// Rank and compare T-bills on the coupon-equivalent yield only.
+// A bank discount is a different number and is not presented as that yield.
+function tbillCouponYield(r){
+  const n=finiteNumber(r && r.coupon_equivalent_yield_pct);
+  return n==null ? null : {n, metric:'coupon equiv. yield'};
 }
 function tbillNumber(r){
-  if(r.coupon_equivalent_yield_pct!=null) return {n:r.coupon_equivalent_yield_pct, metric:'coupon equiv. yield'};
-  if(r.rate_pct!=null) return {n:r.rate_pct, metric:r.metric||''};
-  if(r.discount_pct!=null) return {n:r.discount_pct, metric:'bank discount'};
+  const coupon=tbillCouponYield(r);
+  if(coupon) return coupon;
+  const discount=finiteNumber(r && r.discount_pct);
+  if(discount!=null) return {n:discount, metric:'bank discount'};
   return {n:null, metric:''};
+}
+function tbillScoreboardRow(r){
+  const coupon=tbillCouponYield(r);
+  if(!coupon) return null;
+  return {cat:'T-bill (daily)', name:r.term||'—', rate:coupon.n, metric:coupon.metric, as_of:r.as_of||'—', url:r.source_url, src:r.source_name};
+}
+function tbillCalculatorOption(r){
+  const coupon=tbillCouponYield(r);
+  if(!coupon) return null;
+  return {label:'T-bill '+(r.term||''), rate:coupon.n, metric:coupon.metric, as_of:r.as_of||'—', url:r.source_url};
+}
+function tbillDailyCells(r){
+  return [
+    esc((r && r.term) || '—'),
+    rateCell(r && r.coupon_equivalent_yield_pct),
+    rateCell(r && r.discount_pct),
+    esc((r && r.maturity) || '—'),
+    esc((r && r.as_of) || '—'),
+    link(r && r.source_url, r && r.source_name)
+  ];
 }
 function fillTable(id, rows){
   const el=document.getElementById(id);
@@ -48,10 +89,10 @@ async function refreshTBillsLive(data){
       const ad=r.auctionDate||'';
       if(!best[term] || ad>(best[term].auctionDate||'')) best[term]=r;
     }
-    data.tbills_auctions=Object.values(best).filter(r=>r.investmentRate!=null).map(r=>({
+    data.tbills_auctions=Object.values(best).filter(r=>finiteNumber(r.investmentRate)!=null).map(r=>({
       term:r.securityTerm,
-      investment_rate_pct:Number(r.investmentRate),
-      high_discount_rate_pct:r.highRate!=null && r.highRate!==''?Number(r.highRate):null,
+      investment_rate_pct:finiteNumber(r.investmentRate),
+      high_discount_rate_pct:finiteNumber(r.highRate),
       auction_date:(r.auctionDate||'').slice(0,10)||null,
       maturity:(r.maturityDate||'').slice(0,10),
       cusip:r.cusip,

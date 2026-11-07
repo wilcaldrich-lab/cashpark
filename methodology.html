@@ -36,7 +36,7 @@
 <section class="card"><ul class="clean">
 <li><strong>Brokerage sweeps:</strong> brokerage disclosure pages.</li>
 <li><strong>Money market funds:</strong> 7-day yields on Schwab Asset Management, Fidelity, and Vanguard fund pages.</li>
-<li><strong>T-bills:</strong> U.S. Treasury Daily Treasury Bill Rates XML + TreasuryDirect auction JSON. The weekday workflow commits updates to <code>main</code>, which is what GitHub Pages publishes.</li>
+<li><strong>T-bills:</strong> U.S. Treasury Daily Treasury Bill Rates XML (<code>ROUND_B1_YIELD_*</code> coupon-equivalent yield and <code>ROUND_B1_CLOSE_*</code> bank discount) plus TreasuryDirect auction investment rates. The scoreboard and calculator use the coupon-equivalent yield only. A bank discount is never labeled as that yield. The weekday workflow commits updates to <code>main</code>, which is what GitHub Pages publishes.</li>
 <li><strong>HYSA and no-penalty CDs:</strong> each bank’s own rate page or the bank’s own rate feed. FDIC national average stays as a benchmark. Conditional and promotional rates are labeled; unverifiable rows are omitted.</li>
 <li><strong>As-of + source URL</strong> required on every row. Unverified rows are omitted.</li>
 </ul>
