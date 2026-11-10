@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #efe4cf;
+  --paper-2: #f7f0e2;
+  --ink: #1b140e;
+  --ink-soft: #5c4d3e;
+  --stamp: #c43218;
+  --moss: #1e5c3a;
+  --rule: rgba(27, 20, 14, 0.18);
+  --card: #fffaf1;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-stamp: var(--stamp);
+  --color-moss: var(--moss);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+html {
+  background: var(--paper);
+}
+
+body {
+  min-height: 100%;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(rgba(27, 20, 14, 0.045) 0.7px, transparent 0.7px);
+  background-size: 3px 3px;
+  font-family: var(--font-body), Georgia, serif;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: #f0c7b4;
+}
+
+.masthead {
+  border-bottom: 3px solid var(--ink);
+}
+
+.wordmark {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 560;
+  letter-spacing: -0.045em;
+  line-height: 0.85;
+}
+
+.kicker {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.docket {
+  background: var(--card);
+  border: 1px solid var(--ink);
+  box-shadow: 4px 4px 0 rgba(27, 20, 14, 0.12);
+}
+
+.docket:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0 rgba(27, 20, 14, 0.16);
+}
+
+.days {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.stamp {
+  color: var(--stamp);
+}
+
+.field {
+  width: 100%;
+  border: 1px solid var(--ink);
+  background: var(--paper-2);
+  color: var(--ink);
+  padding: 0.7rem 0.8rem;
+  font: inherit;
+}
+
+.field:focus {
+  outline: 2px solid var(--stamp);
+  outline-offset: 1px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper-2);
+  padding: 0.75rem 1rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: var(--stamp);
+  border-color: var(--stamp);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  background: var(--ink);
+  color: var(--paper-2);
+}
+
+.chip {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--rule);
+  padding: 0.15rem 0.4rem;
+}
+
+.free-note {
+  border-left: 4px solid var(--stamp);
+  background: #f8e7df;
+}
+
+.sponsor-bar {
+  background: var(--ink);
+  color: var(--paper-2);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}

@@ -1,0 +1,600 @@
+{
+  "researchedOn": "2026-11-10",
+  "note": "Deadlines, eligibility, and amounts are taken from official settlement websites or from Top Class Actions, ClassAction.org, or Open Claim Watch pages that quote those sites. A null payoutEstimate means no per-person figure was published. This is not legal advice and ClaimDeadline is not a settlement administrator.",
+  "settlements": [
+    {
+      "slug": "cvs-digital-privacy",
+      "name": "CVS digital privacy",
+      "payoutEstimate": "Up to $5 without documentation, or up to $10 with proof of membership",
+      "deadline": "2026-11-16",
+      "deadlineNote": null,
+      "proofRequired": false,
+      "eligibility": "People who accessed CVS.com, a CVS Health site, or the CVS app in the U.S. before July 27, 2026.",
+      "claimUrl": "https://www.cvsdigitalprivacysettlement.com/",
+      "sourceUrl": "https://topclassactions.com/lawsuit-settlements/open-lawsuit-settlements/20-5m-cvs-digital-privacy-class-action-settlement/",
+      "category": "privacy",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": "Brewer, et al. v. CVS Pharmacy Inc., et al., No. CACE-26-008094 (Fla. 17th Cir.)",
+      "fundAmount": "$20.5 million",
+      "publishedAt": "2026-11-06"
+    },
+    {
+      "slug": "teleflora-do-not-call-texts",
+      "name": "Teleflora Do Not Call texts",
+      "payoutEstimate": "Up to $251, paid by check",
+      "deadline": "2026-11-17",
+      "deadlineNote": null,
+      "proofRequired": null,
+      "eligibility": "People who, since May 9, 2021, received more than one promotional Teleflora text in a 12-month period while their number had been on the National Do Not Call Registry for at least 30 days.",
+      "claimUrl": "https://www.tfsettlement.com/",
+      "sourceUrl": "https://openclaimwatch.com/teleflora-settlement.html",
+      "category": "privacy",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": null,
+      "fundAmount": null,
+      "publishedAt": "2026-10-27"
+    },
+    {
+      "slug": "venetian-las-vegas-website",
+      "name": "Venetian Las Vegas website tracking",
+      "payoutEstimate": "About $3.60 (browsing class) or about $71.39 (booking class), pro rata",
+      "deadline": "2026-11-24",
+      "deadlineNote": null,
+      "proofRequired": null,
+      "eligibility": "California residents who, while in California, browsed or booked on venetianlasvegas.com between September 18, 2024 and March 16, 2026.",
+      "claimUrl": "https://www.venetianlasvegassettlement.com/",
+      "sourceUrl": "https://openclaimwatch.com/venetian-settlement.html",
+      "category": "privacy",
+      "states": [
+        "CA"
+      ],
+      "caseName": null,
+      "fundAmount": null,
+      "publishedAt": "2026-10-27"
+    },
+    {
+      "slug": "neutrogena-skin360",
+      "name": "Neutrogena Skin360 biometric privacy",
+      "payoutEstimate": "Pro rata share of a $4.7 million fund after fees and costs",
+      "deadline": "2026-11-25",
+      "deadlineNote": null,
+      "proofRequired": null,
+      "eligibility": "People who, while in Illinois, completed a Neutrogena or NeoStrata Skin360 skin assessment between December 9, 2019 and May 5, 2023.",
+      "claimUrl": "https://www.skin360bipasettlement.com/",
+      "sourceUrl": "https://openclaimwatch.com/skin360-settlement.html",
+      "category": "privacy",
+      "states": [
+        "IL"
+      ],
+      "caseName": null,
+      "fundAmount": "$4.7 million",
+      "publishedAt": "2026-10-27"
+    },
+    {
+      "slug": "dr-squatch-natural-labeling",
+      "name": "Dr. Squatch \"natural\" labeling",
+      "payoutEstimate": "Pro rata share of a $9 million fund after fees and costs",
+      "deadline": "2026-11-27",
+      "deadlineNote": "11:59 p.m. Pacific Time",
+      "proofRequired": false,
+      "eligibility": "People who bought a Dr. Squatch product labeled \"natural\" in the U.S. between November 1, 2018 and August 29, 2026.",
+      "claimUrl": "https://www.personalcareproductssettlement.com/",
+      "sourceUrl": "https://openclaimwatch.com/drsquatch-settlement.html",
+      "category": "consumer",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": null,
+      "fundAmount": "$9 million",
+      "publishedAt": "2026-10-27"
+    },
+    {
+      "slug": "equifax-hard-inquiry-disputes",
+      "name": "Equifax hard-inquiry disputes",
+      "payoutEstimate": "About $300 (Certified Group), $100 (General Dispute Group), or $400 (New York subclass); amounts may be higher or lower",
+      "deadline": "2026-11-29",
+      "deadlineNote": null,
+      "proofRequired": true,
+      "eligibility": "People who received a notice with a claim number and PIN because they disputed a hard inquiry with Equifax.",
+      "claimUrl": "https://www.equifaxdisputeclassaction.com/",
+      "sourceUrl": "https://topclassactions.com/lawsuit-settlements/open-lawsuit-settlements/30m-equifax-hard-inquiry-dispute-class-action-settlement/",
+      "category": "finance",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": "Hines v. Equifax Information Services LLC, No. 1:19-cv-06701 (E.D.N.Y.)",
+      "fundAmount": "$30 million",
+      "publishedAt": "2026-10-27"
+    },
+    {
+      "slug": "navy-federal-unauthorized-loans",
+      "name": "Navy Federal unauthorized personal loans",
+      "payoutEstimate": "Loan cancellation and a refund of loan payments, plus $250 if you file a claim form",
+      "deadline": "2026-11-29",
+      "deadlineNote": "Online or postmarked by this date",
+      "proofRequired": null,
+      "eligibility": "People for whom a Navy Federal personal loan they disputed as fraudulent was opened in their name between January 1, 2023 and January 31, 2025, and Navy Federal denied the dispute at least in part.",
+      "claimUrl": "https://www.nfculoansettlement.com/",
+      "sourceUrl": "https://openclaimwatch.com/navyfederal-settlement.html",
+      "category": "finance",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": null,
+      "fundAmount": null,
+      "publishedAt": "2026-10-27"
+    },
+    {
+      "slug": "amazon-return-policy",
+      "name": "Amazon return policy",
+      "payoutEstimate": "Subclass A is paid automatically. Subclass B shares 7.3% of the net $309.5 million fund in proportion to unpaid amounts",
+      "deadline": "2026-12-01",
+      "deadlineNote": "Online, or mail postmarked by this date",
+      "proofRequired": null,
+      "eligibility": "People who returned, or asked for a refund on, a physical product bought on Amazon.com between September 5, 2017 and February 12, 2026, and did not get a correct or timely refund, or were later charged for it.",
+      "claimUrl": "https://www.returnsettlement.com/",
+      "sourceUrl": "https://openclaimwatch.com/amazon-returns-settlement.html",
+      "category": "consumer",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": "In re: Amazon Return Policy Litigation, No. 2:23-cv-01372-JNW (W.D. Wash.)",
+      "fundAmount": "$309.5 million",
+      "publishedAt": "2026-11-09"
+    },
+    {
+      "slug": "mdlive-evernorth-privacy",
+      "name": "MDLIVE / Evernorth privacy",
+      "payoutEstimate": "Up to $15",
+      "deadline": "2026-12-01",
+      "deadlineNote": "Online, or mail postmarked by this date",
+      "proofRequired": null,
+      "eligibility": "People who signed into patient.mdlive.com between May 30, 2023 and August 11, 2025 and had an active Facebook or Google account at the time.",
+      "claimUrl": "https://www.ehisettlement.com/",
+      "sourceUrl": "https://openclaimwatch.com/mdlive-settlement.html",
+      "category": "privacy",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": null,
+      "fundAmount": null,
+      "publishedAt": "2026-10-27"
+    },
+    {
+      "slug": "adapthealth-north-carolina-billing",
+      "name": "AdaptHealth North Carolina billing",
+      "payoutEstimate": "$3,500 for eligible Class A claimants, or $47 for noticed Class C members",
+      "deadline": "2026-12-08",
+      "deadlineNote": "11:59 p.m. Eastern Time. Noticed Class C members are paid without a claim form.",
+      "proofRequired": false,
+      "eligibility": "North Carolina customers identified in AdaptHealth's records who were billed for equipment they allegedly returned, rejected, or did not receive (Class A, dates of service April 3, 2019\u2013April 3, 2025), or who were sent a Seriously Past Due or Final Demand letter (Class C).",
+      "claimUrl": "https://www.ncadapthealthsettlement.com/",
+      "sourceUrl": "https://www.ncadapthealthsettlement.com/",
+      "category": "health",
+      "states": [
+        "NC"
+      ],
+      "caseName": null,
+      "fundAmount": "$14,311,500",
+      "publishedAt": "2026-11-06"
+    },
+    {
+      "slug": "bank-of-america-efta",
+      "name": "Bank of America unauthorized transfer denials",
+      "payoutEstimate": null,
+      "deadline": "2026-12-11",
+      "deadlineNote": null,
+      "proofRequired": null,
+      "eligibility": "People whose dispute or claim to Bank of America for an unauthorized debit-card or ATM electronic fund transfer was denied between May 6, 2023 and July 14, 2026.",
+      "claimUrl": "https://www.eftabankingsettlement.com/",
+      "sourceUrl": "https://topclassactions.com/lawsuit-settlements/open-lawsuit-settlements/2m-bank-of-america-efta-violation-class-action-settlement/",
+      "category": "finance",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": "Dennie, et al. v. Bank of America, N.A., No. 3:24-cv-00454-MOC-DCK (W.D.N.C.)",
+      "fundAmount": "$2 million",
+      "publishedAt": "2026-11-10"
+    },
+    {
+      "slug": "simplilearn-privacy",
+      "name": "Simplilearn privacy",
+      "payoutEstimate": "Equal share of a $3 million fund after fees and costs",
+      "deadline": "2026-12-15",
+      "deadlineNote": null,
+      "proofRequired": false,
+      "eligibility": "People in the U.S. who used Simplilearn's website or app between February 26, 2023 and September 16, 2026. An account is not required.",
+      "claimUrl": "https://www.simplilearnprivacysettlement.com/",
+      "sourceUrl": "https://openclaimwatch.com/simplilearn-settlement.html",
+      "category": "privacy",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": null,
+      "fundAmount": "$3 million",
+      "publishedAt": "2026-11-02"
+    },
+    {
+      "slug": "fairmont-federal-credit-union",
+      "name": "Fairmont Federal Credit Union data breach",
+      "payoutEstimate": "Up to $7,500 for documented losses, up to $150 alternative cash, and up to $140 for lost time",
+      "deadline": "2026-12-18",
+      "deadlineNote": "Online, or mail postmarked by this date",
+      "proofRequired": false,
+      "eligibility": "People in the U.S. whose private information was potentially impacted in the Fairmont Federal Credit Union incident between September 30, 2023 and October 18, 2023, disclosed around April 30, 2025.",
+      "claimUrl": "https://www.ffcudatasettlement.com/",
+      "sourceUrl": "https://www.ffcudatasettlement.com/",
+      "category": "data-breach",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": "Butler v. Fairmont Federal Credit Union",
+      "fundAmount": "$1,783,857.64",
+      "publishedAt": "2026-11-02"
+    },
+    {
+      "slug": "apple-siri-intelligence",
+      "name": "Apple iPhone Siri / Apple Intelligence",
+      "payoutEstimate": "$25 per eligible device, which may rise pro rata up to $95 or fall depending on claims",
+      "deadline": "2026-12-21",
+      "deadlineNote": "Online, or mail postmarked by this date",
+      "proofRequired": true,
+      "eligibility": "Original U.S. buyers of an iPhone 15 Pro, iPhone 15 Pro Max, or any iPhone 16 model (including 16e) purchased between June 10, 2024 and March 29, 2025, not for resale.",
+      "claimUrl": "https://www.smartphoneaisettlement.com/",
+      "sourceUrl": "https://openclaimwatch.com/apple-siri-settlement.html",
+      "category": "consumer",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": null,
+      "fundAmount": null,
+      "publishedAt": "2026-10-27"
+    },
+    {
+      "slug": "kroger-prescription-pricing",
+      "name": "Kroger prescription pricing",
+      "payoutEstimate": "Pro rata share of a $17 million fund based on prescription amounts paid",
+      "deadline": "2026-12-21",
+      "deadlineNote": null,
+      "proofRequired": false,
+      "eligibility": "People who paid in part or in full, using insurance, for a prescription at a Kroger or Kroger-owned pharmacy between December 9, 2018 and August 23, 2026. Claims of $8,000 or more need documents.",
+      "claimUrl": "https://www.krogersavingsclubsettlement.com/",
+      "sourceUrl": "https://www.classaction.org/news/17m-kroger-settlement-ends-lawsuit-over-allegedly-inflated-prescription-drug-prices",
+      "category": "health",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": "Kirkbride et al. v. The Kroger Co., No. 2:21-cv-00022 (S.D. Ohio)",
+      "fundAmount": "$17 million",
+      "publishedAt": "2026-10-27"
+    },
+    {
+      "slug": "bright-lending-loans",
+      "name": "Bright Lending unlawful loans",
+      "payoutEstimate": "Pro rata cash based on alleged usurious interest, with a $15 minimum if no such interest was paid, or debt cancellation",
+      "deadline": "2026-12-21",
+      "deadlineNote": "No claim form is required. Monetary-relief class members who want an electronic payment must elect one by this date.",
+      "proofRequired": false,
+      "eligibility": "U.S. residents, other than Nevada and Utah, who took out at least one Bright Lending loan between October 1, 2020 and June 4, 2026 and paid a loan in full, or who had an unpaid loan from October 1, 2020 through December 31, 2024.",
+      "claimUrl": "https://www.brightlendingsettlement.com/",
+      "sourceUrl": "https://topclassactions.com/lawsuit-settlements/open-lawsuit-settlements/15m-bright-lending-unlawful-loans-class-action-settlement/",
+      "category": "finance",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": "Dixon v. Gatzke, et al., No. 1:24-cv-11834 (N.D. Ill.)",
+      "fundAmount": "$15 million",
+      "publishedAt": "2026-11-04"
+    },
+    {
+      "slug": "knotts-great-america-ticket-fees",
+      "name": "Knott's and California's Great America ticket fees",
+      "payoutEstimate": "$8 cash if you file, or an $8 Six Flags credit if you do nothing",
+      "deadline": "2026-12-22",
+      "deadlineNote": "A second notice email can start a 60-day deadline.",
+      "proofRequired": false,
+      "eligibility": "People who bought non-season tickets on knotts.com or cagreatamerica.com between June 28, 2020 and July 1, 2024, paid a processing fee, and entered a California billing address.",
+      "claimUrl": "https://www.knottsgreatamericasettlement.com/",
+      "sourceUrl": "https://topclassactions.com/lawsuit-settlements/open-lawsuit-settlements/11-24m-knotts-berry-farm-processing-fee-class-action-settlement/",
+      "category": "consumer",
+      "states": [
+        "CA"
+      ],
+      "caseName": "Isayan v. Cedar Fair L.P., et al., No. 24STCV16212 (Cal. Super. Ct., Los Angeles)",
+      "fundAmount": "$11.24 million",
+      "publishedAt": "2026-11-06"
+    },
+    {
+      "slug": "coast-dental-texts",
+      "name": "Coast Dental texts after \"STOP\"",
+      "payoutEstimate": "Pro rata, up to $59 cash or a $99 voucher toward a Coast Dental electric toothbrush",
+      "deadline": "2026-12-24",
+      "deadlineNote": null,
+      "proofRequired": null,
+      "eligibility": "People who received more than one Coast Dental appointment text or call to a cell phone in a 12-month period after replying STOP, within four years before the lawsuit was filed.",
+      "claimUrl": "https://cdstcpasettlement.com/",
+      "sourceUrl": "https://openclaimwatch.com/coastdental-settlement.html",
+      "category": "privacy",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": null,
+      "fundAmount": null,
+      "publishedAt": "2026-10-27"
+    },
+    {
+      "slug": "equifax-fcra-coding",
+      "name": "Equifax credit score coding error",
+      "payoutEstimate": "Estimated $95 to $280, pro rata, and the actual amount may be higher or lower",
+      "deadline": "2026-12-28",
+      "deadlineNote": null,
+      "proofRequired": null,
+      "eligibility": "U.S. residents for whom Equifax reported a credit score or credit attribute to a third party between March 17 and April 8, 2022 that differed because of a coding issue.",
+      "claimUrl": "https://www.equifaxfaircreditreportingsettlement.com/",
+      "sourceUrl": "https://topclassactions.com/lawsuit-settlements/open-lawsuit-settlements/100m-equifax-fcra-violations-class-action-settlement/",
+      "category": "finance",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": "In re Equifax Fair Credit Reporting Act Litigation, No. 1:22-cv-3072-LMM-CCB (N.D. Ga.)",
+      "fundAmount": "$100 million",
+      "publishedAt": "2026-10-20"
+    },
+    {
+      "slug": "goodrx-privacy",
+      "name": "GoodRx privacy",
+      "payoutEstimate": "Equal share of the net $32 million fund after fees and costs",
+      "deadline": "2026-12-29",
+      "deadlineNote": "11:59 p.m. Eastern Time online, or postmarked by this date",
+      "proofRequired": null,
+      "eligibility": "People in the U.S. who used a GoodRx website, app, or service before April 20, 2024.",
+      "claimUrl": "https://goodrxprivacysettlement.com/",
+      "sourceUrl": "https://openclaimwatch.com/goodrx-settlement.html",
+      "category": "privacy",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": null,
+      "fundAmount": "$32 million",
+      "publishedAt": "2026-10-27"
+    },
+    {
+      "slug": "covenant-health-data-breach",
+      "name": "Covenant Health data breach",
+      "payoutEstimate": "Up to $5,000 for documented losses, or a pro rata cash payment estimated at $75, plus credit monitoring",
+      "deadline": "2026-12-30",
+      "deadlineNote": "Online, or mail postmarked by this date",
+      "proofRequired": false,
+      "eligibility": "People notified that their information may have been compromised in the Covenant Health incident on or around May 18, 2025.",
+      "claimUrl": "https://www.covenanthealthdatasettlement.com/",
+      "sourceUrl": "https://www.covenanthealthdatasettlement.com/",
+      "category": "data-breach",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": "In re: Covenant Health Data Security Litigation, No. PENSC-CV-2025-63 (Me. Super. Ct., Penobscot)",
+      "fundAmount": "$2 million",
+      "publishedAt": "2026-10-30"
+    },
+    {
+      "slug": "john-deere-repair",
+      "name": "John Deere repair services",
+      "payoutEstimate": null,
+      "deadline": "2026-12-31",
+      "deadlineNote": "Claim forms must be submitted on or before this date to receive money. Injunctive relief does not require a claim.",
+      "proofRequired": null,
+      "eligibility": "People and entities who bought repair services for Deere large agricultural equipment from John Deere or an authorized dealer in the U.S. between January 10, 2018 and May 18, 2026.",
+      "claimUrl": "https://www.deererepairsettlement.com/",
+      "sourceUrl": "https://www.deererepairsettlement.com/",
+      "category": "auto",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": null,
+      "fundAmount": null,
+      "publishedAt": "2026-10-01"
+    },
+    {
+      "slug": "amca-cpl-data-breach",
+      "name": "AMCA data breach (CPL / Austin Pathology)",
+      "payoutEstimate": "Documented out-of-pocket losses, or an alternative cash payment estimated at $50",
+      "deadline": "2027-01-04",
+      "deadlineNote": "Online, or mail postmarked by this date",
+      "proofRequired": false,
+      "eligibility": "People who received a notice from Clinical Pathology Laboratories, Austin Pathology Associates, or AMCA that their information may have been in the 2018\u20132019 AMCA data breach.",
+      "claimUrl": "https://www.amcadatabreachsettlement-saca.com/",
+      "sourceUrl": "https://openclaimwatch.com/amca-cpl-settlement.html",
+      "category": "data-breach",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": null,
+      "fundAmount": "$6,438,578.20",
+      "publishedAt": "2026-10-27"
+    },
+    {
+      "slug": "seatgeek-nevada-ticket-fees",
+      "name": "SeatGeek Nevada ticket fees",
+      "payoutEstimate": "Share of a $7.75 million fund based on fees SeatGeek kept, or a flat amount if those fees were refunded",
+      "deadline": "2027-01-05",
+      "deadlineNote": null,
+      "proofRequired": null,
+      "eligibility": "People who, between November 7, 2020 and May 12, 2025, bought electronic tickets to a Nevada event on SeatGeek and were charged fees.",
+      "claimUrl": "https://www.seatgeekticketfeessettlement.com/",
+      "sourceUrl": "https://openclaimwatch.com/seatgeek-nv-settlement.html",
+      "category": "consumer",
+      "states": [
+        "NV"
+      ],
+      "caseName": null,
+      "fundAmount": "$7.75 million",
+      "publishedAt": "2026-11-02"
+    },
+    {
+      "slug": "washington-gastroenterology-data-breach",
+      "name": "Washington Gastroenterology data breach",
+      "payoutEstimate": "Up to $4,000 for documented losses, or an alternate cash payment estimated at $75, plus two years of monitoring",
+      "deadline": "2027-01-10",
+      "deadlineNote": "Submitted or postmarked by this date",
+      "proofRequired": false,
+      "eligibility": "Living people in the U.S. whose private information was compromised in the Washington Gastroenterology incident on or around October 23, 2024, including people who received notice.",
+      "claimUrl": "https://www.wagastrodataincidentsettlement.com/",
+      "sourceUrl": "https://www.wagastrodataincidentsettlement.com/",
+      "category": "data-breach",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": "In re Washington Gastroenterology, PLLC Data Breach Litigation",
+      "fundAmount": "$4.6 million",
+      "publishedAt": "2026-11-09"
+    },
+    {
+      "slug": "davita-ransomware",
+      "name": "DaVita ransomware attack",
+      "payoutEstimate": "A pro rata cash payment currently estimated at $50, up to $2,500 for documented losses, and three years of credit monitoring",
+      "deadline": "2027-01-19",
+      "deadlineNote": null,
+      "proofRequired": false,
+      "eligibility": "U.S. persons whose personal information was potentially accessed in the April 2025 DaVita ransomware attack.",
+      "claimUrl": "https://www.dvacyberattacksettlement.com/",
+      "sourceUrl": "https://www.dvacyberattacksettlement.com/",
+      "category": "data-breach",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": null,
+      "fundAmount": "Up to $15 million",
+      "publishedAt": "2026-11-09"
+    },
+    {
+      "slug": "tradealgo-texts",
+      "name": "TradeAlgo marketing texts",
+      "payoutEstimate": "Up to $50.10",
+      "deadline": "2027-01-25",
+      "deadlineNote": "11:59 p.m. Eastern Time online, or postmarked by this date",
+      "proofRequired": null,
+      "eligibility": "People who, from February 24, 2022 through February 24, 2026, received more than one TradeAlgo text in any 12-month period after opting out or while their number was on the National Do Not Call Registry.",
+      "claimUrl": "https://tradealgotcpasettlement.com/",
+      "sourceUrl": "https://tradealgotcpasettlement.com/",
+      "category": "privacy",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": "Sandra Reyes v. TA Fintech Inc. d/b/a TradeAlgo",
+      "fundAmount": "Up to $5.25 million",
+      "publishedAt": "2026-10-01"
+    },
+    {
+      "slug": "allstate-arizona-depreciation",
+      "name": "Allstate Arizona property depreciation",
+      "payoutEstimate": null,
+      "deadline": "2027-01-29",
+      "deadlineNote": null,
+      "proofRequired": null,
+      "eligibility": "People whose Arizona structure was insured by Allstate or a named affiliate and who were paid on a structural-damage claim between April 25, 2017 and October 1, 2026.",
+      "claimUrl": "https://www.hernandezdepreciationsettlement.com/",
+      "sourceUrl": "https://www.hernandezdepreciationsettlement.com/",
+      "category": "finance",
+      "states": [
+        "AZ"
+      ],
+      "caseName": "Hernandez v. Allstate Vehicle and Property Insurance Company, No. CV-2026 00048 (Ariz. Super. Ct., Mohave)",
+      "fundAmount": null,
+      "publishedAt": "2026-10-28"
+    },
+    {
+      "slug": "realpage-rent-pricing",
+      "name": "RealPage rent pricing",
+      "payoutEstimate": "Share of a $359,925,000 fund; individual amounts were not published",
+      "deadline": "2027-01-29",
+      "deadlineNote": "11:59 p.m. Eastern Time",
+      "proofRequired": null,
+      "eligibility": "People who paid rent on an apartment lease at a multifamily property that used RealPage revenue-management software (LRO, YieldStar, or AIRM) between October 18, 2018 and November 21, 2025.",
+      "claimUrl": "https://www.realpagerentalsettlement.com/",
+      "sourceUrl": "https://openclaimwatch.com/realpage-settlement.html",
+      "category": "finance",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": "In re RealPage, Inc., Rental Software Antitrust Litigation (No. II)",
+      "fundAmount": "$359,925,000",
+      "publishedAt": "2026-10-27"
+    },
+    {
+      "slug": "johnson-controls-data-incident",
+      "name": "Johnson Controls data incident",
+      "payoutEstimate": null,
+      "deadline": "2027-02-01",
+      "deadlineNote": "Online or postmarked by this date",
+      "proofRequired": null,
+      "eligibility": "Living people in the U.S. who were notified that their information may have been compromised in the Johnson Controls incident from about February 1, 2023 through September 30, 2023.",
+      "claimUrl": "https://www.johnsoncontrolsdatasettlement.com/",
+      "sourceUrl": "https://www.johnsoncontrolsdatasettlement.com/",
+      "category": "data-breach",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": "In re Johnson Controls Inc. Data Incident Litigation",
+      "fundAmount": null,
+      "publishedAt": "2026-09-15"
+    },
+    {
+      "slug": "nonbank-atm-surcharge",
+      "name": "Visa and Mastercard non-bank ATM surcharges",
+      "payoutEstimate": "Share of a $167.5 million fund",
+      "deadline": "2027-02-10",
+      "deadlineNote": null,
+      "proofRequired": null,
+      "eligibility": "People in the U.S. who paid an unreimbursed surcharge to withdraw cash at an independent U.S. ATM between October 24, 2007 and August 14, 2026.",
+      "claimUrl": "https://www.nonbankatmsurchargesettlement.com/",
+      "sourceUrl": "https://www.nonbankatmsurchargesettlement.com/",
+      "category": "finance",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": "Burke v. Visa Inc., No. 1:11-cv-01882 (D.D.C.)",
+      "fundAmount": "$167.5 million",
+      "publishedAt": "2026-09-16"
+    },
+    {
+      "slug": "hyundai-kia-airbag-control-units",
+      "name": "Hyundai and Kia airbag control units",
+      "payoutEstimate": "Reimbursement of certain recall-related costs, plus residual payments up to $350 for recalled vehicles or $150 for unrecalled vehicles",
+      "deadline": "2027-04-08",
+      "deadlineNote": null,
+      "proofRequired": true,
+      "eligibility": "People who on April 14, 2025 owned or leased, or had owned or leased, a U.S.-sold Hyundai or Kia covered by the ZF-TRW airbag control unit settlement. Use the VIN lookup on the official site.",
+      "claimUrl": "https://www.acusettlement.com/hyundaikia",
+      "sourceUrl": "https://openclaimwatch.com/hk-acu-settlement.html",
+      "category": "auto",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": null,
+      "fundAmount": null,
+      "publishedAt": "2026-10-27"
+    },
+    {
+      "slug": "natera-genetic-screening",
+      "name": "Natera genetic screening test billing",
+      "payoutEstimate": null,
+      "deadline": "2027-05-03",
+      "deadlineNote": "Online by this date, or a mailed form received by this date",
+      "proofRequired": null,
+      "eligibility": "People in the U.S. who had Natera Panorama or Horizon testing and were billed more than $249 for Panorama without microdeletions, or more than $349 for Panorama with microdeletions or for Horizon, between July 10, 2019 and September 2, 2026.",
+      "claimUrl": "https://www.geneticscreeningtestsettlement.com/",
+      "sourceUrl": "https://www.geneticscreeningtestsettlement.com/",
+      "category": "health",
+      "states": [
+        "nationwide"
+      ],
+      "caseName": "Calcaterra v. Natera, Inc.",
+      "fundAmount": null,
+      "publishedAt": "2026-09-02"
+    }
+  ]
+}
