@@ -7,11 +7,18 @@ const vm = require('vm');
 const root = path.join(__dirname, '..');
 const code = fs.readFileSync(path.join(root, 'js/site.js'), 'utf8');
 const sandbox = {
-  document: { addEventListener() {}, getElementById() { return null; } },
+  document: {
+    addEventListener() {},
+    getElementById() { return null; },
+    createElement() { return {}; },
+    head: { appendChild() {} },
+  },
   fetch: async () => { throw new Error('network not used'); },
   Number,
   String,
+  Date,
 };
+sandbox.window = sandbox;
 vm.createContext(sandbox);
 vm.runInContext(code, sandbox);
 
