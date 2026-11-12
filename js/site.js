@@ -1,3 +1,16 @@
+(function () {
+  var id = 'G-Y2R28WTX2X';
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+  document.head.appendChild(s);
+  gtag('js', new Date());
+  gtag('config', id);
+})();
+
 async function loadRates(){
   const res = await fetch('data/rates.json', {cache:'no-store'});
   if(!res.ok) throw new Error('Could not load rates.json');
