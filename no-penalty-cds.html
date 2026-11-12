@@ -6,13 +6,15 @@
 <base href="/"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>No-penalty CDs · CashPark</title>
-<meta name="description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<meta name="description" content="No-penalty CD APYs from Ally, Marcus, and Synchrony, with term length, withdrawal notes, as-of dates, and source links."/>
 <link rel="canonical" href="https://cashscoreboard.com/no-penalty-cds.html"/>
 <meta property="og:title" content="No-penalty CDs · CashPark"/>
-<meta property="og:description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<meta property="og:description" content="No-penalty CD APYs from Ally, Marcus, and Synchrony, with term length, withdrawal notes, as-of dates, and source links."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://cashscoreboard.com/no-penalty-cds.html"/>
 <link rel="stylesheet" href="css/site.css"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="favicon.ico" sizes="any"/>
 </head>
 <body>
 <header><div class="wrap nav">
@@ -46,7 +48,7 @@
 loadRates().then(d=>{
   const rows=d.no_penalty_cds||[];
   document.getElementById('npcds').innerHTML = rows.length ? rows.map(r=>rowHTML([
-    r.name, '<span class="rate">'+pct(r.rate_pct)+'</span><span class="badge">'+r.metric+'</span>', r.as_of, r.notes||'', link(r.source_url,r.source_name)
+    esc(r.name), rateCell(r.rate_pct, r.metric), esc(r.as_of), esc(r.notes||''), link(r.source_url,r.source_name)
   ])).join('') : '<tr><td colspan="5" class="empty">No verified no-penalty CD rates yet.</td></tr>';
 });
 </script>

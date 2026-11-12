@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Update tbills_daily in data/rates.json from Treasury daily bill rates XML."""
 from __future__ import annotations
-import json, urllib.request, xml.etree.ElementTree as ET
-from datetime import datetime
+import json, time, urllib.error, urllib.request, xml.etree.ElementTree as ET
+from datetime import date, datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -30,13 +30,30 @@ TERMS = [
     ("52-Week", "52WK"),
 ]
 
-def fetch(year: int) -> str:
-    req = urllib.request.Request(
-        XML_TMPL.format(year=year),
-        headers={"User-Agent": "CashParkBot/1.0 (+https://cashscoreboard.com/)"},
-    )
-    with urllib.request.urlopen(req, timeout=90) as r:
-        return r.read().decode("utf-8", errors="replace")
+# A quote older than this is not published over the current file. That blocks
+# a January-style fallback from writing last December in the middle of the year
+# when the current-year feed is down.
+MAX_AGE_DAYS = 10
+
+def fetch(year: int, urlopen=urllib.request.urlopen, attempts: int = 3, sleep=None) -> str:
+    if sleep is None:
+        sleep = time.sleep
+    url = XML_TMPL.format(year=year)
+    last = None
+    for i in range(attempts):
+        try:
+            req = urllib.request.Request(
+                url,
+                headers={"User-Agent": "CashParkBot/1.0 (+https://cashscoreboard.com/)"},
+            )
+            with urlopen(req, timeout=90) as r:
+                return r.read().decode("utf-8", errors="replace")
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as exc:
+            last = exc
+            if i + 1 >= attempts:
+                break
+            sleep(min(2 * (i + 1), 5))
+    raise last
 
 def entries_from_xml(xml_text: str):
     root = ET.fromstring(xml_text)
@@ -118,19 +135,55 @@ def parse(xml_text: str, year: int):
         raise SystemExit("No T-bill fields in latest entry; keys=" + ",".join(sorted(latest)[:50]))
     return as_of, rows
 
+def parse_as_of(as_of: str) -> date:
+    return datetime.strptime(as_of[:10], "%Y-%m-%d").date()
+
+def choose_daily_rows(today: date, fetch_text, max_age_days: int = MAX_AGE_DAYS):
+    """Pick the newest year whose quote is present and not older than max_age_days.
+
+    Network errors, empty feeds, and stale years are skipped. If nothing qualifies,
+    raise SystemExit before the caller writes rates.json.
+    """
+    errors = []
+    for year in (today.year, today.year - 1):
+        try:
+            as_of, rows = parse(fetch_text(year), year)
+        except SystemExit as exc:
+            errors.append(f"{year}: {exc}")
+            continue
+        except (OSError, ET.ParseError) as exc:
+            errors.append(f"{year}: {exc}")
+            continue
+        try:
+            quoted = parse_as_of(as_of)
+        except ValueError:
+            errors.append(f"{year}: bad as_of {as_of}")
+            continue
+        age = (today - quoted).days
+        if age < 0 or age > max_age_days:
+            errors.append(f"{year}: as_of {as_of} is {age} days from {today.isoformat()}")
+            continue
+        return as_of, rows
+    raise SystemExit("Treasury daily bill feed failed; rates.json not updated. " + " | ".join(errors))
+
+def write_json(path: Path, data) -> None:
+    payload = json.dumps(data, indent=2) + "\n"
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(payload)
+    tmp.replace(path)
+
+def refresh_file(path: Path, fetch_text, now: datetime):
+    as_of, rows = choose_daily_rows(now.date(), fetch_text)
+    data = json.loads(path.read_text())
+    data["tbills_daily"] = rows
+    data["tbills_refreshed_at_et"] = now.strftime("%Y-%m-%d %H:%M %Z")
+    write_json(path, data)
+    return as_of, rows
+
 def main():
     et = ZoneInfo("America/New_York")
     now = datetime.now(et)
-    year = now.year
-    try:
-        as_of, rows = parse(fetch(year), year)
-    except SystemExit:
-        year = year - 1
-        as_of, rows = parse(fetch(year), year)
-    data = json.loads(OUT.read_text())
-    data["tbills_daily"] = rows
-    data["tbills_refreshed_at_et"] = now.strftime("%Y-%m-%d %H:%M %Z")
-    OUT.write_text(json.dumps(data, indent=2) + "\n")
+    as_of, rows = refresh_file(OUT, fetch, now)
     print(f"ok as_of={as_of} rows={len(rows)}")
 
 if __name__ == "__main__":

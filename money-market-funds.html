@@ -6,13 +6,15 @@
 <base href="/"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Money market funds · CashPark</title>
-<meta name="description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<meta name="description" content="7-day yields for Fidelity, Schwab, and Vanguard money market funds from issuer pages. These funds are not FDIC-insured."/>
 <link rel="canonical" href="https://cashscoreboard.com/money-market-funds.html"/>
 <meta property="og:title" content="Money market funds · CashPark"/>
-<meta property="og:description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<meta property="og:description" content="7-day yields for Fidelity, Schwab, and Vanguard money market funds from issuer pages. These funds are not FDIC-insured."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://cashscoreboard.com/money-market-funds.html"/>
 <link rel="stylesheet" href="css/site.css"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="favicon.ico" sizes="any"/>
 </head>
 <body>
 <header><div class="wrap nav">
@@ -44,9 +46,9 @@
 <script>
 loadRates().then(d=>{
   document.getElementById('mmfs').innerHTML = d.money_market_funds.map(r=>rowHTML([
-    '<strong>'+r.ticker+'</strong><div class="small muted">'+r.name+'</div>',
-    '<span class="rate">'+pct(r.rate_pct)+'</span><span class="badge">'+r.metric+'</span>',
-    r.as_of, r.notes||'', link(r.source_url,r.source_name)
+    '<strong>'+esc(r.ticker)+'</strong><div class="small muted">'+esc(r.name)+'</div>',
+    rateCell(r.rate_pct, r.metric),
+    esc(r.as_of), esc(r.notes||''), link(r.source_url,r.source_name)
   ])).join('');
 });
 </script>

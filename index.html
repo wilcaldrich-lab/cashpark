@@ -6,13 +6,15 @@
 <base href="/"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Idle cash scoreboard · CashPark</title>
-<meta name="description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<meta name="description" content="Scoreboard of verified brokerage sweeps, money market funds, Treasury bills, savings APYs, and no-penalty CDs, each with an as-of date and an official source."/>
 <link rel="canonical" href="https://cashscoreboard.com/"/>
 <meta property="og:title" content="Idle cash scoreboard · CashPark"/>
-<meta property="og:description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<meta property="og:description" content="Scoreboard of verified brokerage sweeps, money market funds, Treasury bills, savings APYs, and no-penalty CDs, each with an as-of date and an official source."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://cashscoreboard.com/"/>
 <link rel="stylesheet" href="css/site.css"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="favicon.ico" sizes="any"/>
 </head>
 <body>
 <header><div class="wrap nav">
@@ -34,14 +36,13 @@
 <section class="hero">
   <div class="pill">v1 · verified sources only</div>
   <h1>Where is idle cash actually earning?</h1>
-  <p>A simple scoreboard of brokerage sweeps, money market funds, T-bills, and FDIC national savings — each row linked to an official source with an as-of date. No invented numbers.</p>
+  <p>A simple scoreboard of brokerage sweeps, money market funds, T-bills, savings accounts, and the FDIC national average — each row linked to an official source with an as-of date. No invented numbers.</p>
 </section>
-<section class="card" style="margin-bottom:1rem;background:#f6f3ee;color:#1c1c1c">
+<section class="card signup-card" style="margin-bottom:1rem">
 <!--
-  CashPark Weekly — MailerLite embed (form id 202991480307975789, group CashPark Weekly)
-  Email-only signup via MailerLite public JSONP form action (same endpoint as dashboard HTML embed).
+  CashPark Weekly — MailerLite form (form id 202991480307975789, group CashPark Weekly).
+  The subscribe URL returns JSON and allows cross-origin GET. site.js submits with fetch.
   Account double opt-in default: off (single opt-in). No campaigns; free plan.
-  Verified 2026-11-02 America/New_York: subscribe endpoint returned success and landed in group, then test contact deleted.
 -->
 <div class="cashpark-ml-embed" id="cashpark-weekly-signup">
   <style>
@@ -67,7 +68,7 @@
   <h3>CashPark Weekly</h3>
   <p class="lede">Idle-cash rate notes — verified sources only. One email field.</p>
 
-  <form id="cashpark-ml-form" action="https://assets.mailerlite.com/jsonp/2706336/forms/202991480307975789/subscribe" method="get" target="_blank" novalidate>
+  <form id="cashpark-ml-form" action="https://assets.mailerlite.com/jsonp/2706336/forms/202991480307975789/subscribe" method="get" novalidate>
     <input type="hidden" name="ml-submit" value="1" />
     <input type="hidden" name="anticsrf" value="true" />
     <input type="email" name="fields[email]" required placeholder="you@example.com" aria-label="Email address" autocomplete="email" />
@@ -79,55 +80,6 @@
     No sale of your address. Unsubscribe anytime from any email. Not investment advice.
   </p>
   <p class="msg" id="cashpark-ml-msg" hidden></p>
-
-  <script>
-  (function () {
-    var form = document.getElementById('cashpark-ml-form');
-    var msg = document.getElementById('cashpark-ml-msg');
-    if (!form) return;
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var emailInput = form.querySelector('input[name="fields[email]"]');
-      var email = (emailInput && emailInput.value || '').trim();
-      var btn = form.querySelector('button[type=submit]');
-      msg.hidden = true;
-      msg.className = 'msg';
-      if (!email || email.indexOf('@') < 1) {
-        msg.textContent = 'Please enter a valid email.';
-        msg.className = 'msg err';
-        msg.hidden = false;
-        return;
-      }
-      if (btn) btn.disabled = true;
-      var cb = 'ml_cb_' + Math.random().toString(36).slice(2);
-      var url = form.action
-        + '?fields%5Bemail%5D=' + encodeURIComponent(email)
-        + '&ml-submit=1&anticsrf=true&ajax=1&callback=' + cb;
-      function done(ok, text) {
-        if (btn) btn.disabled = false;
-        msg.textContent = text;
-        msg.className = 'msg ' + (ok ? 'ok' : 'err');
-        msg.hidden = false;
-        try { delete window[cb]; } catch (err) {}
-        if (script && script.parentNode) script.parentNode.removeChild(script);
-      }
-      window[cb] = function (res) {
-        if (res && res.success) {
-          done(true, 'Thanks — check your inbox if confirmation is required. You’re on CashPark Weekly.');
-          form.reset();
-        } else {
-          var err = (res && res.errors && res.errors.fields && res.errors.fields.email && res.errors.fields.email[0])
-            || (res && res.message) || 'Could not subscribe. Try again.';
-          done(false, err);
-        }
-      };
-      var script = document.createElement('script');
-      script.src = url;
-      script.onerror = function () { done(false, 'Network error. Try again.'); };
-      document.body.appendChild(script);
-    });
-  })();
-  </script>
 </div>
 </section>
 <div class="note" id="missing"></div>
@@ -154,6 +106,9 @@
     <li><a href="vanguard-settlement-fund.html">Vanguard settlement fund (VMFXX)</a></li>
     <li><a href="robinhood-gold-interest.html">Robinhood Gold interest</a></li>
     <li><a href="best-no-penalty-cd.html">Best no-penalty CD</a></li>
+    <li><a href="no-penalty-cds.html">No-penalty CD table</a></li>
+    <li><a href="spaxx-vs-swvxx.html">SPAXX vs SWVXX</a></li>
+    <li><a href="best-place-for-idle-cash.html">Best place for idle cash</a></li>
     <li><a href="hysa-vs-money-market.html">HYSA vs money market fund</a></li>
     <li><a href="t-bill-vs-hysa.html">T-bill vs HYSA</a></li>
     <li><a href="where-to-park-cash-short-term.html">Where to park cash short term</a></li>
@@ -167,8 +122,10 @@
 <script src="js/site.js"></script>
 <script>
 loadRates().then(data=>{
-  document.getElementById('generated').textContent = 'Data built ' + data.generated_at_et + '. ' + data.note;
-  document.getElementById('missing').innerHTML = '<strong>Missing in v1:</strong> ' + data.missing.map(m=>'<div>• '+m+'</div>').join('');
+  const built = 'Rates file generated ' + (data.generated_at_et || '—') + '.';
+  const bills = data.tbills_refreshed_at_et ? ' T-bill daily yields refreshed ' + data.tbills_refreshed_at_et + '.' : '';
+  document.getElementById('generated').textContent = built + bills + ' ' + (data.note || '');
+  document.getElementById('missing').innerHTML = '<strong>Missing in v1:</strong> ' + (data.missing||[]).map(m=>'<div>• '+esc(m)+'</div>').join('');
   const rows=[];
   for(const r of data.brokerage_sweeps){rows.push({cat:'Brokerage sweep', name:r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url, src:r.source_name});}
   for(const r of data.money_market_funds){rows.push({cat:'Money market fund', name:r.ticker+' — '+r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url, src:r.source_name});}
@@ -178,9 +135,9 @@ loadRates().then(data=>{
     rows.push({cat, name:r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url, src:r.source_name});
   }
   for(const r of (data.no_penalty_cds||[])){rows.push({cat:'No-penalty CD', name:r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url, src:r.source_name});}
-  rows.sort((a,b)=>(finiteNumber(b.rate)??-Infinity)-(finiteNumber(a.rate)??-Infinity));
-  document.getElementById('scoreboard').innerHTML = rows.map(r=>rowHTML([
-    r.cat, r.name, '<span class="rate">'+pct(r.rate)+'</span><span class="badge">'+r.metric+'</span>', r.as_of, link(r.url, r.src)
+  const ranked = sortByRateDesc(rows, r=>r.rate);
+  document.getElementById('scoreboard').innerHTML = ranked.map(r=>rowHTML([
+    esc(r.cat), esc(r.name), rateCell(r.rate, r.metric), esc(r.as_of), link(r.url, r.src)
   ])).join('');
 }).catch(e=>{document.getElementById('missing').textContent=String(e)});
 </script>

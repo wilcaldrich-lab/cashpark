@@ -6,13 +6,15 @@
 <base href="/"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Brokerage sweeps · CashPark</title>
-<meta name="description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<meta name="description" content="Brokerage sweep rates verified on issuer disclosure pages, including everyday uninvested cash, with as-of dates and source links."/>
 <link rel="canonical" href="https://cashscoreboard.com/brokerage-sweeps.html"/>
 <meta property="og:title" content="Brokerage sweeps · CashPark"/>
-<meta property="og:description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<meta property="og:description" content="Brokerage sweep rates verified on issuer disclosure pages, including everyday uninvested cash, with as-of dates and source links."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://cashscoreboard.com/brokerage-sweeps.html"/>
 <link rel="stylesheet" href="css/site.css"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="favicon.ico" sizes="any"/>
 </head>
 <body>
 <header><div class="wrap nav">
@@ -44,7 +46,7 @@
 <script>
 loadRates().then(d=>{
   document.getElementById('sweeps').innerHTML = d.brokerage_sweeps.map(r=>rowHTML([
-    r.name, '<span class="rate">'+pct(r.rate_pct)+'</span><span class="badge">'+r.metric+'</span>', r.as_of, r.notes||'', link(r.source_url,r.source_name)
+    esc(r.name), rateCell(r.rate_pct, r.metric), esc(r.as_of), esc(r.notes||''), link(r.source_url,r.source_name)
   ])).join('') || '<tr><td colspan="5" class="empty">No verified sweep rows yet.</td></tr>';
 });
 </script>

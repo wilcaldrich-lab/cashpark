@@ -6,13 +6,15 @@
 <base href="/"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Fidelity SPAXX yield · CashPark</title>
-<meta name="description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<meta name="description" content="Fidelity SPAXX 7-day yield from the verified CashPark file, with the fund-page source and as-of date."/>
 <link rel="canonical" href="https://cashscoreboard.com/fidelity-spaxx-yield.html"/>
 <meta property="og:title" content="Fidelity SPAXX yield · CashPark"/>
-<meta property="og:description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<meta property="og:description" content="Fidelity SPAXX 7-day yield from the verified CashPark file, with the fund-page source and as-of date."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://cashscoreboard.com/fidelity-spaxx-yield.html"/>
 <link rel="stylesheet" href="css/site.css"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="favicon.ico" sizes="any"/>
 </head>
 <body>
 <header><div class="wrap nav">
@@ -32,15 +34,29 @@
 <main class="wrap">
 
 <section class="hero"><div class="pill">seo</div><h1>Fidelity SPAXX 7-day yield</h1>
-<p>SPAXX showed a <strong>7-day yield of 3.57%</strong> as of <strong>2026-11-08</strong> on Fidelity’s fund research page.</p></section>
-<section class="card"><table><thead><tr><th>Fund</th><th>Yield</th><th>As of</th><th>Source</th></tr></thead>
-<tbody><tr><td>SPAXX</td><td class="rate">3.57% 7-day yield</td><td>2026-11-08</td><td><a href="https://fundresearch.fidelity.com/mutual-funds/summary/31617H102" target="_blank" rel="noopener">Fidelity SPAXX</a></td></tr></tbody></table>
-<p class="small muted">Not FDIC-insured. Not advice.</p></section>
+<p id="lead">Loading the verified SPAXX row…</p></section>
+<section class="card"><div style="overflow:auto"><table><thead><tr><th>Fund</th><th>Yield</th><th>As of</th><th>Source</th></tr></thead>
+<tbody id="rows"></tbody></table></div>
+<p class="small muted">Not FDIC-insured. Not advice. A 7-day yield is not an APY.</p></section>
 
 </main>
 <footer class="wrap">
   <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark v1 — verified rates only; gaps listed on the scoreboard.</p>
 </footer>
 <script src="js/site.js"></script>
+<script>
+loadRates().then(data=>{
+  const f=(data.money_market_funds||[]).find(r=>r.ticker==='SPAXX');
+  document.getElementById('lead').textContent=f
+    ? 'SPAXX, '+f.name+', showed '+pct(f.rate_pct)+' ('+f.metric+') as of '+f.as_of+' on the linked Fidelity page.'
+    : 'SPAXX is not in the verified file.';
+  fillTable('rows', f?[[
+    '<strong>'+esc(f.ticker)+'</strong>',
+    rateCell(f.rate_pct, f.metric),
+    esc(f.as_of),
+    link(f.source_url, f.source_name)
+  ]]:[]);
+}).catch(e=>{document.getElementById('lead').textContent=String(e)});
+</script>
 
 </body></html>

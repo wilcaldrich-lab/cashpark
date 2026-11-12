@@ -2,10 +2,14 @@
 from __future__ import annotations
 
 import json
+import tempfile
 import unittest
+import urllib.error
+from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
-from scripts.refresh_tbills import parse
+from scripts.refresh_tbills import choose_daily_rows, fetch, parse, refresh_file
 
 ROOT = Path(__file__).resolve().parents[1]
 RATES = ROOT / "data" / "rates.json"
@@ -95,6 +99,99 @@ class RefreshTbillTests(unittest.TestCase):
             blob = json.dumps(row)
             self.assertNotIn("NaN", blob)
             self.assertNotIn("undefined", blob)
+
+    def test_live_auctions_keep_rates_and_have_close_dates(self):
+        data = json.loads(RATES.read_text())
+        rows = data["tbills_auctions"]
+        self.assertGreaterEqual(len(rows), 1)
+        for row in rows:
+            self.assertRegex(row.get("auction_date") or "", r"^\d{4}-\d{2}-\d{2}$")
+            self.assertLessEqual(row["auction_date"], "2026-11-12")
+            inv = row["investment_rate_pct"]
+            disc = row["high_discount_rate_pct"]
+            self.assertIsInstance(inv, (int, float))
+            self.assertIsInstance(disc, (int, float))
+            self.assertEqual(inv, inv)
+            self.assertEqual(disc, disc)
+            self.assertTrue(row.get("cusip"))
+            self.assertTrue(row.get("maturity"))
+
+
+class FeedFailureTests(unittest.TestCase):
+    def test_current_year_wins_when_fresh(self):
+        calls = []
+
+        def fetch_text(year):
+            calls.append(year)
+            return BOTH
+
+        as_of, rows = choose_daily_rows(datetime(2026, 11, 10).date(), fetch_text)
+        self.assertEqual(calls, [2026])
+        self.assertEqual(as_of, "2026-11-06")
+        self.assertEqual(rows[0]["rate_pct"], 3.95)
+
+    def test_empty_current_year_uses_a_fresh_prior_year(self):
+        def fetch_text(year):
+            if year == 2026:
+                raise SystemExit("No ATOM entries in Treasury XML")
+            return BOTH
+
+        as_of, _rows = choose_daily_rows(datetime(2026, 11, 10).date(), fetch_text)
+        self.assertEqual(as_of, "2026-11-06")
+
+    def test_stale_fallback_does_not_publish(self):
+        def fetch_text(year):
+            if year == 2026:
+                raise urllib.error.URLError("down")
+            return BOTH
+
+        with self.assertRaises(SystemExit):
+            choose_daily_rows(datetime(2026, 12, 20).date(), fetch_text)
+
+    def test_future_quote_is_rejected(self):
+        def fetch_text(_year):
+            return BOTH
+
+        with self.assertRaises(SystemExit):
+            choose_daily_rows(datetime(2026, 11, 1).date(), fetch_text)
+
+    def test_failed_feed_does_not_touch_the_file(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "rates.json"
+            original = '{"tbills_daily": []}\n'
+            path.write_text(original)
+
+            def fetch_text(_year):
+                raise urllib.error.URLError("down")
+
+            now = datetime(2026, 11, 12, 9, 30, tzinfo=ZoneInfo("America/New_York"))
+            with self.assertRaises(SystemExit):
+                refresh_file(path, fetch_text, now)
+            self.assertEqual(path.read_text(), original)
+            self.assertFalse(path.with_suffix(".json.tmp").exists())
+
+    def test_fetch_retries_then_returns(self):
+        calls = {"n": 0}
+
+        class Resp:
+            def read(self):
+                return b"<ok/>"
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_args):
+                return False
+
+        def urlopen(_req, timeout=0):
+            calls["n"] += 1
+            if calls["n"] < 3:
+                raise urllib.error.URLError("nope")
+            return Resp()
+
+        text = fetch(2026, urlopen=urlopen, attempts=3, sleep=lambda _s: None)
+        self.assertEqual(text, "<ok/>")
+        self.assertEqual(calls["n"], 3)
 
 
 if __name__ == "__main__":

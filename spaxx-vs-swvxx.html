@@ -6,13 +6,15 @@
 <base href="/"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>SPAXX vs SWVXX · CashPark</title>
-<meta name="description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<meta name="description" content="SPAXX and SWVXX 7-day yields side by side from Fidelity and Schwab, with as-of dates. Not a recommendation."/>
 <link rel="canonical" href="https://cashscoreboard.com/spaxx-vs-swvxx.html"/>
 <meta property="og:title" content="SPAXX vs SWVXX · CashPark"/>
-<meta property="og:description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<meta property="og:description" content="SPAXX and SWVXX 7-day yields side by side from Fidelity and Schwab, with as-of dates. Not a recommendation."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://cashscoreboard.com/spaxx-vs-swvxx.html"/>
 <link rel="stylesheet" href="css/site.css"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="favicon.ico" sizes="any"/>
 </head>
 <body>
 <header><div class="wrap nav">
@@ -32,16 +34,31 @@
 <main class="wrap">
 
 <section class="hero"><div class="pill">seo</div><h1>SPAXX vs SWVXX</h1>
-<p>Issuer-page yields verified for CashPark v1.</p></section>
-<section class="card"><table><thead><tr><th>Ticker</th><th>7-day yield</th><th>As of</th><th>Source</th></tr></thead><tbody>
-<tr><td>SPAXX</td><td class="rate">3.57%</td><td>2026-11-08</td><td><a href="https://fundresearch.fidelity.com/mutual-funds/summary/31617H102" target="_blank" rel="noopener">Fidelity</a></td></tr>
-<tr><td>SWVXX</td><td class="rate">3.77%</td><td>2026-11-06</td><td><a href="https://www.schwabassetmanagement.com/products/swvxx" target="_blank" rel="noopener">Schwab</a></td></tr>
-</tbody></table><p class="small muted">Different brokers and rules. Not advice.</p></section>
+<p id="lead">Issuer-page yields from the verified rates file.</p></section>
+<section class="card"><div style="overflow:auto"><table><thead><tr><th>Ticker</th><th>Yield</th><th>As of</th><th>Source</th></tr></thead>
+<tbody id="rows"></tbody></table></div>
+<p class="small muted">Different brokers and rules. Not advice. A 7-day yield is not an APY.</p></section>
 
 </main>
 <footer class="wrap">
   <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark v1 — verified rates only; gaps listed on the scoreboard.</p>
 </footer>
 <script src="js/site.js"></script>
+<script>
+loadRates().then(data=>{
+  const want=['SPAXX','SWVXX'];
+  const rows=(data.money_market_funds||[]).filter(r=>want.includes(r.ticker));
+  rows.sort((a,b)=>want.indexOf(a.ticker)-want.indexOf(b.ticker));
+  document.getElementById('lead').textContent=rows.length===2
+    ? 'SPAXX '+pct(rows[0].rate_pct)+' as of '+rows[0].as_of+' and SWVXX '+pct(rows[1].rate_pct)+' as of '+rows[1].as_of+', from the verified file.'
+    : 'One of these funds is missing from the verified file.';
+  fillTable('rows', rows.map(r=>[
+    '<strong>'+esc(r.ticker)+'</strong><div class="small muted">'+esc(r.name)+'</div>',
+    rateCell(r.rate_pct, r.metric),
+    esc(r.as_of),
+    link(r.source_url, r.source_name)
+  ]));
+}).catch(e=>{document.getElementById('lead').textContent=String(e)});
+</script>
 
 </body></html>
