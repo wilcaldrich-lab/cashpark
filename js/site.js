@@ -1,5 +1,7 @@
 (function () {
   var id = 'G-Y2R28WTX2X';
+  if (window.__cashparkGtagLoaded) return;
+  window.__cashparkGtagLoaded = true;
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
   window.gtag = gtag;
@@ -16,19 +18,49 @@ async function loadRates(){
   if(!res.ok) throw new Error('Could not load rates.json');
   return res.json();
 }
-function money(n){return n.toLocaleString(undefined,{style:'currency',currency:'USD',maximumFractionDigits:0})}
-function money2(n){return n.toLocaleString(undefined,{style:'currency',currency:'USD',maximumFractionDigits:2})}
 function finiteNumber(n){
   if(n==null || n==='') return null;
   const x=Number(n);
   return Number.isFinite(x) ? x : null;
 }
+function money(n){
+  const x=finiteNumber(n);
+  return x==null ? '—' : x.toLocaleString(undefined,{style:'currency',currency:'USD',maximumFractionDigits:0});
+}
+function money2(n){
+  const x=finiteNumber(n);
+  return x==null ? '—' : x.toLocaleString(undefined,{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+}
+// Simple annual interest: principal times the published percent.
+// Rounded to cents so binary fractions do not show up as junk.
+function annualSimpleInterest(amount, ratePct){
+  const a=finiteNumber(amount);
+  const r=finiteNumber(ratePct);
+  if(a==null || r==null) return null;
+  return Math.round((a * r / 100) * 100) / 100;
+}
+function sortByRateDesc(rows, pick){
+  const get=typeof pick==='function' ? pick : function(row){ return row[pick||'rate']; };
+  return rows.slice().sort(function(a,b){
+    const av=finiteNumber(get(a));
+    const bv=finiteNumber(get(b));
+    return (bv==null ? -Infinity : bv) - (av==null ? -Infinity : av);
+  });
+}
 function pct(n){
   const x=finiteNumber(n);
-  return x==null ? '—' : x.toFixed(2)+'%';
+  if(x==null) return '—';
+  // Keep a third decimal when the source has one (auction investment rates).
+  // Two-decimal quotes stay two decimals: 3.9 -> 3.90, 4.64 -> 4.64.
+  let s=(Math.round((x + Number.EPSILON) * 1000) / 1000).toFixed(3);
+  if(s.endsWith('0')) s=s.slice(0, -1);
+  return s+'%';
 }
 function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
-function link(url,label){return `<a href="${url}" rel="noopener noreferrer" target="_blank">${esc(label)||'source'}</a>`}
+function link(url,label){
+  if(!url) return '—';
+  return `<a href="${esc(url)}" rel="noopener noreferrer" target="_blank">${esc(label)||'source'}</a>`;
+}
 function rowHTML(cells){
   return `<tr>${cells.map(c=>{
     if(c==null || c==='') return '<td>—</td>';
@@ -76,7 +108,9 @@ function tbillDailyCells(r){
 function fillTable(id, rows){
   const el=document.getElementById(id);
   if(!el) return;
-  el.innerHTML = rows.length ? rows.map(rowHTML).join('') : '<tr><td colspan="5" class="empty">No verified rows in the rates file.</td></tr>';
+  const table=el.closest ? el.closest('table') : null;
+  const span=(table && table.querySelectorAll('thead th').length) || (rows[0] ? rows[0].length : 5) || 5;
+  el.innerHTML = rows.length ? rows.map(rowHTML).join('') : '<tr><td colspan="'+span+'" class="empty">No verified rows in the rates file.</td></tr>';
 }
 function setActiveNav(){
   const path = location.pathname.split('/').pop() || 'index.html';
@@ -84,39 +118,71 @@ function setActiveNav(){
     const href=(a.getAttribute('href')||'').split('/').pop();
     if(href===path) a.classList.add('active');
   });
+  document.querySelectorAll('th:not([scope])').forEach(th=>th.setAttribute('scope','col'));
 }
-document.addEventListener('DOMContentLoaded', setActiveNav);
+function mailerLiteSubscribeUrl(action, email){
+  return action
+    + '?fields%5Bemail%5D=' + encodeURIComponent(email)
+    + '&ml-submit=1&anticsrf=true&ajax=1';
+}
+function mailerLiteResult(res){
+  if(res && res.success){
+    return {ok:true, text:'Thanks — check your inbox if confirmation is required. You’re on CashPark Weekly.'};
+  }
+  const err=(res && res.errors && res.errors.fields && res.errors.fields.email && res.errors.fields.email[0])
+    || (res && res.message)
+    || 'Could not subscribe. Try again.';
+  return {ok:false, text:String(err)};
+}
+function bindWeeklySignup(form){
+  form = form || document.getElementById('cashpark-ml-form');
+  if(!form || form._cashparkBound) return;
+  form._cashparkBound = true;
+  const msg=document.getElementById('cashpark-ml-msg');
+  form.addEventListener('submit', function(e){
+    if(e && e.preventDefault) e.preventDefault();
+    const emailInput=form.querySelector('input[name="fields[email]"]');
+    const email=(emailInput && emailInput.value || '').trim();
+    const btn=form.querySelector('button[type=submit]');
+    if(msg){ msg.hidden=true; msg.className='msg'; }
+    if(!email || email.indexOf('@')<1){
+      if(msg){ msg.textContent='Please enter a valid email.'; msg.className='msg err'; msg.hidden=false; }
+      return;
+    }
+    if(btn) btn.disabled=true;
+    const doFetch=form._fetch || fetch;
+    return doFetch(mailerLiteSubscribeUrl(form.action, email), {method:'GET', headers:{'Accept':'application/json'}})
+      .then(function(res){
+        if(!res.ok) throw new Error('HTTP '+res.status);
+        return res.json();
+      })
+      .then(function(payload){
+        const result=mailerLiteResult(payload);
+        if(msg){ msg.textContent=result.text; msg.className='msg '+(result.ok?'ok':'err'); msg.hidden=false; }
+        if(result.ok) form.reset();
+      })
+      .catch(function(){
+        if(msg){ msg.textContent='Network error. Try again.'; msg.className='msg err'; msg.hidden=false; }
+      })
+      .then(function(){ if(btn) btn.disabled=false; });
+  });
+}
+function boot(){
+  setActiveNav();
+  bindWeeklySignup();
+}
+document.addEventListener('DOMContentLoaded', boot);
 
 async function refreshTBillsLive(data){
-  // TreasuryDirect JSON often lacks browser CORS; keep baked daily rates and stamp attempt.
+  // TreasuryDirect does not send Access-Control-Allow-Origin, and its records
+  // use competitiveAuctionCloseDate rather than auctionDate. A browser fetch
+  // fails and would also stamp a null date, so the page keeps the file.
   const el=document.getElementById('tbill-live-status');
   if(!el) return data;
-  try{
-    const url='https://www.treasurydirect.gov/TA_WS/securities/auctioned?format=json&type=Bill&days=30';
-    const res=await fetch(url);
-    if(!res.ok) throw new Error('HTTP '+res.status);
-    const auction=await res.json();
-    const best={};
-    for(const r of auction){
-      const term=r.securityTerm; if(!term) continue;
-      const ad=r.auctionDate||'';
-      if(!best[term] || ad>(best[term].auctionDate||'')) best[term]=r;
-    }
-    data.tbills_auctions=Object.values(best).filter(r=>finiteNumber(r.investmentRate)!=null).map(r=>({
-      term:r.securityTerm,
-      investment_rate_pct:finiteNumber(r.investmentRate),
-      high_discount_rate_pct:finiteNumber(r.highRate),
-      auction_date:(r.auctionDate||'').slice(0,10)||null,
-      maturity:(r.maturityDate||'').slice(0,10),
-      cusip:r.cusip,
-      source_name:'TreasuryDirect auctioned securities API (live browser fetch)',
-      source_url:url,
-    }));
-    el.textContent='Auction table refreshed live from TreasuryDirect in this browser session.';
-    el.className='small muted';
-  }catch(e){
-    el.textContent='Live auction refresh blocked or failed in-browser (likely CORS). Showing Treasury daily yields baked at build from the official XML feed.';
-    el.className='small muted';
-  }
+  const daily=data && data.tbills_refreshed_at_et;
+  el.textContent = daily
+    ? 'Daily yields were refreshed from the Treasury XML feed at '+daily+'. Auction dates are the competitive close dates stored with those rows. This page does not re-fetch TreasuryDirect in the browser.'
+    : 'Daily yields and auction rows are the Treasury snapshots stored in the rates file.';
+  el.className='small muted';
   return data;
 }

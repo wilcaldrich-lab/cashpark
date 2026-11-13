@@ -6,13 +6,15 @@
 <base href="/"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Idle cash calculator · CashPark</title>
-<meta name="description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<meta name="description" content="Estimate a year of interest on idle cash at your rate versus a verified CashPark rate. Simple annual math, with the comparison source shown."/>
 <link rel="canonical" href="https://cashscoreboard.com/calculator.html"/>
 <meta property="og:title" content="Idle cash calculator · CashPark"/>
-<meta property="og:description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<meta property="og:description" content="Estimate a year of interest on idle cash at your rate versus a verified CashPark rate. Simple annual math, with the comparison source shown."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://cashscoreboard.com/calculator.html"/>
 <link rel="stylesheet" href="css/site.css"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="favicon.ico" sizes="any"/>
 </head>
 <body>
 <header><div class="wrap nav">
@@ -55,16 +57,21 @@
 <script>
 let options=[];
 function recalc(){
-  const amt=Number(document.getElementById('amount').value||0);
-  const cur=Number(document.getElementById('current').value||0)/100;
+  const amt=Number(document.getElementById('amount').value);
+  const cur=Number(document.getElementById('current').value);
   const opt=options[Number(document.getElementById('compare').value)];
-  if(!opt) return;
-  const cmp=opt.rate/100;
-  const a=amt*cur, b=amt*cmp, d=b-a;
+  const a=annualSimpleInterest(amt, cur);
+  const b=opt ? annualSimpleInterest(amt, opt.rate) : null;
+  if(a==null || b==null){
+    document.getElementById('curEarn').textContent='—';
+    document.getElementById('cmpEarn').textContent='—';
+    document.getElementById('diff').textContent='—';
+    return;
+  }
   document.getElementById('curEarn').textContent=money2(a);
   document.getElementById('cmpEarn').textContent=money2(b);
-  document.getElementById('diff').textContent=money2(d);
-  document.getElementById('cmpSrc').innerHTML=opt.label+' · '+pct(opt.rate)+' '+opt.metric+' · as of '+opt.as_of+' · '+link(opt.url,'source');
+  document.getElementById('diff').textContent=money2(Math.round((b-a)*100)/100);
+  document.getElementById('cmpSrc').innerHTML=esc(opt.label)+' · '+pct(opt.rate)+' '+esc(opt.metric)+' · as of '+esc(opt.as_of)+' · '+link(opt.url,'source');
 }
 loadRates().then(data=>{
   options=[];
@@ -73,9 +80,9 @@ loadRates().then(data=>{
   for(const r of data.hysa) options.push({label:r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url});
   for(const r of (data.no_penalty_cds||[])) options.push({label:r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url});
   for(const r of data.tbills_daily){const opt=tbillCalculatorOption(r); if(opt) options.push(opt);}
-  options.sort((a,b)=>b.rate-a.rate);
+  options=sortByRateDesc(options, o=>o.rate);
   const sel=document.getElementById('compare');
-  sel.innerHTML=options.map((o,i)=>'<option value="'+i+'">'+pct(o.rate)+' — '+o.label+'</option>').join('');
+  sel.innerHTML=options.map((o,i)=>'<option value="'+i+'">'+esc(pct(o.rate)+' — '+o.label)+'</option>').join('');
   const idx=options.findIndex(o=>/SWVXX/.test(o.label));
   if(idx>=0) sel.value=String(idx);
   ['amount','current','compare'].forEach(id=>document.getElementById(id).addEventListener('input',recalc));

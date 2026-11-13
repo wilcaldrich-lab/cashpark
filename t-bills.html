@@ -6,13 +6,15 @@
 <base href="/"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Treasury bills · CashPark</title>
-<meta name="description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<meta name="description" content="Treasury bill coupon-equivalent yields and bank discounts from the daily XML feed, plus recent auction investment rates and close dates."/>
 <link rel="canonical" href="https://cashscoreboard.com/t-bills.html"/>
 <meta property="og:title" content="Treasury bills · CashPark"/>
-<meta property="og:description" content="CashPark compares verified idle-cash rates: brokerage sweeps, money market funds, T-bills, and benchmarks."/>
+<meta property="og:description" content="Treasury bill coupon-equivalent yields and bank discounts from the daily XML feed, plus recent auction investment rates and close dates."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://cashscoreboard.com/t-bills.html"/>
 <link rel="stylesheet" href="css/site.css"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="favicon.ico" sizes="any"/>
 </head>
 <body>
 <header><div class="wrap nav">
@@ -48,7 +50,7 @@
 loadRates().then(refreshTBillsLive).then(d=>{
   document.getElementById('daily').innerHTML=d.tbills_daily.map(r=>rowHTML(tbillDailyCells(r))).join('');
   document.getElementById('auction').innerHTML=(d.tbills_auctions||[]).map(r=>rowHTML([
-    r.term, rateCell(r.investment_rate_pct, ''), rateCell(r.high_discount_rate_pct, ''), r.auction_date||'—', r.maturity||'—', link(r.source_url,r.source_name)
+    esc(r.term), rateCell(r.investment_rate_pct), rateCell(r.high_discount_rate_pct), esc(r.auction_date||'—'), esc(r.maturity||'—'), link(r.source_url,r.source_name)
   ])).join('');
 });
 </script>

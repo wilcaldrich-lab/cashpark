@@ -13,13 +13,21 @@
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://cashscoreboard.com/newsletter.html"/>
 <link rel="stylesheet" href="css/site.css"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="favicon.ico" sizes="any"/>
 </head>
 <body>
 <header><div class="wrap nav">
   <a class="brand" href="index.html">Cash<span>Park</span></a>
   <nav class="links">
     <a href="index.html">Scoreboard</a>
-    <a href="newsletter.html" class="active">Newsletter</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="brokerage-sweeps.html">Sweeps</a>
+    <a href="money-market-funds.html">MMFs</a>
+    <a href="hysa.html">HYSA</a>
+    <a href="t-bills.html">T-Bills</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="newsletter.html">Newsletter</a>
     <a href="disclosures.html">Disclosures</a>
   </nav>
 </div></header>
@@ -29,12 +37,11 @@
   <h1>Get idle-cash rate notes</h1>
   <p>Verified source updates only. Email-only signup via MailerLite (free plan). Not investment advice.</p>
 </section>
-<section class="card">
+<section class="card signup-card">
 <!--
-  CashPark Weekly — MailerLite embed (form id 202991480307975789, group CashPark Weekly)
-  Email-only signup via MailerLite public JSONP form action (same endpoint as dashboard HTML embed).
+  CashPark Weekly — MailerLite form (form id 202991480307975789, group CashPark Weekly).
+  The subscribe URL returns JSON and allows cross-origin GET. site.js submits with fetch.
   Account double opt-in default: off (single opt-in). No campaigns; free plan.
-  Verified 2026-11-02 America/New_York: subscribe endpoint returned success and landed in group, then test contact deleted.
 -->
 <div class="cashpark-ml-embed" id="cashpark-weekly-signup">
   <style>
@@ -60,7 +67,7 @@
   <h3>CashPark Weekly</h3>
   <p class="lede">Idle-cash rate notes — verified sources only. One email field.</p>
 
-  <form id="cashpark-ml-form" action="https://assets.mailerlite.com/jsonp/2706336/forms/202991480307975789/subscribe" method="get" target="_blank" novalidate>
+  <form id="cashpark-ml-form" action="https://assets.mailerlite.com/jsonp/2706336/forms/202991480307975789/subscribe" method="get" novalidate>
     <input type="hidden" name="ml-submit" value="1" />
     <input type="hidden" name="anticsrf" value="true" />
     <input type="email" name="fields[email]" required placeholder="you@example.com" aria-label="Email address" autocomplete="email" />
@@ -72,60 +79,14 @@
     No sale of your address. Unsubscribe anytime from any email. Not investment advice.
   </p>
   <p class="msg" id="cashpark-ml-msg" hidden></p>
-
-  <script>
-  (function () {
-    var form = document.getElementById('cashpark-ml-form');
-    var msg = document.getElementById('cashpark-ml-msg');
-    if (!form) return;
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var emailInput = form.querySelector('input[name="fields[email]"]');
-      var email = (emailInput && emailInput.value || '').trim();
-      var btn = form.querySelector('button[type=submit]');
-      msg.hidden = true;
-      msg.className = 'msg';
-      if (!email || email.indexOf('@') < 1) {
-        msg.textContent = 'Please enter a valid email.';
-        msg.className = 'msg err';
-        msg.hidden = false;
-        return;
-      }
-      if (btn) btn.disabled = true;
-      var cb = 'ml_cb_' + Math.random().toString(36).slice(2);
-      var url = form.action
-        + '?fields%5Bemail%5D=' + encodeURIComponent(email)
-        + '&ml-submit=1&anticsrf=true&ajax=1&callback=' + cb;
-      function done(ok, text) {
-        if (btn) btn.disabled = false;
-        msg.textContent = text;
-        msg.className = 'msg ' + (ok ? 'ok' : 'err');
-        msg.hidden = false;
-        try { delete window[cb]; } catch (err) {}
-        if (script && script.parentNode) script.parentNode.removeChild(script);
-      }
-      window[cb] = function (res) {
-        if (res && res.success) {
-          done(true, 'Thanks — check your inbox if confirmation is required. You’re on CashPark Weekly.');
-          form.reset();
-        } else {
-          var err = (res && res.errors && res.errors.fields && res.errors.fields.email && res.errors.fields.email[0])
-            || (res && res.message) || 'Could not subscribe. Try again.';
-          done(false, err);
-        }
-      };
-      var script = document.createElement('script');
-      script.src = url;
-      script.onerror = function () { done(false, 'Network error. Try again.'); };
-      document.body.appendChild(script);
-    });
-  })();
-  </script>
 </div>
 
 </section>
 <p class="small muted">Form id 202991480307975789 · group CashPark Weekly · account double opt-in default: off</p>
 </main>
+<footer class="wrap">
+  <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark v1 — verified rates only; gaps listed on the scoreboard.</p>
+</footer>
 <script src="js/site.js"></script>
 </body>
 </html>
