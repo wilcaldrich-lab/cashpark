@@ -6,4 +6,4 @@ Idle-cash scoreboard: verified brokerage sweeps, money market funds, T-bills, an
 
 Not investment advice. Rates change; confirm on issuer pages. See disclosures and methodology pages.
 
-GitHub Pages serves from `main` branch root. Daily Action refreshes T-bill rows in `data/rates.json` from the U.S. Treasury free XML feed.
+GitHub Pages serves from `main` branch root. On weekday afternoons the Action refreshes T-bill daily quotes from the U.S. Treasury XML feed and auction rows from TreasuryDirect.
