@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Pull Treasury daily bill rates into data/rates.json
+      - name: Pull Treasury daily bill rates and auction results into data/rates.json
         run: python3 scripts/refresh_tbills.py
       - name: Commit if changed
         run: |
@@ -28,6 +28,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No rate changes"
           else
-            git commit -m "chore: refresh T-bill daily yields from Treasury XML"
+            git commit -m "chore: refresh T-bill daily yields and auction rates"
             git push origin HEAD:main
           fi
