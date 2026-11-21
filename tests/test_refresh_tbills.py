@@ -104,9 +104,22 @@ class RefreshTbillTests(unittest.TestCase):
         data = json.loads(RATES.read_text())
         rows = data["tbills_auctions"]
         self.assertGreaterEqual(len(rows), 1)
+        # Close dates are completed auctions: not after today, and not after
+        # the snapshot that stored them. A fixed calendar ceiling goes stale
+        # the next time Treasury publishes a bill.
+        today = datetime.now(ZoneInfo("America/New_York")).date()
+        ceiling = today
+        stamp = (data.get("tbills_refreshed_at_et") or "").split(" ", 1)[0]
+        try:
+            refresh_day = datetime.strptime(stamp, "%Y-%m-%d").date()
+        except ValueError:
+            refresh_day = None
+        if refresh_day is not None:
+            ceiling = min(today, refresh_day)
         for row in rows:
             self.assertRegex(row.get("auction_date") or "", r"^\d{4}-\d{2}-\d{2}$")
-            self.assertLessEqual(row["auction_date"], "2026-11-12")
+            close = datetime.strptime(row["auction_date"], "%Y-%m-%d").date()
+            self.assertLessEqual(close, ceiling)
             inv = row["investment_rate_pct"]
             disc = row["high_discount_rate_pct"]
             self.assertIsInstance(inv, (int, float))
