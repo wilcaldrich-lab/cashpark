@@ -260,7 +260,7 @@
   "tbills_daily": [
     {
       "term": "4-Week",
-      "as_of": "2026-11-23",
+      "as_of": "2026-11-24",
       "source_name": "U.S. Treasury Daily Treasury Bill Rates",
       "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
       "metric": "Coupon equivalent yield and bank discount",
@@ -271,29 +271,29 @@
     },
     {
       "term": "6-Week",
-      "as_of": "2026-11-23",
+      "as_of": "2026-11-24",
       "source_name": "U.S. Treasury Daily Treasury Bill Rates",
       "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
       "metric": "Coupon equivalent yield and bank discount",
-      "coupon_equivalent_yield_pct": 4.15,
-      "rate_pct": 4.15,
-      "discount_pct": 4.08,
-      "maturity": "2026-12-31"
+      "coupon_equivalent_yield_pct": 4.17,
+      "rate_pct": 4.17,
+      "discount_pct": 4.09,
+      "maturity": "2027-01-07"
     },
     {
       "term": "8-Week",
-      "as_of": "2026-11-23",
+      "as_of": "2026-11-24",
       "source_name": "U.S. Treasury Daily Treasury Bill Rates",
       "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
       "metric": "Coupon equivalent yield and bank discount",
-      "coupon_equivalent_yield_pct": 4.19,
-      "rate_pct": 4.19,
-      "discount_pct": 4.11,
+      "coupon_equivalent_yield_pct": 4.17,
+      "rate_pct": 4.17,
+      "discount_pct": 4.09,
       "maturity": "2027-01-19"
     },
     {
       "term": "13-Week",
-      "as_of": "2026-11-23",
+      "as_of": "2026-11-24",
       "source_name": "U.S. Treasury Daily Treasury Bill Rates",
       "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
       "metric": "Coupon equivalent yield and bank discount",
@@ -304,7 +304,7 @@
     },
     {
       "term": "17-Week",
-      "as_of": "2026-11-23",
+      "as_of": "2026-11-24",
       "source_name": "U.S. Treasury Daily Treasury Bill Rates",
       "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
       "metric": "Coupon equivalent yield and bank discount",
@@ -315,25 +315,25 @@
     },
     {
       "term": "26-Week",
-      "as_of": "2026-11-23",
+      "as_of": "2026-11-24",
       "source_name": "U.S. Treasury Daily Treasury Bill Rates",
       "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
       "metric": "Coupon equivalent yield and bank discount",
-      "coupon_equivalent_yield_pct": 4.49,
-      "rate_pct": 4.49,
-      "discount_pct": 4.33,
+      "coupon_equivalent_yield_pct": 4.5,
+      "rate_pct": 4.5,
+      "discount_pct": 4.34,
       "maturity": "2027-05-27"
     },
     {
       "term": "52-Week",
-      "as_of": "2026-11-23",
+      "as_of": "2026-11-24",
       "source_name": "U.S. Treasury Daily Treasury Bill Rates",
       "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
       "metric": "Coupon equivalent yield and bank discount",
-      "coupon_equivalent_yield_pct": 4.55,
-      "rate_pct": 4.55,
-      "discount_pct": 4.35,
-      "maturity": "2027-10-28"
+      "coupon_equivalent_yield_pct": 4.59,
+      "rate_pct": 4.59,
+      "discount_pct": 4.38,
+      "maturity": "2027-11-26"
     }
   ],
   "tbills_auctions": [
@@ -349,11 +349,11 @@
     },
     {
       "term": "6-Week",
-      "investment_rate_pct": 4.131,
-      "high_discount_rate_pct": 4.055,
-      "auction_date": "2026-11-17",
-      "maturity": "2026-12-31",
-      "cusip": "912797VJ3",
+      "investment_rate_pct": 4.161,
+      "high_discount_rate_pct": 4.085,
+      "auction_date": "2026-11-24",
+      "maturity": "2027-01-07",
+      "cusip": "912797VS3",
       "source_name": "TreasuryDirect auctioned securities API",
       "source_url": "https://www.treasurydirect.gov/TA_WS/securities/auctioned?format=json&type=Bill"
     },
@@ -399,11 +399,11 @@
     },
     {
       "term": "52-Week",
-      "investment_rate_pct": 4.496,
-      "high_discount_rate_pct": 4.29,
-      "auction_date": "2026-10-27",
-      "maturity": "2027-10-28",
-      "cusip": "912797WT0",
+      "investment_rate_pct": 4.578,
+      "high_discount_rate_pct": 4.365,
+      "auction_date": "2026-11-24",
+      "maturity": "2027-11-26",
+      "cusip": "912797XC6",
       "source_name": "TreasuryDirect auctioned securities API",
       "source_url": "https://www.treasurydirect.gov/TA_WS/securities/auctioned?format=json&type=Bill"
     }
@@ -418,5 +418,5 @@
     "Bask Bank savings \u2014 the homepage only showed promotional bundle APYs, not a standard savings APY.",
     "Default sweeps for Fidelity/E*TRADE/Vanguard/etc. beyond Schwab \u2014 need each firm's disclosure page verified."
   ],
-  "tbills_refreshed_at_et": "2026-11-23 20:48 EST"
+  "tbills_refreshed_at_et": "2026-11-24 18:36 EST"
 }
