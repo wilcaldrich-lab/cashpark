@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="impact-site-verification" value="66fd6317-5365-4629-93ba-5961e6432276"/>
+<base href="/"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Cash at home vs. a safe deposit box: what the FDIC says · CashPark</title>
+<meta name="description" content="Home safe, safe deposit box, or bank account: what the FDIC says is and is not insured, plus a calculator for the interest a cash stash gives up."/>
+<link rel="canonical" href="https://cashscoreboard.com/cash-at-home-and-safe-deposit-boxes.html"/>
+<meta property="og:title" content="Cash at home vs. a safe deposit box: what the FDIC says · CashPark"/>
+<meta property="og:description" content="Home safe, safe deposit box, or bank account: what the FDIC says is and is not insured, plus a calculator for the interest a cash stash gives up."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://cashscoreboard.com/cash-at-home-and-safe-deposit-boxes.html"/>
+<link rel="stylesheet" href="css/site.css"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="favicon.ico" sizes="any"/>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html">Cash<span>Park</span></a>
+  <nav class="links">
+    <a href="index.html">Scoreboard</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="brokerage-sweeps.html">Sweeps</a>
+    <a href="money-market-funds.html">MMFs</a>
+    <a href="hysa.html">HYSA</a>
+    <a href="t-bills.html">T-Bills</a>
+    <a href="cashless.html">Cashless</a>
+    <a href="cash-laws.html">Cash laws</a>
+    <a href="paper-cash.html">Paper Cash</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="newsletter.html">Newsletter</a>
+    <a href="disclosures.html">Disclosures</a>
+  </nav>
+</div></header>
+<main class="wrap">
+<section class="hero"><div class="pill">tool + explainer</div>
+<h1>Cash at home vs. a safe deposit box</h1>
+<p>What is and is not insured, what the FDIC advises, and what a stash costs you in interest at today’s verified rates.</p></section>
+
+<div class="callout"><strong>Short answer.</strong> Cash in a home safe or a bank safe deposit box is not covered by FDIC deposit insurance, and it earns no interest. The FDIC says you are better off keeping cash in a bank deposit account than in either one. A safe deposit box is storage space from the bank, not a deposit account. If you keep a stash anyway, ask your insurance agent about coverage. Source: <a href="https://www.fdic.gov/consumer-resource-center/five-things-know-about-safe-deposit-boxes-home-safes-and-your-valuables" rel="noopener noreferrer" target="_blank">FDIC, Five Things to Know About Safe Deposit Boxes, Home Safes and Your Valuables (page last updated Aug 1, 2023)</a>.</div>
+
+<section class="card" style="margin-top:1rem">
+<h2>What a cash stash costs in interest</h2>
+<p class="small muted">Enter an amount and how long it would sit. The table compares paper cash with the top rows in the CashPark rates file. It uses simple interest (no compounding) and the published rate today, and rates change. Some rates have minimums or conditions, so check the source before moving money. This does not model inflation.</p>
+<form id="pc-stash" autocomplete="off">
+  <div class="controls">
+    <label>Cash amount ($)<input id="pc-amount" type="number" min="0" step="100" value="1000"/></label>
+    <label>Months it would sit<input id="pc-months" type="number" min="1" max="600" step="1" value="12"/></label>
+    <label>Mostly in this bill<select id="pc-mix"></select></label>
+  </div>
+  <div class="examples" id="pc-presets" aria-label="Preset amounts">
+    <button type="button" class="ghost" data-amt="364">$364, the Fed’s average stash</button>
+    <button type="button" class="ghost" data-amt="1000">$1,000</button>
+    <button type="button" class="ghost" data-amt="5000">$5,000</button>
+    <button type="button" class="ghost" data-amt="25000">$25,000</button>
+  </div>
+</form>
+<div id="pc-stash-out" aria-live="polite"><p class="muted small">Loading current rates…</p></div>
+<p class="small muted">The $364 preset is the average amount that 45% of consumers kept outside their wallet for savings or emergencies in the Fed’s 2026 Diary (survey taken October 2025). It is a reference point, not a recommendation. Rates come from <a href="data/rates.json">data/rates.json</a>, the same verified file as the <a href="index.html">scoreboard</a>. Diary source: <a href="https://www.frbservices.org/news/press-releases/2026-diary-consumer-payment-choice-consumer-habits-hold-steady-payment-options-grow/" rel="noopener noreferrer" target="_blank">Federal Reserve Financial Services, 2026 Diary of Consumer Payment Choice (May 11, 2026)</a>.</p>
+</section>
+
+<article class="card prose" style="margin-top:1rem">
+<p class="src">Last checked Nov 25, 2026. The FDIC points below are from <a href="https://www.fdic.gov/consumer-resource-center/five-things-know-about-safe-deposit-boxes-home-safes-and-your-valuables" rel="noopener noreferrer" target="_blank">FDIC, Five Things to Know About Safe Deposit Boxes, Home Safes and Your Valuables (page last updated Aug 1, 2023)</a>, unless noted.</p>
+
+<h2>Home safe, safe deposit box, or bank account</h2>
+<div style="overflow:auto"><table class="tracker">
+<thead><tr><th></th><th>Home safe</th><th>Safe deposit box</th><th>Bank deposit account</th></tr></thead>
+<tbody>
+<tr><td>FDIC deposit insurance</td><td>No. Cash that is not in a deposit account is not protected by FDIC insurance.</td><td>No. The box is storage space, not a deposit account, so contents including cash are not insured by FDIC deposit insurance.</td><td>Yes, for deposits at an insured institution, in the rare case a bank fails. <a href="https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance" rel="noopener noreferrer" target="_blank">Details</a></td></tr>
+<tr><td>Earns interest</td><td>No</td><td>No</td><td>It can. The FDIC notes that money in a savings account can earn interest while money in a safe or a box cannot.</td></tr>
+<tr><td>Insured by someone else</td><td>Maybe. Ask your homeowner’s or renter’s insurance agent about adding coverage.</td><td>Banks generally do not insure box contents. Ask your insurance agent about coverage.</td><td>See FDIC deposit insurance above.</td></tr>
+<tr><td>Access</td><td>Immediate. Useful for replaceable items you may need right away.</td><td>Only when the bank is open. The FDIC says not to keep anything there you may need quickly or after hours.</td><td>Depends on the bank and the account.</td></tr>
+<tr><td>Security</td><td>The FDIC says a burglar could more easily break into your home and open a safe than get into a bank’s safe deposit box.</td><td>The FDIC says a home safe is not as secure as a box. No box is completely protected from theft, fire, flood, or other loss.</td><td>—</td></tr>
+</tbody></table></div>
+
+<h2>More from the FDIC</h2>
+<ul class="clean">
+<li><strong>Read the rental agreement.</strong> The bank may limit what you can keep in a safe deposit box, and the limits could include cash.</li>
+<li><strong>Protect against water.</strong> Use water-safe, zippered plastic bags or other resealable containers.</li>
+<li><strong>Do not label the key.</strong> Keep the box number and the bank’s name off or away from the key in case it is lost or stolen.</li>
+<li><strong>Joint access has limits.</strong> The bank would likely not be responsible for anything an authorized person takes without your permission.</li>
+<li><strong>Death and access.</strong> Who can open the box after the owner dies depends on state law.</li>
+<li><strong>Good box candidates</strong> are originals of key documents such as birth certificates, property deeds, and car titles, plus family keepsakes and valuable collections. For where to keep an original will, the FDIC says to ask an attorney.</li>
+</ul>
+
+<h2>Moving a lot of cash: reporting rules exist</h2>
+<p>Holding cash is not the issue. Moving or receiving large amounts can trigger federal reports, and it is illegal to split transactions to avoid them. In short, according to the agencies:</p>
+<ul class="clean">
+<li>A business that receives more than $10,000 in cash in one transaction or related transactions must file IRS Form 8300 within 15 days (<a href="https://www.irs.gov/businesses/small-businesses-self-employed/form-8300-and-reporting-cash-payments-of-over-10000" rel="noopener noreferrer" target="_blank">IRS, Form 8300 and reporting cash payments of over $10,000</a>).</li>
+<li>U.S. financial institutions file a Currency Transaction Report for each currency transaction over $10,000 (<a href="https://www.fdic.gov/system/files/2024-06/section8-1.pdf" rel="noopener noreferrer" target="_blank">FDIC, Bank Secrecy Act section of the Risk Management Manual (currency transaction reports)</a>).</li>
+<li>Bringing, sending, or receiving more than $10,000 in currency or monetary instruments into or out of the United States must be reported to Customs and Border Protection (<a href="https://www.cbp.gov/travel/international-visitors/money-monetary-instruments" rel="noopener noreferrer" target="_blank">U.S. Customs and Border Protection, Money and Other Monetary Instruments</a>).</li>
+</ul>
+<p class="small muted">This is a pointer, not legal or tax advice. Read the agency pages for the exact rules and exceptions.</p>
+
+<h2>What CashPark is and is not saying</h2>
+<p>A small, deliberate cash reserve can make sense, and the Fed’s Diary shows many people keep one. The point of this page is that the reserve has a cost (the interest it does not earn) and a risk (it is not FDIC-insured). The <a href="index.html">scoreboard</a> shows where the rest of your cash can earn something. The <a href="long-internet-outage-money.html">outage guide</a> covers how much physical cash is worth holding for emergencies.</p>
+
+<p class="src">Sources: <a href="https://www.fdic.gov/consumer-resource-center/five-things-know-about-safe-deposit-boxes-home-safes-and-your-valuables" rel="noopener noreferrer" target="_blank">FDIC, Five Things to Know About Safe Deposit Boxes, Home Safes and Your Valuables (page last updated Aug 1, 2023)</a>; <a href="https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance" rel="noopener noreferrer" target="_blank">FDIC, Understanding Deposit Insurance</a>; <a href="https://www.frbservices.org/news/press-releases/2026-diary-consumer-payment-choice-consumer-habits-hold-steady-payment-options-grow/" rel="noopener noreferrer" target="_blank">Federal Reserve Financial Services, 2026 Diary of Consumer Payment Choice (May 11, 2026)</a>; <a href="https://www.irs.gov/businesses/small-businesses-self-employed/form-8300-and-reporting-cash-payments-of-over-10000" rel="noopener noreferrer" target="_blank">IRS, Form 8300 and reporting cash payments of over $10,000</a>; <a href="https://www.fdic.gov/system/files/2024-06/section8-1.pdf" rel="noopener noreferrer" target="_blank">FDIC, Bank Secrecy Act section of the Risk Management Manual (currency transaction reports)</a>; <a href="https://www.cbp.gov/travel/international-visitors/money-monetary-instruments" rel="noopener noreferrer" target="_blank">U.S. Customs and Border Protection, Money and Other Monetary Instruments</a>; <a href="https://www.uscurrency.gov/about-us/currency-facts" rel="noopener noreferrer" target="_blank">U.S. Currency Education Program, Currency Facts</a>; CashPark rates file (<a href="data/rates.json">data/rates.json</a>).</p>
+</article>
+<p class="small muted next-line">Next: <a href="how-long-does-a-bill-last.html">How long a bill lasts</a> · <a href="paper-cash.html">Paper Cash home</a></p>
+
+</main>
+<footer class="wrap">
+  <p><strong>Not investment, tax, insurance, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark publishes only items with a linked official or primary source, and labels collector conventions as such. No affiliate links on this page.</p>
+</footer>
+<script src="js/site.js"></script>
+<script src="js/paper-cash.js"></script>
+<script>pcInitStash();</script>
+</body>
+</html>
