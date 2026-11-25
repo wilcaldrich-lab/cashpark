@@ -5,11 +5,11 @@
 <meta name="impact-site-verification" value="66fd6317-5365-4629-93ba-5961e6432276"/>
 <base href="/"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Robinhood Gold interest rate · CashPark</title>
-<meta name="description" content="Robinhood Gold interest is not in CashPark’s verified rates. This page lists verified savings and cash yields from other issuers instead."/>
+<title>Robinhood Gold interest rate · cashscoreboard.com</title>
+<meta name="description" content="Robinhood Gold interest is not in cashscoreboard.com's verified rates. This page lists verified savings and cash yields from other issuers instead."/>
 <link rel="canonical" href="https://cashscoreboard.com/robinhood-gold-interest.html"/>
-<meta property="og:title" content="Robinhood Gold interest rate · CashPark"/>
-<meta property="og:description" content="Robinhood Gold interest is not in CashPark’s verified rates. This page lists verified savings and cash yields from other issuers instead."/>
+<meta property="og:title" content="Robinhood Gold interest rate · cashscoreboard.com"/>
+<meta property="og:description" content="Robinhood Gold interest is not in cashscoreboard.com's verified rates. This page lists verified savings and cash yields from other issuers instead."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://cashscoreboard.com/robinhood-gold-interest.html"/>
 <link rel="stylesheet" href="css/site.css"/>
@@ -18,7 +18,7 @@
 </head>
 <body>
 <header><div class="wrap nav">
-  <a class="brand" href="index.html">Cash<span>Park</span></a>
+  <a class="brand" href="index.html">cashscoreboard<span>.com</span></a>
   <nav class="links">
     <a href="index.html">Scoreboard</a>
     <a href="calculator.html">Calculator</a>
@@ -44,13 +44,13 @@
 <tbody id="rows"></tbody></table></div></section>
 </main>
 <footer class="wrap">
-  <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark publishes only rows in the verified rates file. No affiliate links.</p>
+  <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. cashscoreboard.com publishes only rows in the verified rates file. No affiliate links.</p>
 </footer>
 <script src="js/site.js"></script>
 
 <script>
 loadRates().then(data=>{
-  document.getElementById('lead').textContent = 'Robinhood Gold interest is not in the verified rates file. CashPark does not estimate it. The table is verified brokerage sweeps, money market funds, and savings accounts already on file.';
+  document.getElementById('lead').textContent = 'Robinhood Gold interest is not in the verified rates file. cashscoreboard.com does not estimate it. The table is verified brokerage sweeps, money market funds, and savings accounts already on file.';
   const rows = [];
   for (const r of data.brokerage_sweeps) rows.push(['Brokerage sweep', esc(r.name), rateCell(r.rate_pct, r.metric), esc(r.as_of), link(r.source_url, r.source_name)]);
   for (const r of data.money_market_funds) rows.push(['Money market fund', esc(r.ticker+' — '+r.name), rateCell(r.rate_pct, r.metric), esc(r.as_of), link(r.source_url, r.source_name)]);
