@@ -127,7 +127,7 @@ function mailerLiteSubscribeUrl(action, email){
 }
 function mailerLiteResult(res){
   if(res && res.success){
-    return {ok:true, text:'Thanks — check your inbox if confirmation is required. You’re on CashPark Weekly.'};
+    return {ok:true, text:'Thanks — check your inbox if confirmation is required. You’re on cashscoreboard.com Weekly.'};
   }
   const err=(res && res.errors && res.errors.fields && res.errors.fields.email && res.errors.fields.email[0])
     || (res && res.message)
