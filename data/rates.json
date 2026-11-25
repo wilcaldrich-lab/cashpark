@@ -409,7 +409,7 @@
     }
   ],
   "missing": [
-    "Capital One 360 Performance Savings \u2014 the issuer page rendered the APY as NaN, so no number was published in the HTML.",
+    "Capital One 360 Performance Savings \u2014 the issuer page rendered the APY as a non-numeric placeholder, so no number was published in the HTML.",
     "American Express High Yield Savings \u2014 the issuer page left the APY as an unfilled template.",
     "Barclays Online Savings and Tiered Savings \u2014 the issuer pages did not publish a numeric APY.",
     "CIT Bank Platinum Savings and No-Penalty CD \u2014 the issuer pages were an empty application shell.",
