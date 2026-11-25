@@ -179,7 +179,7 @@ function pcDecodeSerial(raw, denom, series){
         else facts.push({kind:'warn', text:'BEP lists '+uniq.join(' or ')+' as the first prefix for a $'+dnum+' Series '+series+', not '+p.seriesLetter+'. Recheck the series year and the serial. (BEP\u2019s table shows first prefixes only.)'});
       }
     }
-    if(dnum===1 || dnum===2) facts.push({kind:'flag', text:'BEP\u2019s text says only the $1 and $2 notes still use the one-letter form, yet its series table lists a prefix letter for Series 2021 $1 and $2 notes. CashPark decodes what you type and does not settle that difference. Check BEP\u2019s page if it matters.'});
+    if(dnum===1 || dnum===2) facts.push({kind:'flag', text:'BEP\u2019s text says only the $1 and $2 notes still use the one-letter form, yet its series table lists a prefix letter for Series 2021 $1 and $2 notes. cashscoreboard.com decodes what you type and does not settle that difference. Check BEP\u2019s page if it matters.'});
   } else {
     facts.push({kind:'info', text:'One-letter prefix: the letter ('+p.districtLetter+') marks the issuing bank. BEP says all Federal Reserve notes used this form through Series 1995, and that now only the $1 and $2 notes do.'});
     if(dnum && dnum>=5) facts.push({kind:'info', text:'On a $'+dnum+' note this is the pre-Series 1996 style. This tool\u2019s series table starts at Series 1996, so it will not match a series year for older notes.'});
@@ -199,7 +199,7 @@ function pcPickTopRates(data){
   var rows=[];
   var hy=(data.hysa||[]).filter(function(r){ return finiteNumber(r.rate_pct)!=null && !/national/i.test((r.metric||'')+' '+(r.name||'')); });
   var topHy=sortByRateDesc(hy, function(r){ return r.rate_pct; })[0];
-  if(topHy) rows.push({key:'hysa', label:'Top savings rate in the CashPark file', name:topHy.name, rate:finiteNumber(topHy.rate_pct), metric:topHy.metric, as_of:topHy.as_of, url:topHy.source_url, src:topHy.source_name, cover:'Bank deposit account (FDIC flag in the rates file: '+(topHy.fdic?'yes':'no')+')'});
+  if(topHy) rows.push({key:'hysa', label:'Top savings rate in the cashscoreboard.com file', name:topHy.name, rate:finiteNumber(topHy.rate_pct), metric:topHy.metric, as_of:topHy.as_of, url:topHy.source_url, src:topHy.source_name, cover:'Bank deposit account (FDIC flag in the rates file: '+(topHy.fdic?'yes':'no')+')'});
   var mm=(data.money_market_funds||[]).filter(function(r){ return finiteNumber(r.rate_pct)!=null; });
   var topMm=sortByRateDesc(mm, function(r){ return r.rate_pct; })[0];
   if(topMm) rows.push({key:'mmf', label:'Top money market fund', name:topMm.ticker+' \u2014 '+topMm.name, rate:finiteNumber(topMm.rate_pct), metric:topMm.metric, as_of:topMm.as_of, url:topMm.source_url, src:topMm.source_name, cover:'Not a bank deposit, so not FDIC-insured'});
@@ -282,7 +282,7 @@ function pcRenderDecode(res){
     h+='<div class="tags">'+res.patterns.map(function(x){ return '<span class="tag" title="'+esc(x.note)+'">'+esc(x.label)+'</span>'; }).join('')+'</div>';
     h+='<ul class="clean small muted">'+res.patterns.map(function(x){ return '<li><strong>'+esc(x.label)+':</strong> '+esc(x.note)+'</li>'; }).join('')+'</ul>';
   } else {
-    h+='<p class="small muted">None of the six patterns CashPark checks (solid, radar, repeater, ladder, binary, low serial). Other patterns exist, and this is not a statement about value.</p>';
+    h+='<p class="small muted">None of the six patterns cashscoreboard.com checks (solid, radar, repeater, ladder, binary, low serial). Other patterns exist, and this is not a statement about value.</p>';
   }
   return h;
 }
