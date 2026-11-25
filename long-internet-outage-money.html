@@ -5,10 +5,10 @@
 <meta name="impact-site-verification" value="66fd6317-5365-4629-93ba-5961e6432276"/>
 <base href="/"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>What happens to your money in a long outage · CashPark</title>
+<title>What happens to your money in a long outage · cashscoreboard.com</title>
 <meta name="description" content="What happened when a payment processor went down in June 2026, what cash-acceptance laws do and do not cover, and how much cash is worth keeping."/>
 <link rel="canonical" href="https://cashscoreboard.com/long-internet-outage-money.html"/>
-<meta property="og:title" content="What happens to your money in a long outage · CashPark"/>
+<meta property="og:title" content="What happens to your money in a long outage · cashscoreboard.com"/>
 <meta property="og:description" content="What happened when a payment processor went down in June 2026, what cash-acceptance laws do and do not cover, and how much cash is worth keeping."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://cashscoreboard.com/long-internet-outage-money.html"/>
@@ -18,7 +18,7 @@
 </head>
 <body>
 <header><div class="wrap nav">
-  <a class="brand" href="index.html">Cash<span>Park</span></a>
+  <a class="brand" href="index.html">cashscoreboard<span>.com</span></a>
   <nav class="links">
     <a href="index.html">Scoreboard</a>
     <a href="calculator.html">Calculator</a>
@@ -82,7 +82,7 @@
 <p class="small muted" style="margin-top:1rem">Previous: <a href="can-you-still-pay-cash-in-2030.html">Can you still pay cash in 2030?</a> · See also the <a href="cash-resistance-roundup.html">cash-resistance roundup</a></p>
 </main>
 <footer class="wrap">
-  <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. CashPark publishes only items with a linked official or primary source. No affiliate links on this page.</p>
+  <p><strong>Not investment, tax, or legal advice.</strong> Rates change. Confirm on the linked source before acting. cashscoreboard.com publishes only items with a linked official or primary source. No affiliate links on this page.</p>
 </footer>
 <script src="js/site.js"></script>
 <script>
@@ -92,7 +92,7 @@ loadRates().then(function(data){
   var el=document.getElementById('top-rate');
   if(top && el){
     var cost=annualSimpleInterest(300, top.rate_pct);
-    el.innerHTML='Right now the highest savings rate in the CashPark file is <strong>'+esc(top.name)+'</strong> at <span class="rate">'+pct(top.rate_pct)+'</span> (as of '+esc(top.as_of)+', '+link(top.source_url, top.source_name)+'). At that rate, $300 earns about <strong>'+money2(cost)+'</strong> in a year of simple interest, so a small cash reserve costs very little to hold. Check the terms first: some rates have minimums or conditions.';
+    el.innerHTML='Right now the highest savings rate in the cashscoreboard.com file is <strong>'+esc(top.name)+'</strong> at <span class="rate">'+pct(top.rate_pct)+'</span> (as of '+esc(top.as_of)+', '+link(top.source_url, top.source_name)+'). At that rate, $300 earns about <strong>'+money2(cost)+'</strong> in a year of simple interest, so a small cash reserve costs very little to hold. Check the terms first: some rates have minimums or conditions.';
   }
 }).catch(function(){var el=document.getElementById('top-rate'); if(el) el.textContent='Open the scoreboard for current savings rates.';});
 </script>
