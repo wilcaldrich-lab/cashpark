@@ -122,11 +122,14 @@
   <h2>Top verified yields right now</h2>
   <p class="small muted" id="generated"></p>
   <div style="overflow:auto"><table>
-    <thead><tr><th>Category</th><th>Name</th><th>Rate</th><th>As of</th><th>Source</th></tr></thead>
+    <thead><tr><th>Category</th><th>Name</th><th>Rate</th><th>As of</th><th>Source</th><th>Open account</th></tr></thead>
     <tbody id="scoreboard"></tbody>
   </table></div>
+  <p class="affiliate-note">Orange <strong>Partner link pending</strong> markers are placeholders for future, clearly labeled partner links. They are <strong>not live affiliate links</strong> and do not pay cashscoreboard.com. Use the official source until a program is approved. <a href="disclosures.html#affiliates">Disclosures</a>.</p>
 </section>
 <div class="grid grid-2">
+  <a class="card" href="best-place-for-idle-cash.html"><h3>Where to park idle cash</h3><p class="muted small">Compare verified sweeps, funds, T-bills, savings, and CDs, with as-of dates. Partner-link slots are placeholders until approved.</p></a>
+
   <a class="card" href="calculator.html"><h3>Idle-cash calculator</h3><p class="muted small">See dollars left on the table vs a better verified rate.</p></a>
   <a class="card" href="t-bills.html"><h3>T-bill yields</h3><p class="muted small">Pulled from U.S. Treasury free feeds.</p></a>
   <a class="card" href="schwab-cash-sweep-rate.html"><h3>Schwab cash sweep</h3><p class="muted small">SEO page for Schwab’s everyday cash vs SWVXX.</p></a>
@@ -174,7 +177,7 @@ loadRates().then(data=>{
   for(const r of (data.no_penalty_cds||[])){rows.push({cat:'No-penalty CD', name:r.name, rate:r.rate_pct, metric:r.metric, as_of:r.as_of, url:r.source_url, src:r.source_name});}
   const ranked = sortByRateDesc(rows, r=>r.rate);
   document.getElementById('scoreboard').innerHTML = ranked.map(r=>rowHTML([
-    esc(r.cat), esc(r.name), rateCell(r.rate, r.metric), esc(r.as_of), link(r.url, r.src)
+    esc(r.cat), esc(r.name), rateCell(r.rate, r.metric), esc(r.as_of), link(r.url, r.src), affiliateCell(r)
   ])).join('');
 }).catch(e=>{document.getElementById('missing').textContent=String(e)});
 </script>

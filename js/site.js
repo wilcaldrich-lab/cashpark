@@ -61,6 +61,29 @@ function link(url,label){
   if(!url) return '—';
   return `<a href="${esc(url)}" rel="noopener noreferrer" target="_blank">${esc(label)||'source'}</a>`;
 }
+// Affiliate-ready CTA slots. Until a real, approved tracking URL is supplied,
+// every slot is a clearly marked placeholder that points at the disclosures
+// page. Do not invent or paste an affiliate URL here.
+function affiliateSlotId(row){
+  const name=((row&&(row.name||row.affiliateName||row.label))||'').toLowerCase();
+  if(!name) return null;
+  if(/fdic|national average/.test(name)) return null;
+  if(/\bally\b/.test(name)) return 'ally';
+  if(/\bsofi\b/.test(name)) return 'sofi';
+  if(/\bmarcus\b/.test(name)) return 'marcus';
+  if(/\bsynchrony\b/.test(name)) return 'synchrony';
+  if(/\bbread\b/.test(name)) return 'bread';
+  if(/sallie mae/.test(name)) return 'sallie-mae';
+  if(/popular direct/.test(name)) return 'popular-direct';
+  if(/\bforbright\b/.test(name)) return 'forbright';
+  if(/\bhappen\b/.test(name)) return 'happen';
+  return null;
+}
+function affiliateCell(row){
+  const id=affiliateSlotId(row);
+  if(!id) return '<span class="affiliate-none">Official source only</span>';
+  return '<a class="affiliate-cta placeholder" href="disclosures.html#affiliates" data-affiliate-slot="'+esc(id)+'" data-affiliate-status="placeholder" title="Placeholder only. No affiliate program is connected, and this is not a bank application link.">Partner link pending</a>';
+}
 function rowHTML(cells){
   return `<tr>${cells.map(c=>{
     if(c==null || c==='') return '<td>—</td>';
