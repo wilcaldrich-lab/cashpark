@@ -1,13 +1,13 @@
 {
-  "generated_at_et": "2026-11-25 20:22 EST",
-  "note": "Only rates verified on official issuer or government pages on 2026-11-25. Promotional 'up to' offers and pages that did not print a number were omitted. No affiliate links. Popular Direct Plus Savings remains 4.25% APY, $5,000 new-money minimum, effective 2026-11-23. Where an official page still carried an older as-of date (SoFi rate sheet October 20, Schwab Intelligent Portfolios Sweep November 2, FDIC national average November 16), the existing rate and as-of date were kept.",
+  "generated_at_et": "2026-11-26 01:51 EST",
+  "note": "Only rates verified on official issuer or government pages on 2026-11-26. Thursday, November 26, 2026 is Thanksgiving; Treasury did not publish a new daily bill-rate file (latest quotes remain 2026-11-25) and there were no new bill auctions. Promotional 'up to' offers and pages that did not print a number were omitted. No affiliate links. Popular Direct Plus Savings remains 4.25% APY, $5,000 new-money minimum, effective 2026-11-23. Where an official page still carried an older as-of date (SoFi rate sheet October 20, Schwab Intelligent Portfolios Sweep November 2, FDIC national average November 16, Ally rates November 24, Fidelity SPAXX and Vanguard VMFXX November 24, and several bank pages November 25), the existing rate and as-of date were kept. Sallie Mae's high-yield savings page still shows 4.00% APY but prints 'accurate as of 11/27/2026', a future date relative to this verification, so the prior 2026-11-25 as-of date was kept. Bread Savings still shows 4.05% APY but only an unfilled 'accurate as of today' placeholder, so 2026-11-25 was kept.",
   "brokerage_sweeps": [
     {
       "name": "Charles Schwab \u2014 Bank Sweep / Schwab One Interest (everyday uninvested cash)",
       "rate_pct": 0.01,
       "metric": "APY",
-      "as_of": "2026-11-25",
-      "notes": "Schwab cash investments page lists 0.01% APY for everyday uninvested cash. A footnote on that page states APYs are accurate as of 11/25/2026, with a minimum balance of $0.01.",
+      "as_of": "2026-11-26",
+      "notes": "Schwab cash investments page lists 0.01% APY for everyday uninvested cash. A footnote on that page states APYs are accurate as of 11/26/2026, with a minimum balance of $0.01.",
       "source_name": "Schwab Cash Investments",
       "source_url": "https://www.schwab.com/cash-investments",
       "fdic": false
@@ -37,9 +37,9 @@
     {
       "ticker": "SWVXX",
       "name": "Schwab Prime Advantage Money Fund \u2014 Investor Shares",
-      "rate_pct": 3.78,
+      "rate_pct": 3.79,
       "metric": "7-day yield (with waivers)",
-      "as_of": "2026-11-24",
+      "as_of": "2026-11-25",
       "source_name": "Schwab Asset Management \u2014 SWVXX",
       "source_url": "https://www.schwabassetmanagement.com/products/swvxx",
       "fdic": false
@@ -47,9 +47,9 @@
     {
       "ticker": "SNAXX",
       "name": "Schwab Prime Advantage Money Fund \u2014 Ultra Shares",
-      "rate_pct": 3.93,
+      "rate_pct": 3.94,
       "metric": "7-day yield (with waivers)",
-      "as_of": "2026-11-24",
+      "as_of": "2026-11-25",
       "notes": "$1,000,000 minimum",
       "source_name": "Schwab Money Fund Yields",
       "source_url": "https://www.schwabassetmanagement.com/products/money-fund-yields",
@@ -58,9 +58,9 @@
     {
       "ticker": "SNVXX",
       "name": "Schwab Government Money Fund \u2014 Investor Shares",
-      "rate_pct": 3.64,
+      "rate_pct": 3.65,
       "metric": "7-day yield (with waivers)",
-      "as_of": "2026-11-24",
+      "as_of": "2026-11-25",
       "source_name": "Schwab Money Fund Yields",
       "source_url": "https://www.schwabassetmanagement.com/products/money-fund-yields",
       "fdic": false
@@ -68,9 +68,9 @@
     {
       "ticker": "SWGXX",
       "name": "Schwab Government Money Fund \u2014 Sweep Shares",
-      "rate_pct": 3.54,
+      "rate_pct": 3.55,
       "metric": "7-day yield (with waivers)",
-      "as_of": "2026-11-24",
+      "as_of": "2026-11-25",
       "notes": "Limited eligibility as a designated cash feature.",
       "source_name": "Schwab Money Fund Yields",
       "source_url": "https://www.schwabassetmanagement.com/products/money-fund-yields",
