@@ -58,10 +58,12 @@
 <main class="wrap">
 
 <section class="hero"><div class="pill">category</div><h1>No-penalty CDs</h1>
-<p>Only certificates whose issuer page or rate feed stated no early-withdrawal penalty, with a rate read on 2026-11-09. Terms and withdrawal rules are in the notes.</p></section>
+<p>Only certificates whose issuer page or rate feed stated no early-withdrawal penalty, using the as-of dates in the verified rates file. Terms and withdrawal rules are in the notes. <a href="disclosures.html#affiliates">Partner-link placeholders</a>, if shown, are not live.</p></section>
 <section class="card"><div style="overflow:auto"><table>
-<thead><tr><th>Name</th><th>Rate</th><th>As of</th><th>Notes</th><th>Source</th></tr></thead>
-<tbody id="npcds"></tbody></table></div></section>
+<thead><tr><th>Name</th><th>Rate</th><th>As of</th><th>Notes</th><th>Source</th><th>Open account</th></tr></thead>
+<tbody id="npcds"></tbody></table></div>
+<p class="affiliate-note">Orange <strong>Partner link pending</strong> markers are placeholders, not live affiliate links. <a href="disclosures.html#affiliates">Disclosures</a>.</p>
+</section>
 
 </main>
 <footer class="wrap">
@@ -72,8 +74,8 @@
 loadRates().then(d=>{
   const rows=d.no_penalty_cds||[];
   document.getElementById('npcds').innerHTML = rows.length ? rows.map(r=>rowHTML([
-    esc(r.name), rateCell(r.rate_pct, r.metric), esc(r.as_of), esc(r.notes||''), link(r.source_url,r.source_name)
-  ])).join('') : '<tr><td colspan="5" class="empty">No verified no-penalty CD rates yet.</td></tr>';
+    esc(r.name), rateCell(r.rate_pct, r.metric), esc(r.as_of), esc(r.notes||''), link(r.source_url,r.source_name), affiliateCell(r)
+  ])).join('') : '<tr><td colspan="6" class="empty">No verified no-penalty CD rates yet.</td></tr>';
 });
 </script>
 
