@@ -1,8 +1,18 @@
 name: Refresh T-bill rates
 on:
   schedule:
-    # ~9:30 America/New_York (14:30 UTC) weekdays — Treasury daily dump is usually out by then
-    - cron: "30 14 * * 1-5"
+    # Treasury bill auction results are typically posted shortly after the
+    # 11:30 AM ET close. Daily Treasury bill rates are usually on the Treasury
+    # site by 6:00 PM ET (FRBNY input quotes are taken near 3:30 PM).
+    # GitHub Actions cron on this repo has been running about 6–9 hours after
+    # the scheduled UTC time, so the old single 9:30 AM ET job often landed
+    # mid-afternoon and sometimes before the daily dump. Three weekday slots
+    # cover auction results, the daily dump, and a late backup if Treasury or
+    # GitHub is late. Times are UTC and stay after those ET cutovers in both
+    # EST and EDT.
+    - cron: "45 17 * * 1-5"   # 12:45 PM EST / 1:45 PM EDT — auction results
+    - cron: "45 23 * * 1-5"   # 6:45 PM EST / 7:45 PM EDT — daily bill rates
+    - cron: "15 3 * * 2-6"    # 10:15 PM EST / 11:15 PM EDT Mon–Fri evenings
   workflow_dispatch:
 
 permissions:
