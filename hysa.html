@@ -57,10 +57,12 @@
 </div></header>
 <main class="wrap">
 
-<section class="hero"><div class="pill">category</div><h1>HYSA / savings</h1><p>Product APYs below were read on each bank’s own page on 2026-11-09. The FDIC national average stays in the table as a benchmark, not a product offer. Conditional rates are named in the row.</p></section>
+<section class="hero"><div class="pill">category</div><h1>HYSA / savings</h1><p>Product APYs below come from each bank’s own page, as stored in the verified rates file. The FDIC national average stays in the table as a benchmark, not a product offer. Conditional rates are named in the row. <a href="disclosures.html#affiliates">Partner-link placeholders</a>, if shown, are not live.</p></section>
 <section class="card"><div style="overflow:auto"><table>
-<thead><tr><th>Name</th><th>Rate</th><th>As of</th><th>Notes</th><th>Source</th></tr></thead>
-<tbody id="hysa"></tbody></table></div></section>
+<thead><tr><th>Name</th><th>Rate</th><th>As of</th><th>Notes</th><th>Source</th><th>Open account</th></tr></thead>
+<tbody id="hysa"></tbody></table></div>
+<p class="affiliate-note">Orange <strong>Partner link pending</strong> markers are placeholders, not live affiliate links. <a href="disclosures.html#affiliates">Disclosures</a>.</p>
+</section>
 
 </main>
 <footer class="wrap">
@@ -70,8 +72,8 @@
 <script>
 loadRates().then(d=>{
   document.getElementById('hysa').innerHTML = d.hysa.length ? d.hysa.map(r=>rowHTML([
-    esc(r.name), rateCell(r.rate_pct, r.metric), esc(r.as_of), esc(r.notes||''), link(r.source_url,r.source_name)
-  ])).join('') : '<tr><td colspan="5" class="empty">No verified HYSA product rates yet.</td></tr>';
+    esc(r.name), rateCell(r.rate_pct, r.metric), esc(r.as_of), esc(r.notes||''), link(r.source_url,r.source_name), affiliateCell(r)
+  ])).join('') : '<tr><td colspan="6" class="empty">No verified HYSA product rates yet.</td></tr>';
 });
 </script>
 </body></html>
