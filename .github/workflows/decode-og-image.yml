@@ -1,0 +1,36 @@
+name: Decode og-image
+
+on:
+  push:
+    branches:
+      - audit-fixes-20261125
+    paths:
+      - og-image.png.b64
+      - .github/workflows/decode-og-image.yml
+
+jobs:
+  decode:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode and commit PNG
+        run: |
+          set -euo pipefail
+          base64 -d og-image.png.b64 > og-image.png
+          python3 - <<'PY'
+          from pathlib import Path
+          import struct
+          data = Path("og-image.png").read_bytes()
+          assert data[:8] == b"\x89PNG\r\n\x1a\n"
+          w, h = struct.unpack(">II", data[16:24])
+          assert (w, h) == (1200, 630), (w, h)
+          print("ok", w, h, len(data))
+          PY
+          git config user.name "wilcaldrich-lab"
+          git config user.email "wilcaldrich@gmail.com"
+          git add og-image.png
+          git diff --cached --quiet && exit 0
+          git commit -m "Add branded 1200x630 Open Graph image."
+          git push
