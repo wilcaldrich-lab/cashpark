@@ -260,7 +260,7 @@
   "tbills_daily": [
     {
       "term": "4-Week",
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-27",
       "source_name": "U.S. Treasury Daily Treasury Bill Rates",
       "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
       "metric": "Coupon equivalent yield and bank discount",
@@ -271,18 +271,18 @@
     },
     {
       "term": "6-Week",
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-27",
       "source_name": "U.S. Treasury Daily Treasury Bill Rates",
       "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
       "metric": "Coupon equivalent yield and bank discount",
-      "coupon_equivalent_yield_pct": 4.17,
-      "rate_pct": 4.17,
-      "discount_pct": 4.09,
+      "coupon_equivalent_yield_pct": 4.18,
+      "rate_pct": 4.18,
+      "discount_pct": 4.1,
       "maturity": "2027-01-07"
     },
     {
       "term": "8-Week",
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-27",
       "source_name": "U.S. Treasury Daily Treasury Bill Rates",
       "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
       "metric": "Coupon equivalent yield and bank discount",
@@ -293,46 +293,46 @@
     },
     {
       "term": "13-Week",
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-27",
       "source_name": "U.S. Treasury Daily Treasury Bill Rates",
       "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
       "metric": "Coupon equivalent yield and bank discount",
-      "coupon_equivalent_yield_pct": 4.26,
-      "rate_pct": 4.26,
-      "discount_pct": 4.16,
+      "coupon_equivalent_yield_pct": 4.27,
+      "rate_pct": 4.27,
+      "discount_pct": 4.17,
       "maturity": "2027-02-25"
     },
     {
       "term": "17-Week",
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-27",
       "source_name": "U.S. Treasury Daily Treasury Bill Rates",
       "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
       "metric": "Coupon equivalent yield and bank discount",
-      "coupon_equivalent_yield_pct": 4.38,
-      "rate_pct": 4.38,
-      "discount_pct": 4.26,
+      "coupon_equivalent_yield_pct": 4.39,
+      "rate_pct": 4.39,
+      "discount_pct": 4.27,
       "maturity": "2027-03-30"
     },
     {
       "term": "26-Week",
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-27",
       "source_name": "U.S. Treasury Daily Treasury Bill Rates",
       "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
       "metric": "Coupon equivalent yield and bank discount",
-      "coupon_equivalent_yield_pct": 4.48,
-      "rate_pct": 4.48,
-      "discount_pct": 4.32,
+      "coupon_equivalent_yield_pct": 4.5,
+      "rate_pct": 4.5,
+      "discount_pct": 4.34,
       "maturity": "2027-05-27"
     },
     {
       "term": "52-Week",
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-27",
       "source_name": "U.S. Treasury Daily Treasury Bill Rates",
       "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_bill_rates&field_tdr_date_value=2026",
       "metric": "Coupon equivalent yield and bank discount",
-      "coupon_equivalent_yield_pct": 4.56,
-      "rate_pct": 4.56,
-      "discount_pct": 4.35,
+      "coupon_equivalent_yield_pct": 4.6,
+      "rate_pct": 4.6,
+      "discount_pct": 4.39,
       "maturity": "2027-11-26"
     }
   ],
@@ -418,5 +418,5 @@
     "Bask Bank savings \u2014 the homepage only showed promotional bundle APYs, not a standard savings APY.",
     "Default sweeps for Fidelity/E*TRADE/Vanguard/etc. beyond Schwab \u2014 need each firm's disclosure page verified."
   ],
-  "tbills_refreshed_at_et": "2026-11-27 07:06 EST"
+  "tbills_refreshed_at_et": "2026-11-27 19:42 EST"
 }
